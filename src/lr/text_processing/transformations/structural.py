@@ -4,9 +4,10 @@ def invert(df):
     """
     transformation that returns h, p, l
     for l in {-1. 0}
+
     """
-    df_not_ent = df.query("label!='entailment'").copy()
-    df_ent = df.query("label=='entailment'").copy()
+    df_not_ent = df.query("label!=1").copy()
+    df_ent = df.query("label==1").copy()
     new_p = df_not_ent.loc[:, "hypothesis"].values.copy()
     new_h = df_not_ent.loc[:, "premise"].values.copy()
     df_not_ent.loc[:, "premise"] = new_p
