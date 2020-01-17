@@ -6,8 +6,8 @@ def invert(df):
     for l in {-1. 0}
 
     """
-    df_not_ent = df.query("label!=1").copy()
-    df_ent = df.query("label==1").copy()
+    df_not_ent = df.query("label!='entailment'").copy()
+    df_ent = df.query("label=='entailment'").copy()
     new_p = df_not_ent.loc[:, "hypothesis"].values.copy()
     new_h = df_not_ent.loc[:, "premise"].values.copy()
     df_not_ent.loc[:, "premise"] = new_p
@@ -23,8 +23,8 @@ def entailment_internalization(df):
     """
     contra_combine = " and "
     not_contra_combine = " implies that "
-    df_not_contra = df.query("label!=-1").copy()
-    df_contra = df.query("label==-1").copy()
+    df_not_contra = df.query("label!='contradiction'").copy()
+    df_contra = df.query("label=='contradiction'").copy()
     
     combs = [contra_combine, not_contra_combine]
     dfs = [df_contra, df_not_contra]

@@ -31,11 +31,12 @@ class BasicTransformation(unittest.TestCase):
     def setUp(cls):
         df = pd.read_csv(data_path)
         pre_process_nli_df(df)
-        label2ternary_label(df)
         cls.df = df
 
     def test_label(self):
-        test = np.all(np.array([1, 0, -1]) == self.df.label.unique())
+        df_new = self.df.copy()         
+        label2ternary_label(df_new)
+        test = np.all(np.array([1, 0, -1]) == df_new.label.unique())
         self.assertTrue(test, "not correct label")
 
     def test_syn_transformation(self):
@@ -72,10 +73,10 @@ class BasicTransformation(unittest.TestCase):
     def test_invert_transformation(self):
         df_i = invert(self.df)
         aug = get_augmented_data(df=self.df, transformation=invert, frac=0.5)
-        test1 = all(df_i.query("label!=1").premise == self.df.query("label!=1").hypothesis)  # noqa
-        test2 = all(df_i.query("label!=1").hypothesis == self.df.query("label!=1").premise)  # noqa
+        test1 = all(df_i.query("label!='entailment'").premise == self.df.query("label!='entailment'").hypothesis)  # noqa
+        test2 = all(df_i.query("label!='entailment'").hypothesis == self.df.query("label!='entailment'").premise)  # noqa
         test3 = all(df_i.label == self.df.label)  # noqa
-        test4 = (aug.query("label!=1").hypothesis != self.df.query("label!=1").hypothesis).max()  # noqa
+        test4 = (aug.query("label!='entailment'").hypothesis != self.df.query("label!='entailment'").hypothesis).max()  # noqa
         self.assertTrue(test1)
         self.assertTrue(test2)
         self.assertTrue(test3)

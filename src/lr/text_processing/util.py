@@ -3,6 +3,18 @@ import pandas as pd
 
 spaces = re.compile(' +')
 
+def get_corpus(df):
+    """
+    get corpus from NLI dataset
+
+    :param df: NLI df
+    :type df: pd.DataFrame
+    :return: corpus, list of sentences
+    :rtype: [str]
+    """
+    corpus = df.premise + df.hypothesis
+    return list(corpus.values)
+
 
 def remove_first_space(x):
     """
