@@ -1,0 +1,72 @@
+import numpy as np
+import pandas as pd
+import os
+import sys
+import inspect
+import unittest
+
+currentdir = os.path.dirname(
+    os.path.abspath(
+        inspect.getfile(
+            inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+
+from src.lr.text_processing.util import pre_process_nli_df  # noqa
+from src.lr.text_processing.transformations.util import get_transformed_part_by_syn  # noqa
+from src.lr.text_processing.transformations.util import syn2tranformation  # noqa
+from src.lr.text_processing.transformations.util import get_augmented_data  # noqa
+from src.lr.text_processing.transformations.synonyms import toy  # noqa
+from src.lr.training.util import label2ternary_label  # noqa
+
+data_path = parentdir + "/src/data/toy/train.csv"
+assert os.path.exists(data_path)
+
+
+class BasicTransformation(unittest.TestCase):
+
+    @classmethod
+    def setUp(cls):
+        df = pd.read_csv(data_path)
+        pre_process_nli_df(df)
+        label2ternary_label(df)
+        cls.df = df
+
+    def test_label(self):
+        test = np.all(np.array([1, 0, -1]) == self.df.label.unique())
+        self.assertTrue(test, "not correct label")
+
+    def test_transformation(self):
+        df_t = get_transformed_part_by_syn(self.df, toy)
+        aug1 = get_augmented_data(df=self.df.copy(),
+                                  transformation=syn2tranformation(toy),
+                                  frac=1)
+        mods1 = ((aug1.premise != self.df.premise) | (
+            aug1.hypothesis != self.df.hypothesis)).sum()
+        self.assertEqual(
+            mods1,
+            df_t.shape[0],
+            "not all transformations being done")
+        self.assertEqual(aug1.shape, self.df.shape, "wrong shape")
+        aug2 = get_augmented_data(df=self.df.copy(),
+                                  transformation=syn2tranformation(toy),
+                                  frac=0.5)
+        mods2 = ((aug2.premise != self.df.premise) | (
+            aug2.hypothesis != self.df.hypothesis)).sum()
+        self.assertTrue(
+            mods2 < mods1,
+            "not the right number of transformations being done")
+        self.assertEqual(aug2.shape, self.df.shape, "wrong shape")
+
+        aug3 = get_augmented_data(df=self.df.copy(),
+                                  transformation=syn2tranformation(toy),
+                                  frac=0)
+        mods3 = ((aug3.premise != self.df.premise) | (
+            aug3.hypothesis != self.df.hypothesis)).sum()
+        self.assertTrue(0 <= mods3 < mods2 < mods1,
+                        "not the right number of transformations being done")
+        self.assertEqual(aug3.shape, self.df.shape, "wrong shape")
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

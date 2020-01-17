@@ -32,6 +32,9 @@ def syn2tranformation(syn):
 
 
 def get_augmented_data(df, transformation, frac):
+    """
+    inplace transformation
+    """
     df_tranformed = df.sample(frac=frac, replace=False)
     safe_ids = [i for i in df.index if i not in df_tranformed.index]
     df_safe = df.iloc[safe_ids]
