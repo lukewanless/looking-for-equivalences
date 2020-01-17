@@ -15,20 +15,24 @@ def invert(df):
     return pd.concat([df_ent, df_not_ent]).sort_index()
 
 
-def label_internalization(p, h, l):
+def entailment_internalization(df):
     """
-    transformation that adds the label to the pair (p,h)
-
-
-    :param p: premise
-    :type p: str
-    :param h: hypothesis
-    :type h: str
-    :param l: label
-    :type l: str
-    :return: new observation (p_new,h_new,l_new)
-    :rtype: (str,str,str)
+    new_ p = ''
+    new_h = 'p implies that h' (1,0)
+    new_h = 'p and h' (-1)
     """
-    new_p = p
-    new_h = h + " , {} ,".format(l)
-    return p, new_h, l
+    contra_combine = " and "
+    not_contra_combine = " implies that "
+    df_not_contra = df.query("label!=-1").copy()
+    df_contra = df.query("label==-1").copy()
+    
+    combs = [contra_combine, not_contra_combine]
+    dfs = [df_contra, df_not_contra]
+
+    for comb, df_ in zip(combs, dfs):
+        new_p = [""] * df_.shape[0]
+        new_h = df_.premise.values + comb + df_.hypothesis.values
+        df_.loc[:, "premise"] = new_p
+        df_.loc[:, "hypothesis"] = new_h
+
+    return pd.concat(dfs).sort_index()

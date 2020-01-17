@@ -18,6 +18,7 @@ from src.lr.text_processing.transformations.util import syn2tranformation  # noq
 from src.lr.text_processing.transformations.util import get_augmented_data  # noqa
 from src.lr.text_processing.transformations.synonyms import toy  # noqa
 from src.lr.text_processing.transformations.structural import invert  # noqa
+from src.lr.text_processing.transformations.structural import entailment_internalization  # noqa
 from src.lr.training.util import label2ternary_label  # noqa
 
 data_path = parentdir + "/src/data/toy/train.csv"
@@ -81,6 +82,18 @@ class BasicTransformation(unittest.TestCase):
         self.assertTrue(test4)
         self.assertEqual(df_i.shape, self.df.shape)
 
+
+    def test_entailment_internalization(self):
+        df_i = entailment_internalization(self.df)
+        aug = get_augmented_data(df=self.df, transformation=entailment_internalization, frac=0.5)
+        test1 = all(df_i.label == self.df.label)  # noqa
+        test2 = (aug.premise != self.df.premise).max()  # noqa
+        test3 = (aug.hypothesis != self.df.hypothesis).max()  # noqa
+        self.assertTrue(test1)
+        self.assertTrue(test2)
+        self.assertTrue(test3)
+        self.assertEqual(df_i.premise.map(lambda x: len(x)).sum(), 0)
+        self.assertEqual(df_i.shape, self.df.shape)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
