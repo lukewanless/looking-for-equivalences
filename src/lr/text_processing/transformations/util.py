@@ -16,8 +16,10 @@ def transform_syn_h(df, syn):
 
 
 def transform_syn_p_h(df, syn):
-    transform_syn_p(df, syn)
-    transform_syn_h(df, syn)
+    df_t = df.copy()
+    transform_syn_p(df_t, syn)
+    transform_syn_h(df_t, syn)
+    return df_t
 
 
 def get_transformed_part_by_syn(df, syn):
@@ -33,10 +35,10 @@ def syn2tranformation(syn):
 
 def get_augmented_data(df, transformation, frac):
     """
-    inplace transformation
+    not inplace transformation
     """
     df_tranformed = df.sample(frac=frac, replace=False)
     safe_ids = [i for i in df.index if i not in df_tranformed.index]
     df_safe = df.iloc[safe_ids]
-    transformation(df_tranformed)
+    df_tranformed = transformation(df_tranformed)
     return pd.concat([df_tranformed, df_safe]).sort_index()

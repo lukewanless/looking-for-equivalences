@@ -17,6 +17,7 @@ from src.lr.text_processing.transformations.util import get_transformed_part_by_
 from src.lr.text_processing.transformations.util import syn2tranformation  # noqa
 from src.lr.text_processing.transformations.util import get_augmented_data  # noqa
 from src.lr.text_processing.transformations.synonyms import toy  # noqa
+from src.lr.text_processing.transformations.structural import invert  # noqa
 from src.lr.training.util import label2ternary_label  # noqa
 
 data_path = parentdir + "/src/data/toy/train.csv"
@@ -29,16 +30,17 @@ class BasicTransformation(unittest.TestCase):
     def setUp(cls):
         df = pd.read_csv(data_path)
         pre_process_nli_df(df)
-        label2ternary_label(df)
         cls.df = df
 
     def test_label(self):
-        test = np.all(np.array([1, 0, -1]) == self.df.label.unique())
+        df_new = self.df.copy()
+        label2ternary_label(df_new)
+        test = np.all(np.array([1, 0, -1]) == df_new.label.unique())
         self.assertTrue(test, "not correct label")
 
-    def test_transformation(self):
+    def test_syn_transformation(self):
         df_t = get_transformed_part_by_syn(self.df, toy)
-        aug1 = get_augmented_data(df=self.df.copy(),
+        aug1 = get_augmented_data(df=self.df,
                                   transformation=syn2tranformation(toy),
                                   frac=1)
         mods1 = ((aug1.premise != self.df.premise) | (
@@ -48,7 +50,7 @@ class BasicTransformation(unittest.TestCase):
             df_t.shape[0],
             "not all transformations being done")
         self.assertEqual(aug1.shape, self.df.shape, "wrong shape")
-        aug2 = get_augmented_data(df=self.df.copy(),
+        aug2 = get_augmented_data(df=self.df,
                                   transformation=syn2tranformation(toy),
                                   frac=0.5)
         mods2 = ((aug2.premise != self.df.premise) | (
@@ -58,7 +60,7 @@ class BasicTransformation(unittest.TestCase):
             "not the right number of transformations being done")
         self.assertEqual(aug2.shape, self.df.shape, "wrong shape")
 
-        aug3 = get_augmented_data(df=self.df.copy(),
+        aug3 = get_augmented_data(df=self.df,
                                   transformation=syn2tranformation(toy),
                                   frac=0)
         mods3 = ((aug3.premise != self.df.premise) | (
@@ -66,6 +68,19 @@ class BasicTransformation(unittest.TestCase):
         self.assertTrue(0 <= mods3 < mods2 < mods1,
                         "not the right number of transformations being done")
         self.assertEqual(aug3.shape, self.df.shape, "wrong shape")
+
+    def test_invert_transformation(self):
+        df_i = invert(self.df)
+        aug = get_augmented_data(df=self.df, transformation=invert, frac=0.5)
+        test1 = all(df_i.query("label!='entailment'").premise == self.df.query("label!='entailment'").hypothesis)  # noqa
+        test2 = all(df_i.query("label!='entailment'").hypothesis == self.df.query("label!='entailment'").premise)  # noqa
+        test3 = all(df_i.label == self.df.label)  # noqa
+        test4 = (aug.query("label!='entailment'").hypothesis != self.df.query("label!='entailment'").hypothesis).max()  # noqa
+        self.assertTrue(test1)
+        self.assertTrue(test2)
+        self.assertTrue(test3)
+        self.assertTrue(test4)
+        self.assertEqual(df_i.shape, self.df.shape)
 
 
 if __name__ == '__main__':

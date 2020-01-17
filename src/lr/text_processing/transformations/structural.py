@@ -1,18 +1,17 @@
-def invert(p, h, l):
+import pandas as pd
+
+def invert(df):
     """
     transformation that returns h, p, l
-
-
-    :param p: premise
-    :type p: str
-    :param h: hypothesis
-    :type h: str
-    :param l: label
-    :type l: str
-    :return: new observation (p_new,h_new,l_new)
-    :rtype: (str,str,str)
+    for l in {-1. 0}
     """
-    return h, p, l
+    df_not_ent = df.query("label!='entailment'").copy()
+    df_ent = df.query("label=='entailment'").copy()
+    new_p = df_not_ent.loc[:, "hypothesis"].values.copy()
+    new_h = df_not_ent.loc[:, "premise"].values.copy()
+    df_not_ent.loc[:, "premise"] = new_p
+    df_not_ent.loc[:, "hypothesis"] = new_h
+    return pd.concat([df_ent, df_not_ent]).sort_index()
 
 
 def label_internalization(p, h, l):
