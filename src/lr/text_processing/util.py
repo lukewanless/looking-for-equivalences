@@ -1,7 +1,10 @@
 import re
 import pandas as pd
+from functools import reduce
+from collections import Counter
 
 spaces = re.compile(' +')
+
 
 def get_corpus(df):
     """
@@ -14,6 +17,20 @@ def get_corpus(df):
     """
     corpus = df.premise + df.hypothesis
     return list(corpus.values)
+
+
+def get_vocab_count(df):
+    """
+    get word frequency from corpus
+
+    :param df: NLI df
+    :type df: pd.DataFrame
+    :return: word Counter
+    :rtype: Counter
+    """
+    words = reduce((lambda x, y: x + y),
+                   map(lambda x: x.split(), get_corpus(df)))
+    return Counter(words)
 
 
 def remove_first_space(x):

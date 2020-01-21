@@ -7,18 +7,30 @@ def apply_syn(df, text_column, syn):
     return df.loc[:, text_column].apply(f_str)
 
 
-def transform_syn_p(df, syn):
+def transform_syn_p_(df, syn):
     df.loc[:, "premise"] = apply_syn(df, "premise", syn)
 
 
-def transform_syn_h(df, syn):
+def transform_syn_h_(df, syn):
     df.loc[:, "hypothesis"] = apply_syn(df, "hypothesis", syn)
+
+
+def transform_syn_p(df, syn):
+    df_t = df.copy()
+    transform_syn_p_(df_t, syn)
+    return df_t
+
+
+def transform_syn_h(df, syn):
+    df_t = df.copy()
+    transform_syn_h_(df_t, syn)
+    return df_t
 
 
 def transform_syn_p_h(df, syn):
     df_t = df.copy()
-    transform_syn_p(df_t, syn)
-    transform_syn_h(df_t, syn)
+    transform_syn_p_(df_t, syn)
+    transform_syn_h_(df_t, syn)
     return df_t
 
 
@@ -31,6 +43,12 @@ def get_transformed_part_by_syn(df, syn):
 
 def syn2tranformation(syn):
     return lambda x: transform_syn_p_h(x, syn)
+
+def syn_p2tranformation(syn):
+    return lambda x: transform_syn_p(x, syn)
+
+def syn_h2tranformation(syn):
+    return lambda x: transform_syn_h(x, syn)
 
 
 def get_augmented_data(df, transformation, frac):
