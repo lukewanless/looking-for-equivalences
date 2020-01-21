@@ -59,7 +59,10 @@ class BOW():
 
 class Tfidf():
     """
-    Tfidf representation
+    Convert a collection of raw documents to a matrix of TF-IDF features.
+
+    Equivalent to :class:`CountVectorizer` followed by
+    :class:`TfidfTransformer`
     """
 
     def __init__(self, hyperparams):
@@ -77,6 +80,7 @@ class Tfidf():
         :type corpus: [str]
         """
         self.vectorizer = self.vectorizer.fit(corpus)
+        self.vocab = self.vectorizer.vocabulary_
 
     def transform(self, corpus):
         """
