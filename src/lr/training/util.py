@@ -1,3 +1,10 @@
+def filter_df_by_label(df, drop_label='-'):
+    """
+    drop observations with label 'drop_label'
+    """
+    return df.loc[df.label != drop_label]
+
+
 def get_binary_label(df):
     """
     get binary label from nli labels
