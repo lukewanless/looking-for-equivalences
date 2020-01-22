@@ -15,7 +15,7 @@ def get_corpus(df):
     :return: corpus, list of sentences
     :rtype: [str]
     """
-    corpus = df.premise + df.hypothesis
+    corpus = df.premise + " " + df.hypothesis
     return list(corpus.values)
 
 
