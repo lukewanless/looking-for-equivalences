@@ -21,7 +21,7 @@ def entailment_internalization(df):
     new_h = 'p implies that h' (1,0)
     new_h = 'p and h' (-1)
     """
-    contra_combine = " and "
+    contra_combine = " , "
     not_contra_combine = " implies that "
     df_not_contra = df.query("label!='contradiction'").copy()
     df_contra = df.query("label=='contradiction'").copy()
