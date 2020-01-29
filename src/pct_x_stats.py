@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+import os
 from functools import reduce
 from lr.text_processing.util import pre_process_nli_df, get_vocab_count
 from lr.text_processing.transformations.util import syn_h2tranformation, syn_p2tranformation
@@ -23,7 +24,7 @@ train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
 
 
-debug = True
+debug = False
 
 
 result_path = "results/snli_lr_Tfidf_ent_int_60.csv"
@@ -150,3 +151,7 @@ result.to_csv(result_path)
 ent_result.to_csv(ent_result_path)
 neutral_result.to_csv(neutral_result_path)
 contra_result.to_csv(contra_result_path)
+
+
+if debug:
+    os.remove("results/t.csv")
