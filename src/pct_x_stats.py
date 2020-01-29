@@ -23,13 +23,13 @@ train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
 
 
-debug = False
+debug = True
 
 
-result_path = "results/snli_lr_Tfidf_ent_int_30_40.csv"
-ent_result_path = "results/snli_lr_Tfidf_ent_int_ent_30_40.csv"
-neutral_result_path = "results/snli_lr_Tfidf_ent_int_neutral_30_40.csv"
-contra_result_path = "results/snli_lr_Tfidf_ent_int_contra_30_40.csv"
+result_path = "results/snli_lr_Tfidf_ent_int_60.csv"
+ent_result_path = "results/snli_lr_Tfidf_ent_int_ent_60.csv"
+neutral_result_path = "results/snli_lr_Tfidf_ent_int_neutral_60.csv"
+contra_result_path = "results/snli_lr_Tfidf_ent_int_contra_60.csv"
 
 if debug:
 
@@ -52,13 +52,12 @@ dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
 pre_process_nli_df(df)
 pre_process_nli_df(dev)
 
-trials = 30
-B = 40
+
+B = 60
 max_features = None
 
 if debug:
-    trials = 3
-    B = 10
+    B = 2
     max_features = 500
 
 label_translation = get_ternary_label
@@ -69,8 +68,8 @@ def trans_df(x): return get_augmented_data(df=x,
                                            transformation=transformation,
                                            frac=1)
 
-
-pcts = np.linspace(0, 1, trials)
+I = [1,2,3,4] + list(range(5,100, 5)) + [96, 97, 98, 99,100]
+pcts = np.array(I) / 100
 ids = reduce(lambda x, y: x + y, [[i] * B for i in pcts])
 
 stats = []
