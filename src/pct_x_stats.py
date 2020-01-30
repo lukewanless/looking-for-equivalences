@@ -27,10 +27,10 @@ dev_path = "data/snli/dev.csv"
 debug = False
 
 
-result_path = "results/snli_lr_Tfidf_ent_int_60.csv"
-ent_result_path = "results/snli_lr_Tfidf_ent_int_ent_60.csv"
-neutral_result_path = "results/snli_lr_Tfidf_ent_int_neutral_60.csv"
-contra_result_path = "results/snli_lr_Tfidf_ent_int_contra_60.csv"
+result_path = "results/snli_lr_Tfidf_ent_int_10.csv"
+ent_result_path = "results/snli_lr_Tfidf_ent_int_ent_10.csv"
+neutral_result_path = "results/snli_lr_Tfidf_ent_int_neutral_10.csv"
+contra_result_path = "results/snli_lr_Tfidf_ent_int_contra_10.csv"
 
 if debug:
 
@@ -54,7 +54,7 @@ pre_process_nli_df(df)
 pre_process_nli_df(dev)
 
 
-B = 60
+B = 10
 max_features = None
 
 if debug:
