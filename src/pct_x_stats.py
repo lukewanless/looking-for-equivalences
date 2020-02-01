@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+from time import time
 import os
 from functools import reduce
 from lr.text_processing.util import pre_process_nli_df, get_vocab_count
@@ -24,7 +25,7 @@ train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
 
 
-debug = False
+debug = True
 
 
 result_path = "results/snli_lr_Tfidf_ent_int_10.csv"
@@ -77,6 +78,7 @@ stats = []
 ent_stats = []
 contra_stats = []
 neutral_stats = []
+train_times = []
 
 hyperparams = {"RepresentationFunction": Tfidf,
                "max_features": max_features,
@@ -87,6 +89,7 @@ hyperparams = {"RepresentationFunction": Tfidf,
 
 for pct in tqdm(ids):
 
+
     train_b = get_bootstrap_replications(df)
     dev_b = get_bootstrap_replications(dev)
 
@@ -96,9 +99,11 @@ for pct in tqdm(ids):
 
     dev_b_original, dev_b_t = apply_transformation_under_H0(
         dev_b, df_transformation_f=trans_df)
-
+    
+    init = time()
     lr = LRWrapper(hyperparams)
     lr.fit(train_b_aug)
+    train_times.append(time() - init)
 
     st = get_disagreement_statistics(df=dev_b_original,
                                      df_t=dev_b_t,
@@ -133,6 +138,7 @@ for pct in tqdm(ids):
 result = pd.concat(stats)
 result.index = ids
 result.index.name = "pcts"
+result.loc[:, "training_time"] = train_times
 
 ent_result = pd.concat(ent_stats)
 ent_result.index = ids
@@ -148,10 +154,10 @@ neutral_result.index.name = "pcts"
 
 
 result.to_csv(result_path)
-ent_result.to_csv(ent_result_path)
-neutral_result.to_csv(neutral_result_path)
-contra_result.to_csv(contra_result_path)
+# ent_result.to_csv(ent_result_path)
+# neutral_result.to_csv(neutral_result_path)
+# contra_result.to_csv(contra_result_path)
 
 
-if debug:
-    os.remove("results/t.csv")
+# if debug:
+#     os.remove("results/t.csv")
