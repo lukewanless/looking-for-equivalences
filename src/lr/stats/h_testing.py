@@ -113,3 +113,47 @@ def get_boot_p_value(ts, t_obs):
     def equal_tail_boot_p_value(x): return 2 * \
         np.min([lower_tail_f(x), upper_tail_f(x)])
     return equal_tail_boot_p_value(t_obs)
+
+
+def LIMts_test(train, dev, transformation, rho,
+               Model, hyperparams, M, E, S):
+    dgp = DGP(data=train, transformation=transformation, rho=rho)
+    dev_t = transformation(dev)
+    index_pair = []
+    all_t_obs = []
+    all_p_values = []
+    all_t_boots = []
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    for m in range(M):
+        train_t = dgp.get_sample()
+        for e in range(E):
+            index_pair.append((m + 1, e + 1))
+            model = Model(hyperparams)
+            model.fit(train_t)
+            results = get_matched_results(
+                dev, dev_t, model, model.label_translation)
+            t_obs = get_paired_t_statistic(results)
+            all_t_obs.append(t_obs)
+            t_boots = []
+            for _ in range(S):
+                boot_sample = get_boot_sample_under_H0(results)
+                t = get_paired_t_statistic(boot_sample)
+                t_boots.append(t)
+            t_boots = pd.Series(t_boots)
+            p_value = get_boot_p_value(t_boots, t_obs)
+            all_p_values.append(p_value)
+            t_boots_t = t_boots.to_frame().transpose()
+            t_boots_t.columns = t_columns
+            all_t_boots.append(t_boots_t)
+
+    dict_ = {"experiment_index": index_pair,
+             "observable_t_stats": all_t_obs,
+             "p_value": all_p_values}
+
+    test_results = pd.DataFrame(dict_)
+    t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
+    combined_information = pd.merge(test_results,
+                                    t_boots_df,
+                                    right_index=True,
+                                    left_index=True)
+    return combined_information
