@@ -127,16 +127,25 @@ def LIMts_test(train, dev, transformation, rho,
     all_t_boots = []
     all_Ms = []
     all_Es = []
-    times = []
+    htest_times = []
+    train_times = []
+    trasformation_times = []
+
     t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
     for m in range(M):
+        init = time()
         train_t = dgp.get_sample()
+        t_time = time() - init
         for e in range(E):
-            init = time()
+            trasformation_times.append(t_time)
+            init_test = time()
             all_Ms.append(m + 1)
             all_Es.append(e + 1)
             model = Model(hyperparams)
+            init_train = time()
             model.fit(train_t)
+            train_time = time() - init_train
+            train_times.append(train_time)
             results = get_matched_results(
                 dev, dev_t, model, model.label_translation)
             all_accs.append(results.A.mean())
@@ -154,8 +163,8 @@ def LIMts_test(train, dev, transformation, rho,
             t_boots_t = t_boots.to_frame().transpose()
             t_boots_t.columns = t_columns
             all_t_boots.append(t_boots_t)
-            test_time = time() - init
-            times.append(test_time)
+            test_time = time() - init_test
+            htest_times.append(test_time)
             if verbose:
                 print("m = {} | e = {} | time: {:.2f} sec".format(m + 1, e + 1, test_time))
 
@@ -166,7 +175,9 @@ def LIMts_test(train, dev, transformation, rho,
              "transformed_validation_accuracy": all_accs_t,
              "observable_t_stats": all_t_obs,
              "p_value": all_p_values,
-             "time": times}
+             "transformation_time": trasformation_times,
+             "training_time":train_times,
+             "test_time": htest_times}
 
     test_results = pd.DataFrame(dict_)
     t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
