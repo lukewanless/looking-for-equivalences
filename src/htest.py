@@ -20,12 +20,12 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
-result_path = "results/snli_lr_Tfidf_ent_int_1_1.csv"
+result_path = "results/snli_lr_Tfidf_wordnet_p_h_10_1.csv"
 
 debug = True
 
-rho = 0.57
-M = 20
+rho = 0.25
+M = 10
 E = 1
 S = 1000
 max_features = None
