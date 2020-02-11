@@ -10,6 +10,7 @@ from lr.stats.h_testing import get_boot_sample_under_H0, get_boot_p_value
 from lr.stats.h_testing import LIMts_test
 from lr.training.language_representation import Tfidf
 from lr.models.logistic_regression import LRWrapper
+from lr.text_processing.transformations.wordnetsyn import p_h_transformation_noun_minimal_edition
 from sklearn.exceptions import ConvergenceWarning
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
@@ -21,16 +22,19 @@ train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
 result_path = "results/snli_lr_Tfidf_ent_int_1_1.csv"
 
-debug = False
-rho = 0.2
+debug = True
+
+rho = 0.57
 M = 20
 E = 1
 S = 1000
 max_features = None
+transformation = p_h_transformation_noun_minimal_edition
 
 if debug:
     result_path = "results/t.csv"
     max_features = 500
+    M = 20
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
@@ -54,7 +58,7 @@ hyperparams = {"RepresentationFunction": Tfidf,
 
 tests_results = LIMts_test(train=train,
                            dev=dev,
-                           transformation=entailment_internalization,
+                           transformation=transformation,
                            rho=rho,
                            Model=LRWrapper,
                            hyperparams=hyperparams,
