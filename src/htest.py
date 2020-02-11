@@ -10,17 +10,20 @@ from lr.stats.h_testing import get_boot_sample_under_H0, get_boot_p_value
 from lr.stats.h_testing import LIMts_test
 from lr.training.language_representation import Tfidf
 from lr.models.logistic_regression import LRWrapper
+from sklearn.exceptions import ConvergenceWarning
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
+warnings.filterwarnings("ignore", category=ConvergenceWarning)
+
 
 
 train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
 result_path = "results/snli_lr_Tfidf_ent_int_1_1.csv"
 
-debug = True
-rho = 0.55
-M = 10
+debug = False
+rho = 0.2
+M = 20
 E = 1
 S = 1000
 max_features = None
