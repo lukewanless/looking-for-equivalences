@@ -121,12 +121,14 @@ def LIMts_test(train, dev, transformation, rho,
     dgp = DGP(data=train, transformation=transformation, rho=rho)
     dev_t = transformation(dev)
     all_t_obs = []
+    all_accs = []
+    all_accs_t = []
     all_p_values = []
     all_t_boots = []
-    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
     all_Ms = []
     all_Es = []
     times = []
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
     for m in range(M):
         train_t = dgp.get_sample()
         for e in range(E):
@@ -137,6 +139,8 @@ def LIMts_test(train, dev, transformation, rho,
             model.fit(train_t)
             results = get_matched_results(
                 dev, dev_t, model, model.label_translation)
+            all_accs.append(results.A.mean())
+            all_accs_t.append(results.B.mean())
             t_obs = get_paired_t_statistic(results)
             all_t_obs.append(t_obs)
             t_boots = []
@@ -158,6 +162,8 @@ def LIMts_test(train, dev, transformation, rho,
 
     dict_ = {"m": all_Ms,
              "e": all_Es,
+             "validation_accuracy": all_accs,
+             "transformed_validation_accuracy": all_accs_t,
              "observable_t_stats": all_t_obs,
              "p_value": all_p_values,
              "time": times}
