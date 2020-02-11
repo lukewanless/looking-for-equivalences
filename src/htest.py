@@ -34,7 +34,7 @@ transformation = p_h_transformation_noun_minimal_edition
 if debug:
     result_path = "results/t.csv"
     max_features = 500
-    M = 20
+    M = 2
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
