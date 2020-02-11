@@ -60,4 +60,4 @@ tests_results = LIMts_test(train=train,
                            S=S,
                            verbose=True)
 
-tests_results.to_csv(result_path)
+tests_results.to_csv(result_path, index=False)
