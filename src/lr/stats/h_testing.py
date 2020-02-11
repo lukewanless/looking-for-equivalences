@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from time import time
 
 
 class DGP():
@@ -119,15 +120,19 @@ def LIMts_test(train, dev, transformation, rho,
                Model, hyperparams, M, E, S):
     dgp = DGP(data=train, transformation=transformation, rho=rho)
     dev_t = transformation(dev)
-    index_pair = []
     all_t_obs = []
     all_p_values = []
     all_t_boots = []
     t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    all_Ms = []
+    all_Es = []
+    times = []
     for m in range(M):
         train_t = dgp.get_sample()
         for e in range(E):
-            index_pair.append((m + 1, e + 1))
+            init = time()
+            all_Ms.append(m+1)
+            all_Es.append(e+1)
             model = Model(hyperparams)
             model.fit(train_t)
             results = get_matched_results(
@@ -145,10 +150,13 @@ def LIMts_test(train, dev, transformation, rho,
             t_boots_t = t_boots.to_frame().transpose()
             t_boots_t.columns = t_columns
             all_t_boots.append(t_boots_t)
+            times.append(time() - init)
 
-    dict_ = {"experiment_index": index_pair,
+    dict_ = {"m": all_Ms,
+             "e": all_Es,
              "observable_t_stats": all_t_obs,
-             "p_value": all_p_values}
+             "p_value": all_p_values,
+             "time": times}
 
     test_results = pd.DataFrame(dict_)
     t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
