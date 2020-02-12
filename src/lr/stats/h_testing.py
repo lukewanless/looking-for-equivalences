@@ -116,10 +116,20 @@ def get_boot_p_value(ts, t_obs):
     return equal_tail_boot_p_value(t_obs)
 
 
-def LIMts_test(train, dev, transformation, rho,
-               Model, hyperparams, M, E, S, verbose=False):
-    dgp = DGP(data=train, transformation=transformation, rho=rho)
-    dev_t = transformation(dev)
+def LIMts_test(train,
+               dev,
+               train_transformation,
+               dev_transformation,
+               rho,
+               Model,
+               hyperparams,
+               M, E, S, verbose=False):
+
+    dgp = DGP(data=train,
+              transformation=train_transformation,
+              rho=rho)
+
+    dev_t = dev_transformation(dev)
     all_t_obs = []
     all_accs = []
     all_accs_t = []
@@ -166,8 +176,9 @@ def LIMts_test(train, dev, transformation, rho,
             test_time = time() - init_test
             htest_times.append(test_time)
             if verbose:
-                print("m = {} | e = {} | time: {:.2f} sec".format(m + 1, e + 1, test_time))
-
+                print(
+                    "m = {} | e = {} | time: {:.2f} sec".format(
+                        m + 1, e + 1, test_time))
 
     dict_ = {"m": all_Ms,
              "e": all_Es,
@@ -176,7 +187,7 @@ def LIMts_test(train, dev, transformation, rho,
              "observable_t_stats": all_t_obs,
              "p_value": all_p_values,
              "transformation_time": trasformation_times,
-             "training_time":train_times,
+             "training_time": train_times,
              "test_time": htest_times}
 
     test_results = pd.DataFrame(dict_)
