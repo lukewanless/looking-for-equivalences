@@ -1,3 +1,6 @@
+from multiprocessing import Pool
+import numpy as np
+import pandas as pd
 import copy
 import spacy
 from nltk.corpus import wordnet, stopwords
@@ -43,10 +46,24 @@ def wordnet_modifier(sentence,
 
 nlp = spacy.load("en_core_web_sm")
 
+
 def p_h_transformation_noun_minimal_edition(df):
-    df_new = df.copy()
-    df_new.loc[:, "premise"] = df.premise.map(
-        lambda x: wordnet_modifier(x, nlp, tag="NOUN", dist_id=0))
-    df_new.loc[:, "hypothesis"] = df.hypothesis.map(
-        lambda x: wordnet_modifier(x, nlp, tag="NOUN", dist_id=0))
+    combined = df.premise + " [SEP] " + df.hypothesis
+    combined = combined.map(
+        lambda x: wordnet_modifier(
+            x, nlp, tag="NOUN", dist_id=0))
+    premise = combined.map(lambda x: x.split("[SEP]")[0])
+    hypothesis = combined.map(lambda x: x.split("[SEP]")[1])
+    df_new = pd.DataFrame({"premise": premise,
+                           "hypothesis": hypothesis,
+                           "label": df.label})
     return df_new
+
+
+def parallelize(df, func, n_cores):
+    df_split = np.array_split(df, n_cores)
+    pool = Pool(n_cores)
+    df = pd.concat(pool.map(func, df_split))
+    pool.close()
+    pool.join()
+    return df
