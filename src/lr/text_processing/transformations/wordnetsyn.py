@@ -69,7 +69,7 @@ def parallelize(df, func, n_cores):
     return df
 
 
-def path_base_transormation(df, path):
+def path_base_transformation(df, path):
     df_t = pd.read_csv(path)
     ids = df.index
     return df_t.loc[ids]
