@@ -4,7 +4,7 @@ from time import time
 from lr.text_processing.util import pre_process_nli_df
 from lr.text_processing.transformations.wordnetsyn import p_h_transformation_noun_minimal_edition
 from lr.text_processing.transformations.wordnetsyn import parallelize, path_base_transormation
-
+from lr.training.util import filter_df_by_label
 
 debug = True
 
@@ -27,8 +27,11 @@ syn_transformation = p_h_transformation_noun_minimal_edition
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
+train = filter_df_by_label(train.dropna()).reset_index(drop=True)
+dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
 pre_process_nli_df(train)
 pre_process_nli_df(dev)
+
 
 
 # ### Transforming data
