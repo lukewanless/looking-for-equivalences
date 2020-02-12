@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# SNLI data and modifications
+src/data/snli/*
+
 # Distribution / packaging
 .Python
 build/

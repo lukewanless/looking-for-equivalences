@@ -6,7 +6,7 @@ from lr.text_processing.transformations.wordnetsyn import p_h_transformation_nou
 from lr.text_processing.transformations.wordnetsyn import parallelize, path_base_transormation
 from lr.training.util import filter_df_by_label
 
-debug = True
+debug = False
 
 if debug:
     folder = "toy"
