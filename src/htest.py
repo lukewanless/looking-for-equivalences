@@ -17,14 +17,14 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 train_path = "data/snli/train.csv"
 dev_path = "data/snli/dev.csv"
-result_path = "results/snli_lr_Tfidf_wordnet_p_h_syn_noun_min_0p75.csv"
+result_path = "results/snli_lr_Tfidf_wordnet_p_h_syn_noun_min_0p0.csv"
 
 train_path_mod = "data/snli/train_p_h_syn_noun_min.csv"
 dev_path_mod = "data/snli/dev_p_h_syn_noun_min.csv"
 
 debug = False
 
-rho = 0.75
+rho = 0.0
 M = 20
 E = 1
 S = 1000
