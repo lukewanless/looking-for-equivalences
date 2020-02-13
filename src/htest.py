@@ -22,7 +22,7 @@ result_path = "results/snli_lr_Tfidf_wordnet_p_h_syn_noun_min_0p5.csv"
 train_path_mod = "data/snli/train_p_h_syn_noun_min.csv"
 dev_path_mod = "data/snli/dev_p_h_syn_noun_min.csv"
 
-debug = True
+debug = False
 
 rho = 0.5
 M = 20
