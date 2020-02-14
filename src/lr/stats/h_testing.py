@@ -1,6 +1,28 @@
 import pandas as pd
 import numpy as np
 from time import time
+from scipy.stats import mode
+
+
+class Ensemble():
+    """
+    Classifiers ensemble
+    """
+
+    def __init__(self, classifiers):
+        self.classifiers = classifiers
+        self.label_translation = classifiers[0].label_translation
+
+    def predict(self, df):
+        predictions = [c.predict(df) for c in self.classifiers]
+        predictions = np.stack(predictions).T
+        predictions = np.array([mode(p).mode[0] for p in predictions])
+        return predictions
+
+    def get_acc(self, df):
+        x = self.predict(df)
+        y = self.label_translation(df)
+        return np.mean(x == y)
 
 
 class DGP():
@@ -125,70 +147,95 @@ def LIMts_test(train,
                hyperparams,
                M, E, S, verbose=False):
 
+    # intial setting
     dgp = DGP(data=train,
               transformation=train_transformation,
               rho=rho)
-
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
     dev_t = dev_transformation(dev)
+
     all_t_obs = []
-    all_accs = []
-    all_accs_t = []
+    all_val_accs = []
+    all_val_accs_t = []
     all_p_values = []
     all_t_boots = []
     all_Ms = []
-    all_Es = []
+    models_train_acc_mean = []
+    models_train_acc_std = []
+    ensemble_train_acc = []
     htest_times = []
     train_times = []
     trasformation_times = []
 
-    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    # generate modified training sample
     for m in range(M):
         init = time()
         train_t = dgp.get_sample()
         t_time = time() - init
+        trasformation_times.append(t_time)
+        
+        all_models = []
+        all_Ms.append(m + 1)
+        init_test = time()
+        init_train = time()
+
+    # train E models on the same data
         for e in range(E):
-            trasformation_times.append(t_time)
-            init_test = time()
-            all_Ms.append(m + 1)
-            all_Es.append(e + 1)
             model = Model(hyperparams)
-            init_train = time()
             model.fit(train_t)
-            train_time = time() - init_train
-            train_times.append(train_time)
-            results = get_matched_results(
-                dev, dev_t, model, model.label_translation)
-            all_accs.append(results.A.mean())
-            all_accs_t.append(results.B.mean())
-            t_obs = get_paired_t_statistic(results)
-            all_t_obs.append(t_obs)
-            t_boots = []
-            for _ in range(S):
-                boot_sample = get_boot_sample_under_H0(results)
-                t = get_paired_t_statistic(boot_sample)
-                t_boots.append(t)
-            t_boots = pd.Series(t_boots)
-            p_value = get_boot_p_value(t_boots, t_obs)
-            all_p_values.append(p_value)
-            t_boots_t = t_boots.to_frame().transpose()
-            t_boots_t.columns = t_columns
-            all_t_boots.append(t_boots_t)
-            test_time = time() - init_test
-            htest_times.append(test_time)
-            if verbose:
-                print(
-                    "m = {} | e = {} | time: {:.2f} sec".format(
-                        m + 1, e + 1, test_time))
+            all_models.append(model)
+
+        train_time = time() - init_train
+        train_times.append(train_time)
+
+        # Define the ensemble model
+        all_models_train_acc = [m.get_acc(train_t) for m in all_models]
+        models_train_acc_mean.append(np.mean(all_models_train_acc))
+        models_train_acc_std.append(np.std(all_models_train_acc))
+        m_model = Ensemble(all_models)
+        ensemble_train_acc.append(m_model.get_acc(train_t))
+
+        # Get observed accs and t stats
+        results = get_matched_results(
+            dev, dev_t, m_model, m_model.label_translation)
+        all_val_accs.append(results.A.mean())
+        all_val_accs_t.append(results.B.mean())
+        t_obs = get_paired_t_statistic(results)
+        all_t_obs.append(t_obs)
+
+        # Generate S bootstrap replications
+        t_boots = []
+        for _ in range(S):
+            boot_sample = get_boot_sample_under_H0(results)
+            t = get_paired_t_statistic(boot_sample)
+            t_boots.append(t)
+
+        # Get bootstrap p-value
+        t_boots = pd.Series(t_boots)
+        p_value = get_boot_p_value(t_boots, t_obs)
+        all_p_values.append(p_value)
+        t_boots_t = t_boots.to_frame().transpose()
+        t_boots_t.columns = t_columns
+        all_t_boots.append(t_boots_t)
+        test_time = time() - init_test
+        htest_times.append(test_time)
+        if verbose:
+            print("m = {} | time: {:.2f} sec".format(m + 1, test_time))
 
     dict_ = {"m": all_Ms,
-             "e": all_Es,
-             "validation_accuracy": all_accs,
-             "transformed_validation_accuracy": all_accs_t,
+             "train_accuracy_mean": models_train_acc_mean,
+             "train_accuracy_std": models_train_acc_std,
+             "train_accuracy_ensemble": ensemble_train_acc,
+             "validation_accuracy": all_val_accs,
+             "transformed_validation_accuracy": all_val_accs_t,
              "observable_t_stats": all_t_obs,
              "p_value": all_p_values,
              "transformation_time": trasformation_times,
              "training_time": train_times,
              "test_time": htest_times}
+
+    # for i in dict_:
+    #     print(i, len(dict_[i]))
 
     test_results = pd.DataFrame(dict_)
     t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
