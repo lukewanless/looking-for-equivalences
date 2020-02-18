@@ -2,62 +2,62 @@ import pandas as pd
 import numpy as np
 from time import time
 from lr.text_processing.util import pre_process_nli_df
-from lr.text_processing.transformations.wordnetsyn import p_h_transformation_noun_minimal_edition
-from lr.text_processing.transformations.wordnetsyn import parallelize, path_base_transormation
+from lr.text_processing.util import get_corpus
+from lr.text_processing.transformations.wordnet import get_noun_syn_dict
+from lr.text_processing.transformations.wordnet import p_h_transformation_syn_dict
+from lr.text_processing.transformations.wordnet import parallelize
 from lr.training.util import filter_df_by_label
 
 debug = False
+n_cores = 8
 
-if debug:
-    folder = "toy"
-    n_cores = 2
+# ### Loading data
+train_path = "data/snli/train.csv"
+dev_path = "data/snli/dev.csv"
 
-else:
-    folder = "snli"
-    n_cores = 6    
-
-
-train_path = "data/{}/train.csv".format(folder)
-dev_path = "data/{}/dev.csv".format(folder)
-
-train_path_mod = "data/{}/train_mod.csv".format(folder)
-dev_path_mod = "data/{}/dev_mod.csv".format(folder)
-
-syn_transformation = p_h_transformation_noun_minimal_edition
+train_path_mod = "data/snli/train_p_h_syn_noun.csv"
+dev_path_mod = "data/snli/dev_p_h_syn_noun.csv"
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
+
+if debug:
+    train = train.head(1000)
+    dev = dev.head(1000)
+
 train = filter_df_by_label(train.dropna()).reset_index(drop=True)
 dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
 pre_process_nli_df(train)
 pre_process_nli_df(dev)
 
 
+# get syn dict
 
-# ### Transforming data
-
-
-def transformation(df):
-    return parallelize(df,
-                       func=syn_transformation,
-                       n_cores=n_cores)
-
-
-print("transforming dev....\n")
 init = time()
-dev_t = transformation(dev)
-d_time = time() - init
-print("dev tranformed time = {:.3f} minutes\n".format(d_time / 60))
+syn_dict = get_noun_syn_dict(df=train, n_cores=n_cores)
+syn_time = time() - init
+print("get syn dict: {:.4f} minutes".format(syn_time / 60))
 
 
-print("transforming train....\n")
+
+# apply transformation on the whole dataset
+def trans(df):
+    return p_h_transformation_syn_dict(df, syn_dict)  
+
+
+
 init = time()
-train_t = transformation(train)
-t_time = time() - init
-print("train tranformed time = {:.3f} minutes\n".format(t_time / 60))
+train_t = parallelize(df=train,func=trans, n_cores=n_cores)
+trans_time = time() - init
+print("applying trans to train: {:.4f} minutes".format(trans_time / 60))
 
 
-# Saving transformations
+init = time()
+dev_t = parallelize(df=dev, func=trans, n_cores=n_cores)
+trans_time = time() - init
+print("applying trans to train: {:.4f} minutes".format(trans_time / 60))
 
-dev_t.to_csv(dev_path_mod, index=False)
+
 train_t.to_csv(train_path_mod, index=False)
+dev_t.to_csv(dev_path_mod, index=False)
+
