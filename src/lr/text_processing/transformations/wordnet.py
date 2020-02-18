@@ -95,21 +95,22 @@ def get_syn_from_freq(word, freq_dict):
     return syn.lower()
 
 
-def get_syn_dict(freq_dict):
+def get_syn_dict(freq_dict, veto):
     stemmer = PorterStemmer()
     syn_dict = {}
     for word in freq_dict:
-        syn = get_syn_from_freq(word, freq_dict)
-        syn_stem = stemmer.stem(syn)
-        word_stem = stemmer.stem(word)
-        if syn_stem != word_stem:
-            syn_dict[word] = syn
+        if word not in veto:
+            syn = get_syn_from_freq(word, freq_dict)
+            syn_stem = stemmer.stem(syn)
+            word_stem = stemmer.stem(word)
+            if syn_stem != word_stem:
+                syn_dict[word] = syn
     return syn_dict
 
 
-def get_noun_syn_dict(df, n_cores):
+def get_noun_syn_dict(df, n_cores, veto):
     noun_count = parallel_count_noun(df=df, n_cores=n_cores)
-    syn_dict = get_syn_dict(noun_count)
+    syn_dict = get_syn_dict(noun_count, veto)
     return syn_dict
 
 
