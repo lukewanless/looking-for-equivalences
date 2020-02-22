@@ -39,13 +39,16 @@ class DGP():
         self.transformation = transformation
         self.rho = rho
 
-    def get_sample(self):
+    def sample(self,
+               random_state=None):
         """
         get rho*100% transformed sample from
         data
         """
         df = self.data.copy()
-        df_t = self.transformation(df.sample(frac=self.rho, replace=False))
+        df_t = self.transformation(df.sample(frac=self.rho,
+                                             replace=False,
+                                             random_state=random_state))
         safe_ids = [i for i in df.index if i not in df_t.index]
         df_safe = df.iloc[safe_ids]
         return pd.concat([df_t, df_safe]).sort_index()
@@ -173,7 +176,7 @@ def LIMts_test(train,
         train_t = dgp.get_sample()
         t_time = time() - init
         trasformation_times.append(t_time)
-        
+
         all_models = []
         all_Ms.append(m + 1)
         init_test = time()

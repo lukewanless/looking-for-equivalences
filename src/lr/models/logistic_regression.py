@@ -4,7 +4,7 @@ import sys
 import inspect
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 
 currentdir = os.path.dirname(
     os.path.abspath(
@@ -39,13 +39,20 @@ class LRWrapper():
         else:
             param_grid = hyperparams["param_grid"]
             cv = hyperparams["cv"]
-            verbose = hyperparams["verbose"] 
-            logistic = LogisticRegression()
-            self.model = GridSearchCV(logistic,
-                                      param_grid=param_grid,
-                                      cv=cv,
-                                      verbose=verbose,
-                                      n_jobs=-1)
+            verbose = hyperparams["verbose"]
+            n_jobs = hyperparams["n_jobs"]
+            n_iter = hyperparams["n_iter"]
+            random_state = hyperparams["random_state"]
+            solver = hyperparams['solver']
+
+            logistic = LogisticRegression(solver=solver)
+            self.model = RandomizedSearchCV(logistic,
+                                            param_distributions=param_grid,
+                                            cv=cv,
+                                            n_iter=n_iter,
+                                            random_state=random_state,
+                                            verbose=verbose,
+                                            n_jobs=n_jobs)
         self.repr = self.RepresentationFunction(hyperparams=hyperparams)
         self.repr_fit = False
 
@@ -61,9 +68,9 @@ class LRWrapper():
     def fit(self, df):
         if not self.repr_fit:
             self.fit_representation(df)
-        x = self.transform(df)
+        X = self.transform(df)
         y = self.label_translation(df)
-        self.model = self.model.fit(x, y)
+        self.model = self.model.fit(X, y)
 
     def predict(self, df):
         x = self.transform(df)
