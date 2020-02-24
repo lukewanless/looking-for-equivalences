@@ -118,34 +118,42 @@ def get_paired_t_statistic(results):
     return t
 
 
-# def invert_A_B(df):
-#     new_df = df.copy()
-#     old_A = df.A.values
-#     old_B = df.B.values
-#     new_df.loc[:, "A"] = old_B
-#     new_df.loc[:, "B"] = old_A
-#     return new_df
+def invert_A_B(df):
+    """
+    invert A and B results
+    """
+    new_df = df.copy()
+    old_A = df.A.values
+    old_B = df.B.values
+    new_df.loc[:, "A"] = old_B
+    new_df.loc[:, "B"] = old_A
+    return new_df
 
 
-# def get_boot_sample_under_H0(results):
-#     boot_sample = results.sample(frac=1, replace=True).reset_index(drop=True)
-#     boot_sample_invert = invert_A_B(boot_sample.sample(frac=0.5))
-#     ids = [i for i in boot_sample.index if i not in boot_sample_invert.index]
-#     boot_H0 = pd.concat([boot_sample_invert,
-#                          boot_sample.loc[ids]]).reset_index(drop=True)
-#     return boot_H0
+def get_boot_sample_under_H0(results, random_state=None):
+    """
+    generate bootstrap sample under H0: A and B are the same.
+    """
+    boot_sample = results.sample(frac=1, replace=True, random_state=random_state).reset_index(drop=True)
+    n = boot_sample.shape[0]
+    n_2 = int(n / 2)
+    boot_sample_invert = invert_A_B(boot_sample.head(n_2))
+    ids = [i for i in boot_sample.index if i not in boot_sample_invert.index]
+    boot_H0 = pd.concat([boot_sample_invert,
+                         boot_sample.loc[ids]]).reset_index(drop=True)
+    return boot_H0
 
 
-# def get_boot_p_value(ts, t_obs):
-#     """
-#     ts is a pd.Series
-#     t_obs is the observable value
-#      """
-#     def lower_tail_f(x): return (ts.sort_values() <= x).astype(int).mean()
-#     def upper_tail_f(x): return (ts.sort_values() > x).astype(int).mean()
-#     def equal_tail_boot_p_value(x): return 2 * \
-#         np.min([lower_tail_f(x), upper_tail_f(x)])
-#     return equal_tail_boot_p_value(t_obs)
+def get_boot_p_value(ts, t_obs):
+    """
+    ts is a pd.Series
+    t_obs is the observable value
+     """
+    def lower_tail_f(x): return (ts.sort_values() <= x).astype(int).mean()
+    def upper_tail_f(x): return (ts.sort_values() > x).astype(int).mean()
+    def equal_tail_boot_p_value(x): return 2 * \
+        np.min([lower_tail_f(x), upper_tail_f(x)])
+    return equal_tail_boot_p_value(t_obs)
 
 
 # def LIMts_test(train,
