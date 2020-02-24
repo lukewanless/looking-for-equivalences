@@ -8,15 +8,9 @@ from lr.text_processing.transformations.wordnet import p_h_transformation_syn_di
 from lr.text_processing.transformations.wordnet import parallelize
 from lr.training.util import filter_df_by_label
 
-debug = False
 
-if debug:
-    folder = "toy"
-    n_cores = 2
-
-else:
-    folder = "snli"
-    n_cores = 7
+folder = "snli"
+n_cores = 7
 
 
 # ### Loading data
@@ -31,10 +25,6 @@ dev_path_mod = "data/{}/dev_p_h_syn_noun.csv".format(folder)
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
-
-if debug:
-    train = train.head(1000)
-    dev = dev.head(1000)
 
 train = filter_df_by_label(train.dropna()).reset_index(drop=True)
 dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
@@ -52,12 +42,11 @@ syn_dict = get_noun_syn_dict(df=train, n_cores=n_cores, veto=veto)
 
 
 # removing possible verbs
-syn_dict = {k:syn_dict[k] for k in syn_dict if k[-3:] != "ing"}
+syn_dict = {k: syn_dict[k] for k in syn_dict if k[-3:] != "ing"}
 
 
-#saving to a dataframe
-key = list(syn_dict.keys())
-key.sort()
+# saving to a dataframe
+key = sorted(syn_dict.keys())
 value = [syn_dict[k] for k in key]
 syn_df = pd.DataFrame({"key": key,
                        "value": value})
@@ -66,7 +55,6 @@ syn_df.to_csv(syn_path, index=False)
 
 syn_time = time() - init
 print("get syn dict: {:.4f} minutes".format(syn_time / 60))
-
 
 
 # apply transformation on the whole dataset

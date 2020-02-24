@@ -8,6 +8,8 @@ __pycache__/
 
 # SNLI data and modifications
 src/data/snli/*
+src/data/toy/*
+
 
 # Distribution / packaging
 .Python
