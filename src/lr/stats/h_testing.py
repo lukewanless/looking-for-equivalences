@@ -107,9 +107,8 @@ def get_paired_t_statistic(results):
     """
     return t-statisic from paired test:
 
-    np.sqrt(n)*(np.mean(A) - np.mean(B)) / np.std(A - B) 
+    np.sqrt(n)*(np.mean(A) - np.mean(B)) / np.std(A - B)
     """
-
 
     diff = results.A - results.B
     n = diff.shape[0]
@@ -134,7 +133,11 @@ def get_boot_sample_under_H0(results, random_state=None):
     """
     generate bootstrap sample under H0: A and B are the same.
     """
-    boot_sample = results.sample(frac=1, replace=True, random_state=random_state).reset_index(drop=True)
+    boot_sample = results.sample(
+        frac=1,
+        replace=True,
+        random_state=random_state).reset_index(
+        drop=True)
     n = boot_sample.shape[0]
     n_2 = int(n / 2)
     boot_sample_invert = invert_A_B(boot_sample.head(n_2))
@@ -156,109 +159,109 @@ def get_boot_p_value(ts, t_obs):
     return equal_tail_boot_p_value(t_obs)
 
 
-# def LIMts_test(train,
-#                dev,
-#                train_transformation,
-#                dev_transformation,
-#                rho,
-#                Model,
-#                hyperparams,
-#                M, E, S, verbose=False):
+def LIMts_test(train,
+               dev,
+               train_transformation,
+               dev_transformation,
+               rho,
+               Model,
+               hyperparams,
+               M, E, S,
+               verbose=False,
+               random_state=None):
 
-#     # intial setting
-#     dgp = DGP(data=train,
-#               transformation=train_transformation,
-#               rho=rho)
-#     t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
-#     dev_t = dev_transformation(dev)
+    # setting seed
 
-#     all_t_obs = []
-#     all_val_accs = []
-#     all_val_accs_t = []
-#     all_p_values = []
-#     all_t_boots = []
-#     all_Ms = []
-#     models_train_acc_mean = []
-#     models_train_acc_std = []
-#     ensemble_train_acc = []
-#     htest_times = []
-#     train_times = []
-#     trasformation_times = []
+    if random_state is not None:
+        np.random.seed(random_state)
 
-#     # generate modified training sample
-#     for m in range(M):
-#         init = time()
-#         train_t = dgp.get_sample()
-#         t_time = time() - init
-#         trasformation_times.append(t_time)
+    # intial setting
+    dgp = DGP(data=train,
+              transformation=train_transformation,
+              rho=rho)
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    dev_t = dev_transformation(dev)
 
-#         all_models = []
-#         all_Ms.append(m + 1)
-#         init_test = time()
-#         init_train = time()
+    all_t_obs = []
+    majority_accs = []
+    majority_accs_t = []
+    all_p_values = []
+    all_t_boots = []
+    all_Ms = []
+    models_train_acc_mean = []
+    models_train_acc_std = []
+    htest_times = []
+    train_times = []
+    trasformation_times = []
 
-#     # train E models on the same data
-#         for e in range(E):
-#             model = Model(hyperparams)
-#             model.fit(train_t)
-#             all_models.append(model)
+    # generate modified training sample
+    for m in range(M):
+        init = time()
+        train_t = dgp.sample()
+        t_time = time() - init
+        trasformation_times.append(t_time)
 
-#         train_time = time() - init_train
-#         train_times.append(train_time)
+        all_models = []
+        all_Ms.append(m + 1)
+        init_test = time()
+        init_train = time()
 
-#         # Define the ensemble model
-#         all_models_train_acc = [m.get_acc(train_t) for m in all_models]
-#         models_train_acc_mean.append(np.mean(all_models_train_acc))
-#         models_train_acc_std.append(np.std(all_models_train_acc))
-#         m_model = Ensemble(all_models)
-#         ensemble_train_acc.append(m_model.get_acc(train_t))
+    # train E models on the same data
+        for e in range(E):
+            model = Model(hyperparams)
+            model.fit(train_t)
+            all_models.append(model)
+        train_time = time() - init_train
+        train_times.append(train_time)
 
-#         # Get observed accs and t stats
-#         results = get_matched_results(
-#             dev, dev_t, m_model, m_model.label_translation)
-#         all_val_accs.append(results.A.mean())
-#         all_val_accs_t.append(results.B.mean())
-#         t_obs = get_paired_t_statistic(results)
-#         all_t_obs.append(t_obs)
+        # Define the majority model
+        all_models_train_acc = [m.get_score() for m in all_models]
+        models_train_acc_mean.append(np.mean(all_models_train_acc))
+        models_train_acc_std.append(np.std(all_models_train_acc))
 
-#         # Generate S bootstrap replications
-#         t_boots = []
-#         for _ in range(S):
-#             boot_sample = get_boot_sample_under_H0(results)
-#             t = get_paired_t_statistic(boot_sample)
-#             t_boots.append(t)
+        # Get observed accs and t stats
+        m_model = Majority(all_models)
+        results = get_matched_results(
+            dev, dev_t, m_model, m_model.label_translation)
+        majority_accs.append(results.A.mean())
+        majority_accs_t.append(results.B.mean())
+        t_obs = get_paired_t_statistic(results)
+        all_t_obs.append(t_obs)
 
-#         # Get bootstrap p-value
-#         t_boots = pd.Series(t_boots)
-#         p_value = get_boot_p_value(t_boots, t_obs)
-#         all_p_values.append(p_value)
-#         t_boots_t = t_boots.to_frame().transpose()
-#         t_boots_t.columns = t_columns
-#         all_t_boots.append(t_boots_t)
-#         test_time = time() - init_test
-#         htest_times.append(test_time)
-#         if verbose:
-#             print("m = {} | time: {:.2f} sec".format(m + 1, test_time))
+        # Generate S bootstrap replications
+        t_boots = []
+        for _ in range(S):
+            boot_sample = get_boot_sample_under_H0(results)
+            t = get_paired_t_statistic(boot_sample)
+            t_boots.append(t)
 
-#     dict_ = {"m": all_Ms,
-#              "train_accuracy_mean": models_train_acc_mean,
-#              "train_accuracy_std": models_train_acc_std,
-#              "train_accuracy_ensemble": ensemble_train_acc,
-#              "validation_accuracy": all_val_accs,
-#              "transformed_validation_accuracy": all_val_accs_t,
-#              "observable_t_stats": all_t_obs,
-#              "p_value": all_p_values,
-#              "transformation_time": trasformation_times,
-#              "training_time": train_times,
-#              "test_time": htest_times}
+        # Get bootstrap p-value
+        t_boots = pd.Series(t_boots)
+        p_value = get_boot_p_value(t_boots, t_obs)
+        all_p_values.append(p_value)
+        t_boots_t = t_boots.to_frame().transpose()
+        t_boots_t.columns = t_columns
+        all_t_boots.append(t_boots_t)
+        test_time = time() - init_test
+        htest_times.append(test_time)
+        if verbose:
+            print("m = {} | time: {:.2f} sec".format(m + 1, test_time))
 
-#     # for i in dict_:
-#     #     print(i, len(dict_[i]))
+    dict_ = {"m": all_Ms,
+             "train_accuracy_mean": models_train_acc_mean,
+             "train_accuracy_std": models_train_acc_std,
+             "validation_accuracy": majority_accs,
+             "transformed_validation_accuracy": majority_accs_t,
+             "observable_t_stats": all_t_obs,
+             "p_value": all_p_values,
+             "transformation_time": trasformation_times,
+             "training_time": train_times,
+             "test_time": htest_times}
 
-#     test_results = pd.DataFrame(dict_)
-#     t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
-#     combined_information = pd.merge(test_results,
-#                                     t_boots_df,
-#                                     right_index=True,
-#                                     left_index=True)
-#     return combined_information
+    test_results = pd.DataFrame(dict_)
+    t_boots_df = pd.concat(all_t_boots).reset_index(drop=True)
+    combined_information = pd.merge(test_results,
+                                    t_boots_df,
+                                    right_index=True,
+                                    left_index=True)
+    return combined_information

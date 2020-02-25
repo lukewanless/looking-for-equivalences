@@ -76,9 +76,8 @@ class LRWrapper():
         x = self.transform(df)
         return self.model.predict(x)
 
-    def get_score(self, df, k=1):
-        x = self.transform(df)
-        return self.model.predict_proba(x)[:, k]
+    def get_score(self):
+        return self.model.best_score_
 
     def get_acc(self, df):
         x = self.predict(df)
