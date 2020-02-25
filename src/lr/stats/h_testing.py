@@ -226,6 +226,7 @@ def LIMts_test(train,
         majority_accs.append(results.A.mean())
         majority_accs_t.append(results.B.mean())
         t_obs = get_paired_t_statistic(results)
+
         all_t_obs.append(t_obs)
 
         # Generate S bootstrap replications

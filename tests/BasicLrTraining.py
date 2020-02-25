@@ -77,13 +77,13 @@ class BasicLrTraining(unittest.TestCase):
                        'solver': 'lbfgs'}
         lr = LRWrapper(hyperparams)
         lr.fit(self.df)
-        scores = lr.get_score(self.df)
+        scores = lr.get_acc(self.df)
         lr.save(self.path)
         del lr
         lr = load(self.path)
-        new_scores = lr.get_score(self.df)
+        new_scores = lr.get_acc(self.df)
         msg = "problem to save results"
-        self.assertTrue(all(scores == new_scores), msg)
+        self.assertTrue(scores == new_scores, msg)
 
 
 if __name__ == '__main__':
