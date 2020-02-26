@@ -216,3 +216,39 @@ def path_base_transformation(df, path):
     df_t = pd.read_csv(path)
     ids = df.index
     return df_t.loc[ids]
+
+
+def path_base_transformation_p(df, path):
+    """
+    using a transfored df in "path"
+    transform a new df by just changing the
+    **premise** rows using the indexes
+    """
+    df_t = pd.read_csv(path)
+    ids = df.index
+    df_t = df_t.loc[ids]
+    new_premise = df_t.premise.values
+    new_hypothesis = df.hypothesis.values
+    new_label = df.label.values
+    df_new = pd.DataFrame({"premise": new_premise,
+                           "hypothesis": new_hypothesis,
+                           "label": new_label})
+    return df_new
+
+
+def path_base_transformation_h(df, path):
+    """
+    using a transfored df in "path"
+    transform a new df by just changing the
+    **hypothesis** rows using the indexes
+    """
+    df_t = pd.read_csv(path)
+    ids = df.index
+    df_t = df_t.loc[ids]
+    new_premise = df.premise.values
+    new_hypothesis = df_t.hypothesis.values
+    new_label = df.label.values
+    df_new = pd.DataFrame({"premise": new_premise,
+                           "hypothesis": new_hypothesis,
+                           "label": new_label})
+    return df_new
