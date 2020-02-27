@@ -112,10 +112,10 @@ if __name__ == '__main__':
     debug = True
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    M = 10
+    M = 5
     E = 5
-    n_jobs = -1
-    n_iter = 10
+    n_jobs = 6
+    n_iter = 5
     solver= "saga"
 
     if debug:
@@ -132,7 +132,7 @@ if __name__ == '__main__':
         wordsyn_test(transformation_type="p_h",
                      max_features=None,
                      C_size=500,
-                     cv=5,
+                     cv=10,
                      n_jobs=n_jobs,
                      n_iter=n_iter,
                      rho=rho,

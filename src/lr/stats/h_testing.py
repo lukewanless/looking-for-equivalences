@@ -246,7 +246,7 @@ def LIMts_test(train,
         test_time = time() - init_test
         htest_times.append(test_time)
         if verbose:
-            print("m = {} | time: {:.2f} sec".format(m + 1, test_time))
+            print("m = {} | time: {:.1f} minutes".format(m + 1, test_time / 60))
 
     dict_ = {"m": all_Ms,
              "train_accuracy_mean": models_train_acc_mean,
