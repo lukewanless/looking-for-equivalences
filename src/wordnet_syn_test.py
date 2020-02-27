@@ -21,8 +21,12 @@ def wordsyn_test(transformation_type, max_features, C_size, cv,
                  n_jobs, n_iter, rho, M, E, S, solver,
                  verbose, random_state, debug):
 
-    results_path = "results/snli/lr/wordnet_{}_rho_{}".format(
-        transformation_type, rho)
+    if debug:
+        results_path = "results/snli/lr/debug_wordnet_{}_rho_{}".format(
+            transformation_type, rho)
+    else:
+        results_path = "results/snli/lr/wordnet_{}_rho_{}".format(
+            transformation_type, rho)
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -35,10 +39,6 @@ def wordsyn_test(transformation_type, max_features, C_size, cv,
     dev = pd.read_csv(dev_path)
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
     dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
-
-#    if debug:
-#        train = train.head(10000)
- #       dev = dev.head(1000)
 
     pre_process_nli_df(train)
     pre_process_nli_df(dev)
@@ -80,7 +80,7 @@ def wordsyn_test(transformation_type, max_features, C_size, cv,
                    "cv": cv,
                    "solver": solver,
                    "random_state": None,
-                   "verbose": False,
+                   "verbose": verbose,
                    "n_jobs": n_jobs,
                    "n_iter": n_iter,
                    "max_features": max_features,
@@ -112,34 +112,36 @@ if __name__ == '__main__':
     debug = True
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
+    random_states = [42, 43, 44, 45, 46]
     M = 5
     E = 5
+    S = 1000
     n_jobs = 6
     n_iter = 5
-    solver= "saga"
+    solver = "saga"
+    cv = 10
+    transformation_type = "p_h"
 
     if debug:
         pcts = [0.3]
+        random_states = [1234]
         M = 1
-        # n_jobs = 2
-        # n_iter = 2
-        # E = 1
 
-    for rho in pcts:
+    for rho, random_state in zip(pcts, random_states):
 
         print("\nPerforming tests for rho = {:.1%}\n".format(rho))
 
-        wordsyn_test(transformation_type="p_h",
+        wordsyn_test(transformation_type=transformation_type,
                      max_features=None,
                      C_size=500,
-                     cv=10,
+                     cv=cv,
                      n_jobs=n_jobs,
                      n_iter=n_iter,
                      rho=rho,
                      M=M,
                      E=E,
-                     S=1000,
+                     S=S,
                      solver=solver,
                      verbose=True,
-                     random_state=1234,
+                     random_state=random_state,
                      debug=debug)
