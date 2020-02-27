@@ -120,7 +120,7 @@ if __name__ == '__main__':
     n_iter = 5
     solver = "saga"
     cv = 10
-    transformation_type = "p_h"
+    transformation_type = "only_p"
 
     if debug:
         pcts = [0.3]
