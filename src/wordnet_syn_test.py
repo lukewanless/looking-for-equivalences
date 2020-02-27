@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 
 def wordsyn_test(transformation_type, max_features, C_size, cv,
-                 n_jobs, n_iter, rho, M, E, S,
+                 n_jobs, n_iter, rho, M, E, S, solver,
                  verbose, random_state, debug):
 
     results_path = "results/snli/lr/wordnet_{}_rho_{}".format(
@@ -78,7 +78,7 @@ def wordsyn_test(transformation_type, max_features, C_size, cv,
 
     hyperparams = {"RepresentationFunction": Tfidf,
                    "cv": cv,
-                   "solver": 'lbfgs',
+                   "solver": solver,
                    "random_state": None,
                    "verbose": False,
                    "n_jobs": n_jobs,
@@ -113,10 +113,17 @@ if __name__ == '__main__':
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
     M = 10
+    E = 5
+    n_jobs = -1
+    n_iter = 10
+    solver= "saga"
 
     if debug:
         pcts = [0.3]
         M = 1
+        # n_jobs = 2
+        # n_iter = 2
+        # E = 1
 
     for rho in pcts:
 
@@ -126,12 +133,13 @@ if __name__ == '__main__':
                      max_features=None,
                      C_size=500,
                      cv=5,
-                     n_jobs=6,
-                     n_iter=2,
+                     n_jobs=n_jobs,
+                     n_iter=n_iter,
                      rho=rho,
                      M=M,
-                     E=5,
+                     E=E,
                      S=1000,
+                     solver=solver,
                      verbose=True,
                      random_state=1234,
                      debug=debug)
