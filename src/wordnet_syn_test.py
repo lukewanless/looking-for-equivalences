@@ -36,9 +36,9 @@ def wordsyn_test(transformation_type, max_features, C_size, cv,
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
     dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
 
-    if debug:
-        train = train.head(10000)
-        dev = dev.head(1000)
+#    if debug:
+#        train = train.head(10000)
+ #       dev = dev.head(1000)
 
     pre_process_nli_df(train)
     pre_process_nli_df(dev)
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                      max_features=None,
                      C_size=500,
                      cv=5,
-                     n_jobs=1,
+                     n_jobs=6,
                      n_iter=2,
                      rho=rho,
                      M=M,
