@@ -116,21 +116,21 @@ if __name__ == '__main__':
     debug = False
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    random_states = [42, 43, 44, 45, 46]
+    # random_states = [42, 43, 44, 45, 46]  random states for  p_and_h
+    
+    random_states = [14, 16, 18, 20, 22 ] # random states for only p 
     M = 5
     E = 5
     S = 1000
     n_jobs = 8
     n_iter = 5
     cv = 5
-    transformation_type = "p_h"
+    transformation_type = "only_p"
 
     if debug:
         pcts = [0.3]
         random_states = [1234]
         M = 1
-        #  n_iter = 2
-        # cv = 2
 
     for rho, random_state in zip(pcts, random_states):
 
