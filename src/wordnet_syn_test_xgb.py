@@ -113,7 +113,7 @@ def wordsyn_test(transformation_type, max_features, cv,
 
 if __name__ == '__main__':
 
-    debug = True
+    debug = False
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
     random_states = [42, 43, 44, 45, 46]
