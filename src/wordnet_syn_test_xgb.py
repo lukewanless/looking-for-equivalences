@@ -40,10 +40,6 @@ def wordsyn_test(transformation_type, max_features, cv,
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
     dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
 
-    if debug:
-        train = train.head(1000)
-        dev = dev.head(100)
-
     pre_process_nli_df(train)
     pre_process_nli_df(dev)
 
@@ -77,8 +73,8 @@ def wordsyn_test(transformation_type, max_features, cv,
 
     # hyperparms for the XGB models
 
-    param_grid = {'n_estimators': range(10, 30, 5),
-                  'max_depth': range(2, 31),
+    param_grid = {'n_estimators': range(10, 20, 5),
+                  'max_depth': range(2, 11),
                   "reg_alpha": np.arange(0.05, 1.05, 0.05),
                   "reg_gamma": np.arange(0.05, 1.05, 0.05),
                   "learning_rate": np.arange(0.05, 1.05, 0.05),
@@ -124,18 +120,17 @@ if __name__ == '__main__':
     M = 5
     E = 5
     S = 1000
-    n_jobs = 6
+    n_jobs = 8
     n_iter = 5
-    cv = 10
+    cv = 5
     transformation_type = "p_h"
 
     if debug:
         pcts = [0.3]
         random_states = [1234]
         M = 1
-        # n_jobs = 1
-        # n_iter = 2
-        # cv = 3
+        #  n_iter = 2
+        # cv = 2
 
     for rho, random_state in zip(pcts, random_states):
 
