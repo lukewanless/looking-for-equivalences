@@ -24,6 +24,21 @@ def get_ternary_label(df):
                    "neutral": 0, }
     return df.label.apply(lambda x: nli2ternary[x]).values
 
+
+
+def get_positive_labels(df):
+    """
+    get ternary label from nli labels
+    using only positive numbers
+    """
+    nli2ternary = {"entailment": 1,
+                   "contradiction": 0,
+                   "neutral": 2, }
+    return df.label.apply(lambda x: nli2ternary[x]).values
+
+
+
+
 def label2binary_label(df):
     """
     get binary label from nli labels
