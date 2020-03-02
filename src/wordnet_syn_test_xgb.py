@@ -116,16 +116,19 @@ if __name__ == '__main__':
     debug = False
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    # random_states = [42, 43, 44, 45, 46]  random states for  p_and_h
+    # random_states = [42, 43, 44, 45, 46] # random states for  p_and_h 
+    # random_states = [14, 16, 18, 20, 22 ] # random states for only p 
     
-    random_states = [14, 16, 18, 20, 22 ] # random states for only p 
+    random_states = [54, 136, 38, 420, 722 ] # random states for only h 
+    M = 5
+    M = 5
     M = 5
     E = 5
     S = 1000
     n_jobs = 8
     n_iter = 5
     cv = 5
-    transformation_type = "only_p"
+    transformation_type = "only_h"
 
     if debug:
         pcts = [0.3]
