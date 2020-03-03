@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# any type of log
+*.log
+
 # SNLI data and modifications
 src/data/snli/*
 src/data/toy/*
