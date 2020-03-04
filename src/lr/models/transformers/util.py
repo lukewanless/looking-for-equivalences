@@ -93,6 +93,12 @@ class NLIProcessor(DataProcessor):
         pre_process_nli_df(df)
         return df
 
+    def df2examples(self, df, set_type):
+        df = filter_df_by_label(df.dropna()).reset_index(drop=True)
+        pre_process_nli_df(df)
+        examples = self._create_examples(df, set_type)
+        return examples
+
     def get_train_examples(self, path):
         logging.info("creating train examples for {}".format(path))
         return self._create_examples(self.read_and_clean_csv(path), "train")
@@ -176,6 +182,35 @@ def convert_examples_to_features(examples,
                                       token_type_ids=token_type_ids,
                                       label=label))
     return features
+
+
+def features2dataset(cached_features_file, hyperparams, evaluate=False):
+    local_rank = hyperparams["local_rank"]
+    if local_rank not in [-1, 0] and not evaluate:
+        torch.distributed.barrier()
+
+    assert os.path.exists(cached_features_file)
+    logging.info("Loading features from cached file %s", cached_features_file)
+    features = torch.load(cached_features_file)
+
+    # Make sure only the first process in distributed training process the dataset,
+    # and the others will use the cache
+    if local_rank == 0 and not evaluate:
+        torch.distributed.barrier()
+
+    all_input_ids = torch.tensor(
+        [f.input_ids for f in features], dtype=torch.long)
+    all_attention_mask = torch.tensor(
+        [f.attention_mask for f in features], dtype=torch.long)
+    all_token_type_ids = torch.tensor(
+        [f.token_type_ids for f in features], dtype=torch.long)
+    all_labels = torch.tensor([f.label for f in features], dtype=torch.long)
+    dataset = TensorDataset(
+        all_input_ids,
+        all_attention_mask,
+        all_token_type_ids,
+        all_labels)
+    return dataset
 
 
 def load_and_cache_examples(hyperparams, tokenizer, evaluate=False):
@@ -475,7 +510,7 @@ def train(train_dataset, model, tokenizer, hyperparams):
     return global_step, tr_loss / global_step
 
 
-def evaluate(hyperparams, model, tokenizer, prefix=""):
+def evaluate(eval_dataset, hyperparams, model):
 
     verbose = hyperparams["verbose"]
     disable = False if verbose else True
@@ -486,9 +521,6 @@ def evaluate(hyperparams, model, tokenizer, prefix=""):
     model_type = hyperparams["model_type"]
 
     eval_batch_size = per_gpu_eval_batch_size * max(1, n_gpu)
-
-    eval_dataset = load_and_cache_examples(
-        hyperparams, tokenizer, evaluate=True)
 
     eval_sampler = SequentialSampler(eval_dataset)
     eval_dataloader = DataLoader(eval_dataset,
@@ -507,6 +539,7 @@ def evaluate(hyperparams, model, tokenizer, prefix=""):
 
     results = {"label": [],
                "prediction": []}
+    all_loss = []
 
     for batch in tqdm(eval_dataloader,
                       desc="Evaluating",
@@ -523,7 +556,8 @@ def evaluate(hyperparams, model, tokenizer, prefix=""):
                     "bert", "xlnet", "albert"] else None
                 )
             outputs = model(**inputs)
-            _, logits = outputs[:2]
+            loss, logits = outputs[:2]
+            all_loss.append(loss.item())
 
             if preds is None:
                 preds = logits.detach().cpu().numpy()
@@ -539,4 +573,4 @@ def evaluate(hyperparams, model, tokenizer, prefix=""):
 
     results["label"] = out_label_ids
     results["prediction"] = preds
-    return pd.DataFrame(results)
+    return np.mean(all_loss), pd.DataFrame(results)
