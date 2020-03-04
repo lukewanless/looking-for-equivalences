@@ -244,10 +244,7 @@ def load_and_cache_examples(hyperparams, tokenizer, evaluate=False):
 def train(train_dataset, model, tokenizer, hyperparams):
 
     verbose = hyperparams["verbose"]
-    if verbose:
-        disable = False
-    else:
-        disable = True
+    disable = False if verbose else True
 
     local_rank = hyperparams["local_rank"]
     per_gpu_train_batch_size = hyperparams["per_gpu_train_batch_size"]
@@ -476,3 +473,70 @@ def train(train_dataset, model, tokenizer, hyperparams):
     training_logs = pd.DataFrame(training_logs)
     training_logs.to_csv(log_path, index=False)
     return global_step, tr_loss / global_step
+
+
+def evaluate(hyperparams, model, tokenizer, prefix=""):
+
+    verbose = hyperparams["verbose"]
+    disable = False if verbose else True
+
+    per_gpu_eval_batch_size = hyperparams["per_gpu_eval_batch_size"]
+    n_gpu = hyperparams["n_gpu"]
+    device = hyperparams["device"]
+    model_type = hyperparams["model_type"]
+
+    eval_batch_size = per_gpu_eval_batch_size * max(1, n_gpu)
+
+    eval_dataset = load_and_cache_examples(
+        hyperparams, tokenizer, evaluate=True)
+
+    eval_sampler = SequentialSampler(eval_dataset)
+    eval_dataloader = DataLoader(eval_dataset,
+                                 sampler=eval_sampler,
+                                 batch_size=eval_batch_size)
+    # multi-gpu eval
+    if n_gpu > 1 and not isinstance(model, torch.nn.DataParallel):
+        model = torch.nn.DataParallel(model)
+
+    # Eval!
+    logging.info("***** Running evaluation *****")
+    logging.info("  Num examples = %d", len(eval_dataset))
+    logging.info("  Batch size = %d", eval_batch_size)
+    preds = None
+    out_label_ids = None
+
+    results = {"label": [],
+               "prediction": []}
+
+    for batch in tqdm(eval_dataloader,
+                      desc="Evaluating",
+                      disable=disable):
+        model.eval()
+        batch = tuple(t.to(device) for t in batch)
+        with torch.no_grad():
+            inputs = {"input_ids": batch[0],
+                      "attention_mask": batch[1],
+                      "labels": batch[3]}
+            # XLM, DistilBERT, RoBERTa, and XLM-RoBERTa don't use segment_ids
+            if model_type != "distilbert":
+                inputs["token_type_ids"] = (batch[2] if model_type in [
+                    "bert", "xlnet", "albert"] else None
+                )
+            outputs = model(**inputs)
+            _, logits = outputs[:2]
+
+            if preds is None:
+                preds = logits.detach().cpu().numpy()
+                preds = np.argmax(preds, axis=1)
+
+                out_label_ids = inputs["labels"].detach().cpu().numpy()
+            else:
+                new_preds = logits.detach().cpu().numpy()
+                new_preds = np.argmax(new_preds, axis=1)
+                preds = np.append(preds, new_preds, axis=0)
+                out_label_ids = np.append(
+                    out_label_ids, inputs["labels"].detach().cpu().numpy(), axis=0)
+
+    results["label"] = out_label_ids
+    results["prediction"] = preds
+    return pd.DataFrame(results)
