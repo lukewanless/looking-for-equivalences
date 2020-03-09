@@ -184,19 +184,12 @@ def convert_examples_to_features(examples,
     return features
 
 
-def features2dataset(cached_features_file, hyperparams, evaluate=False):
-    local_rank = hyperparams["local_rank"]
-    if local_rank not in [-1, 0] and not evaluate:
-        torch.distributed.barrier()
-
+def features2dataset(cached_features_file):
     assert os.path.exists(cached_features_file)
     logging.info("Loading features from cached file %s", cached_features_file)
     features = torch.load(cached_features_file)
 
-    # Make sure only the first process in distributed training process the dataset,
-    # and the others will use the cache
-    if local_rank == 0 and not evaluate:
-        torch.distributed.barrier()
+#     torch.distributed.barrier()
 
     all_input_ids = torch.tensor(
         [f.input_ids for f in features], dtype=torch.long)

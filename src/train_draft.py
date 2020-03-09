@@ -22,7 +22,7 @@ from sklearn.model_selection import train_test_split
 # In[2]:
 
 
-folder = "snli"
+folder = "toy"
 
 hyperparams = {"local_rank": -1,
                "max_seq_length": 200,
