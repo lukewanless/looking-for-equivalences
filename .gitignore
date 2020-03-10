@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+#bert save folder
+\bert
+
 # any type of log
 *.log
 
