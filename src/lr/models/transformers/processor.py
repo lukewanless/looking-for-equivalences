@@ -35,14 +35,6 @@ def parallelize_df2list(df, func, n_cores):
     return result
 
 
-def set_seed(seed, n_gpu):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    if n_gpu > 0:
-        torch.cuda.manual_seed_all(seed)
-
-
 def remove_first_space(x):
     """
     remove_first_space from word x
