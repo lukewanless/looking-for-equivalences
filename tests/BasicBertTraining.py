@@ -1,16 +1,11 @@
 import numpy as np
 import pandas as pd
-import os
+from time import time
 import shutil
-import torch
 import os
 import sys
 import inspect
 import unittest
-from torch.utils.data import TensorDataset
-from transformers import BertTokenizer
-from transformers import BertForSequenceClassification
-
 
 currentdir = os.path.dirname(
     os.path.abspath(
@@ -19,15 +14,11 @@ currentdir = os.path.dirname(
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
+from src.lr.models.transformers.processor import filter_df_by_label  # noqa
+from src.lr.models.transformers.BertWrapper import BertWrapper  # noqa
 
-from src.lr.models.transformers.util import load_and_cache_examples  # noqa
-from src.lr.models.transformers.util import train, set_seed  # noqa
 
-
-train_path = parentdir + "/src/data/toy/train.csv"
-dev_path = parentdir + "/src/data/toy/dev.csv"
-cache_path = parentdir + "/src/data/toy/"
-
+base_path = parentdir + "/src/data/toy/"
 
 
 class BasicBertTraining(unittest.TestCase):
@@ -36,28 +27,35 @@ class BasicBertTraining(unittest.TestCase):
     def tearDown(cls):
         if os.path.exists("example.log"):
             os.remove("example.log")
+
         if os.path.exists("bert"):
             shutil.rmtree("bert")
 
+        paths = ["cached_dev_to_eval_200", "cached_test_200", "cached_train_200",
+                 "cached_train_to_eval_200"]
+
+        for path in paths:
+            path = parentdir + path
+            if os.path.exists(path):
+                os.remove(path)
+
     def test_bert_training(self):
+
         hyperparams = {"local_rank": -1,
-                       "max_seq_length": 128,
+                       "max_seq_length": 200,
                        "overwrite_cache": False,
-                       "cached_path": cache_path,
-                       "train_path": train_path,
-                       "dev_path": dev_path,
-                       "num_train_epochs": 3.0,
-                       "per_gpu_train_batch_size": 8,
-                       "per_gpu_eval_batch_size": 8,
+                       "num_train_epochs": 1.0,
+                       "per_gpu_train_batch_size": 32,
+                       "per_gpu_eval_batch_size": 32,
                        "gradient_accumulation_steps": 1,
                        "learning_rate": 5e-5,
                        "weight_decay": 0.0,
                        "adam_epsilon": 1e-8,
                        "max_grad_norm": 1.0,
-                       "max_steps": 10,
+                       "max_steps": 7,
                        "warmup_steps": 0,
-                       "save_steps": 5,
-                       "no_cuda": True,
+                       "save_steps": 6,
+                       "no_cuda": False,
                        "n_gpu": 1,
                        "model_name_or_path": "bert",
                        "output_dir": "bert",
@@ -66,28 +64,52 @@ class BasicBertTraining(unittest.TestCase):
                        "fp16_opt_level": "01",
                        "device": "cpu",
                        "verbose": False,
-                       "model_type": "bert"}
+                       "model_type": "bert",
+                       "pad_on_left": False,
+                       "pad_token": 0,
+                       "pad_token_segment_id": 0,
+                       "mask_padding_with_zero": True,
+                       "eval_sample_size": 100,
+                       "n_cores": 7,
+                       "base_path": base_path + "cached_"}
 
-        set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
+        # ## loading base model
 
-        pretrained_weights = 'bert-base-uncased'
-        tokenizer = BertTokenizer.from_pretrained(pretrained_weights)
-        model = BertForSequenceClassification.from_pretrained(
-            pretrained_weights, num_labels=3)
+        my_bert = BertWrapper(hyperparams)
 
-        train_dataset = load_and_cache_examples(hyperparams, tokenizer)
-        dev_dataset = load_and_cache_examples(
-            hyperparams, tokenizer, evaluate=True)
-        global_step, tr_loss = train(
-            train_dataset, model, tokenizer, hyperparams)
-        training_logs = pd.read_csv("bert/log.csv")
-        a1 = training_logs.loss.rolling(3).mean().iloc[3]
-        a2 = training_logs.loss.rolling(3).mean().iloc[-1]
-        self.assertTrue(a1 > a2)
-        self.assertTrue(a1 == 1.3554697434107463)
-        self.assertTrue(a2 == 1.131113092104594)
-        self.assertTrue(tr_loss == 1.195960673418912)
+        # ## Loading DFs
+
+        train_path = base_path + "train.csv"
+        test_path = base_path + "dev.csv"
+        df = pd.read_csv(train_path)
+        test = pd.read_csv(test_path)
+        test = test.sample(100, random_state=hyperparams["random_state"])
+
+        # ### Eval 1
+
+        pred = my_bert.predict(test, transform=True, mode="test")
+        lmap = my_bert.processor.get_label_map()
+        filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
+        before_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
+            
+        # ### Fit
+
+        global_step, tr_loss, train_time = my_bert.fit(df)
+
+
+        # ### Eval 2
+
+        eval_path =  base_path + "cached_test_200"
+        pred = my_bert.predict(None, transform=False, path=eval_path)
+        lmap = my_bert.processor.get_label_map()
+        filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
+        after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
+
+        self.assertTrue(tr_loss == 1.1454728543758392)
+        self.assertTrue(before_acc == 0.31)
+        self.assertTrue(after_acc == 0.4)
 
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+

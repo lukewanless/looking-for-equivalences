@@ -1,6 +1,3 @@
-from lr.models.transformers.processor import NLIProcessor, features2dataset
-from lr.models.transformers.processor import filter_df_by_label
-from lr.models.transformers.train_functions import evaluate, train, set_seed
 import logging
 import os
 import shutil
@@ -11,6 +8,16 @@ from transformers import BertTokenizer
 from transformers import BertForSequenceClassification
 from time import time
 from sklearn.model_selection import train_test_split
+
+try:
+    from lr.models.transformers.processor import NLIProcessor, features2dataset  # noqa
+    from lr.models.transformers.processor import filter_df_by_label  # noqa
+    from lr.models.transformers.train_functions import evaluate, train, set_seed  # noqa
+
+except ModuleNotFoundError:
+    from src.lr.models.transformers.processor import NLIProcessor, features2dataset  # noqa
+    from src.lr.models.transformers.processor import filter_df_by_label  # noqa
+    from src.lr.models.transformers.train_functions import evaluate, train, set_seed  # noqa
 
 
 class BertWrapper():
@@ -91,3 +98,4 @@ class BertWrapper():
         eval_dataset = features2dataset(eval_cached_features_file)
         _, results = evaluate(eval_dataset, self.hyperparams, self.model)
         return results.prediction
+
