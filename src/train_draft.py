@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[16]:
-
-
-from lr.models.transformers.util import *
+from lr.models.transformers.processor import *
+from lr.models.transformers.util import evaluate, train
 import logging
 import os
 import shutil
@@ -17,134 +12,139 @@ from time import time
 from sklearn.model_selection import train_test_split
 
 
-# ### Params
-
-# In[2]:
-
-
-folder = "toy"
+folder = "snli"
 
 hyperparams = {"local_rank": -1,
                "max_seq_length": 200,
                "overwrite_cache": False,
-               "num_train_epochs":3.0,
-               "per_gpu_train_batch_size":32,
-               "per_gpu_eval_batch_size":32,
+               "num_train_epochs": 1.0,
+               "per_gpu_train_batch_size": 32,
+               "per_gpu_eval_batch_size": 32,
                "gradient_accumulation_steps": 1,
-               "learning_rate":5e-5,
-               "weight_decay":0.0,
+               "learning_rate": 5e-5,
+               "weight_decay": 0.0,
                "adam_epsilon": 1e-8,
                "max_grad_norm": 1.0,
-               "max_steps": -1,
+               "max_steps": 1200,
                "warmup_steps": 0,
-               "save_steps": 500,
-               "no_cuda":False,
-               "n_gpu":1,
-               "model_name_or_path":"bert",
-               "output_dir":"bert",
+               "save_steps": 100,
+               "no_cuda": False,
+               "n_gpu": 1,
+               "model_name_or_path": "bert",
+               "output_dir": "bert",
                "random_state": 42,
-               "fp16":False,
-               "fp16_opt_level":"01",
-               "device":"cpu",
-               "verbose":True,
+               "fp16": False,
+               "fp16_opt_level": "01",
+               "device": "cpu",
+               "verbose": True,
                "model_type": "bert",
-               "train_cached_features_file": "data/{}/base_train_".format(folder),
-               "dev_cached_features_file": "data/{}/base_dev_".format(folder)} 
+               "pad_on_left": False,
+               "pad_token": 0,
+               "pad_token_segment_id": 0,
+               "mask_padding_with_zero": True,
+               "base_path": "data/{}/cached_".format(folder)}
 
 
-set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
-
-
-# ## Set results dict
+# # loading tokenizers
 
 # In[3]:
 
 
-meta_results = {"moment":[],
-                "type":[],
-                "loss":[],
-                "acc":[],
-                "time":[]}
+set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
+
+pretrained_weights = 'bert-base-uncased'
+tokenizer = BertTokenizer.from_pretrained(pretrained_weights)
+hyperparams["tokenizer"] = tokenizer
 
 
-# # df
+# ## Set results dict
 
 # In[4]:
 
 
-train_path = "data/{}/train.csv".format(folder)
+meta_results = {"moment": [],
+                "type": [],
+                "loss": [],
+                "acc": [],
+                "time": []}
 
-df = pd.read_csv(train_path)
-df_train, df_dev = train_test_split(df, test_size=0.1)
 
-
-# # examples
+# # df
 
 # In[5]:
 
 
-processor = NLIProcessor()
-train_examples = processor.df2examples(df_train, "train")
-dev_examples = processor.df2examples(df_dev, "dev")
+train_path = "data/{}/train.csv".format(folder)
+set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
+
+eval_sample_size = 200
 
 
-# # features
-
-# In[6]:
+df = pd.read_csv(train_path)
 
 
-pretrained_weights = 'bert-base-uncased'
-tokenizer = BertTokenizer.from_pretrained(pretrained_weights)
-label_map = processor.get_label_map()
-max_seq_length = hyperparams["max_seq_length"]
-
-train_cached_features_file = hyperparams["train_cached_features_file"]
-dev_cached_features_file = hyperparams["dev_cached_features_file"]
-
-
-
-train_features = convert_examples_to_features(examples=train_examples,
-                                              tokenizer=tokenizer,
-                                              label_map=label_map,
-                                              max_length=max_seq_length)
+df_train, df_dev = train_test_split(df, test_size=0.2)
+df_train_to_eval = df_train.sample(
+    n=eval_sample_size,
+    random_state=hyperparams["random_state"])
+df_dev_to_eval = df_dev.sample(
+    n=eval_sample_size,
+    random_state=hyperparams["random_state"])
 
 
-dev_features = convert_examples_to_features(examples=dev_examples,
-                                              tokenizer=tokenizer,
-                                              label_map=label_map,
-                                              max_length=max_seq_length)
-
-torch.save(train_features, train_cached_features_file)
-
-torch.save(dev_features, dev_cached_features_file)
+# ## Creating features
 
 
-# # dataset
+processor = NLIProcessor(hyperparams)
+init = time()
+train_cached_features_file = processor.df2features(df=df_train,
+                                                   n_cores=8,
+                                                   mode="train")
 
-# In[7]:
+train_to_eval_cached_features_file = processor.df2features(df=df_train_to_eval,
+                                                           n_cores=8,
+                                                           mode="train_to_eval")
+
+dev_cached_features_file = processor.df2features(df=df_dev,
+                                                 n_cores=8,
+                                                 mode="dev")
+
+dev_to_eval_cached_features_file = processor.df2features(df=df_dev_to_eval,
+                                                         n_cores=8,
+                                                         mode="dev_to_eval")
+
+p_time = time() - init
+print("df 2 features | total time = {:.3f}".format(p_time / 60))
 
 
-train_dataset = features2dataset(train_cached_features_file, hyperparams, evaluate=False)
-dev_dataset = features2dataset(dev_cached_features_file, hyperparams, evaluate=True)
+# ## Loading Datasets
+
+init = time()
+train_dataset = features2dataset(train_cached_features_file)
+train_dataset_to_eval = features2dataset(train_to_eval_cached_features_file)
+dev_dataset = features2dataset(dev_cached_features_file)
+dev_dataset_to_eval = features2dataset(dev_to_eval_cached_features_file)
+p_time = time() - init
+print("features 2 Datasets | total time = {:.3f}".format(p_time / 60))
 
 
 # ## Loading Model
 
-# In[8]:
-
-
-model = BertForSequenceClassification.from_pretrained(pretrained_weights, num_labels = 3)
+model = BertForSequenceClassification.from_pretrained(
+    pretrained_weights, num_labels=3)
 
 
 # ### Eval before training
+#
+# #### Train sample
 
-# #### train
+train_loss, train_results = evaluate(train_dataset_to_eval, hyperparams, model)
+train_acc = (train_results.prediction == train_results.label).mean()
 
-# In[9]:
+lmap = processor.get_label_map()
+filtered = filter_df_by_label(df_train_to_eval.dropna()).reset_index(drop=True)
+assert np.all(filtered.label.map(lambda x: lmap[x]) == train_results.label)
 
-
-train_loss, train_results = evaluate(train_dataset, hyperparams, model)
-train_acc = (train_results.prediction==train_results.label).mean()
 
 meta_results["moment"].append("before")
 meta_results["type"].append("train")
@@ -153,13 +153,15 @@ meta_results["acc"].append(train_acc)
 meta_results["time"].append(np.nan)
 
 
-# #### Dev 
-
-# In[10]:
+# #### Dev sample
 
 
-dev_loss, results = evaluate(dev_dataset, hyperparams, model)
-dev_acc = (results.prediction==results.label).mean()
+dev_loss, results = evaluate(dev_dataset_to_eval, hyperparams, model)
+dev_acc = (results.prediction == results.label).mean()
+
+
+filtered = filter_df_by_label(df_dev_to_eval.dropna()).reset_index(drop=True)
+assert np.all(filtered.label.map(lambda x: lmap[x]) == results.label)
 
 
 meta_results["moment"].append("before")
@@ -171,7 +173,7 @@ meta_results["time"].append(np.nan)
 
 # # Train
 
-# In[11]:
+# In[12]:
 
 
 init = time()
@@ -179,15 +181,15 @@ global_step, tr_loss = train(train_dataset, model, tokenizer, hyperparams)
 train_time = time() - init
 
 
-# ### Eval After training
+# ### Eval after training
+#
+# #### Train sample
 
-# #### train
+train_loss, train_results = evaluate(train_dataset_to_eval, hyperparams, model)
+train_acc = (train_results.prediction == train_results.label).mean()
 
-# In[13]:
-
-
-train_loss, train_results = evaluate(train_dataset, hyperparams, model)
-train_acc = (train_results.prediction==train_results.label).mean()
+filtered = filter_df_by_label(df_train_to_eval.dropna()).reset_index(drop=True)
+assert np.all(filtered.label.map(lambda x: lmap[x]) == train_results.label)
 
 meta_results["moment"].append("after")
 meta_results["type"].append("train")
@@ -196,13 +198,14 @@ meta_results["acc"].append(train_acc)
 meta_results["time"].append(train_time)
 
 
-# #### dev
+# #### Dev sample
 
-# In[14]:
+dev_loss, results = evaluate(dev_dataset_to_eval, hyperparams, model)
+dev_acc = (results.prediction == results.label).mean()
 
 
-dev_loss, results = evaluate(dev_dataset, hyperparams, model)
-dev_acc = (results.prediction==results.label).mean()
+filtered = filter_df_by_label(df_dev_to_eval.dropna()).reset_index(drop=True)
+assert np.all(filtered.label.map(lambda x: lmap[x]) == results.label)
 
 meta_results["moment"].append("after")
 meta_results["type"].append("dev")
@@ -211,17 +214,7 @@ meta_results["acc"].append(dev_acc)
 meta_results["time"].append(train_time)
 
 
-# ## Save results
-
-# In[15]:
-
+# ## Results
 
 meta_results = pd.DataFrame(meta_results)
-meta_results.to_csv("meta.csv",index=False)
-
-
-# In[ ]:
-
-
-
-
+meta_results.to_csv("meta.csv", index=False)
