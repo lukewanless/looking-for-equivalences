@@ -21,6 +21,17 @@ def merge_lists(lists):
         base.extend(l)
     return base
 
+def parallelize_df2df(df, func, n_cores):
+    """
+    general fucntion to parallelize a function applied to
+    a df
+    """
+    df_split = np.array_split(df, n_cores)
+    pool = Pool(n_cores)
+    df = pd.concat(pool.map(func, df_split))
+    pool.close()
+    pool.join()
+    return df
 
 def parallelize_df2list(df, func, n_cores):
     """
@@ -95,6 +106,19 @@ def filter_df_by_label(df, drop_label='-'):
     drop observations with label 'drop_label'
     """
     return df.loc[df.label != drop_label]
+
+
+def clean_df(df, n_cores):
+    """
+    return clean version of the dataframe
+    with the original index
+
+    """
+    df_new = df.copy()
+    df_new.loc[:, "o_index"] = df.index
+    df_new = filter_df_by_label(df_new.dropna()).reset_index(drop=True)
+    df_new = parallelize_df2df(df=df_new, func=pre_process_nli_df, n_cores=n_cores)
+    return df_new
 
 
 class NLIProcessor(DataProcessor):

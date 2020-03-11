@@ -14,7 +14,7 @@ currentdir = os.path.dirname(
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
-from src.lr.models.transformers.processor import filter_df_by_label  # noqa
+from src.lr.models.transformers.processor import filter_df_by_label, clean_df # noqa
 from src.lr.models.transformers.BertWrapper import BertWrapper  # noqa
 
 
@@ -84,6 +84,8 @@ class BasicBertTraining(unittest.TestCase):
         df = pd.read_csv(train_path)
         test = pd.read_csv(test_path)
         test = test.sample(100, random_state=hyperparams["random_state"])
+        df = clean_df(df, 7)
+        test = clean_df(test, 7)
 
         # ### Eval 1
 
