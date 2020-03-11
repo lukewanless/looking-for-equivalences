@@ -103,6 +103,28 @@ def get_matched_results(df,
     return m_results
 
 
+def get_matched_results_transformers(results,
+                                     results_t):
+    """
+    get matched results from a model 'model'
+    and dataframes 'df' and 'df_transformed'
+
+    :param df: data to predict
+    :type df: pd.DataFrame
+    :param df_transformed: data to predict (transformed version)
+    :type df_transformed: pd.DataFrame
+    :param model: classification model
+    :type model: any model from the module 'models'
+    :return: matched results
+    :rtype: pd.DataFrame
+    """
+    dict_ = {"label": results.label.values,
+             "A": results.indicator.values,
+             "B": results_t.indicator.values}
+    m_results = pd.DataFrame(dict_)
+    return m_results
+
+
 def get_paired_t_statistic(results):
     """
     return t-statisic from paired test:
@@ -246,7 +268,9 @@ def LIMts_test(train,
         test_time = time() - init_test
         htest_times.append(test_time)
         if verbose:
-            print("m = {} | time: {:.1f} minutes".format(m + 1, test_time / 60))
+            print(
+                "m = {} | time: {:.1f} minutes".format(
+                    m + 1, test_time / 60))
 
     dict_ = {"m": all_Ms,
              "train_accuracy_mean": models_train_acc_mean,

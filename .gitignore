@@ -8,6 +8,7 @@ __pycache__/
 
 #bert save folder
 \bert
+\saved_models
 
 # any type of log
 *.log

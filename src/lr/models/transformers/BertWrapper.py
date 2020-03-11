@@ -79,7 +79,7 @@ class BertWrapper():
         train_time = time() - init
         return global_step, tr_loss, train_time
 
-    def predict(self, df, transform=True, mode="eval", path=None):
+    def full_predict(self, df, transform, mode, path):
         n_cores = self.hyperparams["n_cores"]
         verbose = self.hyperparams["verbose"]
 
@@ -94,6 +94,10 @@ class BertWrapper():
 
         eval_dataset = features2dataset(eval_cached_features_file)
         _, results = evaluate(eval_dataset, self.hyperparams, self.model)
+        return results
+
+    def predict(self, df, transform=True, mode="eval", path=None):
+        results = self.full_predict(df, transform, mode=mode, path=path)
         return results.prediction
 
     def load(self, path):
@@ -105,3 +109,22 @@ class BertWrapper():
                                                                n_cores=n_cores,
                                                                mode=mode)
         return eval_cached_features_file
+
+    def get_results(self, df, mode):
+        results = self.full_predict(df, transform=True, mode=mode, path=None)
+        lmap = self.processor.get_label_map()
+        filtered = filter_df_by_label(df.dropna()).reset_index(drop=True)
+        assert np.all(filtered.label.map(lambda x: lmap[x]) == results.label)
+        results.loc[:, "indicator"] = results.label == results.prediction
+        results.loc[:, "indicator"] = results.indicator.apply(lambda x: int(x))
+        return results
+    
+    def get_param_count(self):
+        params = list(self.model.parameters())
+        pp=0
+        for p in params:
+            nn=1
+            for s in list(p.size()):
+                nn = nn*s
+            pp += nn
+        return pp
