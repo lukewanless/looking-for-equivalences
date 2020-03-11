@@ -51,17 +51,14 @@ class BertWrapper():
             n=eval_sample_size,
             random_state=random_state)
 
-        train_cached_features_file = self.processor.df2features(df=df_train,
-                                                                n_cores=n_cores,
-                                                                mode="train")
+        train_cached_features_file = self.transform(df_train,
+                                                    mode="train")
 
-        train_to_eval_cached_features_file = self.processor.df2features(df=df_train_to_eval,
-                                                                        n_cores=n_cores,
-                                                                        mode="train_to_eval")
+        train_to_eval_cached_features_file = self.transform(df_train_to_eval,
+                                                            mode="train_to_eval")
 
-        dev_to_eval_cached_features_file = self.processor.df2features(df=df_dev_to_eval,
-                                                                      n_cores=n_cores,
-                                                                      mode="dev_to_eval")
+        dev_to_eval_cached_features_file = self.transform(df_dev_to_eval,
+                                                          mode="dev_to_eval")
 
         del df_train, df_train_to_eval
         del df_dev_to_eval
@@ -85,10 +82,10 @@ class BertWrapper():
     def predict(self, df, transform=True, mode="eval", path=None):
         n_cores = self.hyperparams["n_cores"]
         verbose = self.hyperparams["verbose"]
+
         if transform:
-            eval_cached_features_file = self.processor.df2features(df=df,
-                                                                   n_cores=n_cores,
-                                                                   mode=mode)
+            eval_cached_features_file = self.transform(df, mode)
+
             if verbose:
                 print("eval path = ", eval_cached_features_file)
 
@@ -99,3 +96,12 @@ class BertWrapper():
         _, results = evaluate(eval_dataset, self.hyperparams, self.model)
         return results.prediction
 
+    def load(self, path):
+        self.model = BertForSequenceClassification.from_pretrained(path)
+
+    def transform(self, df, mode):
+        n_cores = self.hyperparams["n_cores"]
+        eval_cached_features_file = self.processor.df2features(df=df,
+                                                               n_cores=n_cores,
+                                                               mode=mode)
+        return eval_cached_features_file
