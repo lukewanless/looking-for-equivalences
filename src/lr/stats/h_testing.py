@@ -290,3 +290,60 @@ def LIMts_test(train,
                                     right_index=True,
                                     left_index=True)
     return combined_information
+
+
+def h_test_transformer(df_train,
+                       df_dev,
+                       df_dev_t,
+                       ModelWrapper,
+                       hyperparams,
+                       S):
+
+    random_state = hyperparams["random_state"]
+
+    init = time()
+    transformer = ModelWrapper(hyperparams)
+
+    global_step, tr_loss, train_time = transformer.fit(df_train)
+
+    dev_results = transformer.get_results(df_dev, mode="test")
+    dev_t_results = transformer.get_results(df_dev_t, mode="test_t")
+
+    m_results = get_matched_results_transformers(dev_results, dev_t_results)
+    t_obs = get_paired_t_statistic(m_results)
+
+    if random_state is not None:
+        np.random.seed(random_state)
+
+    # Generate S bootstrap replications
+    t_boots = []
+    for _ in range(S):
+        boot_sample = get_boot_sample_under_H0(m_results)
+        t = get_paired_t_statistic(boot_sample)
+        t_boots.append(t)
+
+    # Get bootstrap p-value
+    t_boots = pd.Series(t_boots)
+    p_value = get_boot_p_value(t_boots, t_obs)
+
+    htest_time = time() - init
+
+    # Aggregate all results
+    dict_ = {"validation_accuracy": [m_results.A.mean()],
+             "transformed_validation_accuracy": [m_results.B.mean()],
+             "observable_t_stats": [t_obs],
+             "p_value": [p_value],
+             "training_time": [train_time],
+             "test_time": [htest_time]}
+
+    test_results = pd.DataFrame(dict_)
+
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    t_boots_df = t_boots.to_frame().transpose()
+    t_boots_df.columns = t_columns
+
+    combined_information = pd.merge(test_results,
+                                    t_boots_df,
+                                    right_index=True,
+                                    left_index=True)
+    return combined_information

@@ -149,7 +149,8 @@ class NLIProcessor(DataProcessor):
 
     def df2examples_parallel_train(self, df, n_cores):
         df_new = df.copy()
-        df_new.loc[:, "o_index"] = df.index
+        if "o_index" not in df_new.columns:
+            df_new.loc[:, "o_index"] = df.index
         result = parallelize_df2list(df_new, self.get_train_examples, n_cores)
         del df_new
         return result
