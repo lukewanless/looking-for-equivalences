@@ -300,6 +300,7 @@ def h_test_transformer(df_train,
                        S):
 
     random_state = hyperparams["random_state"]
+    dgp_seed = hyperparams["dgp_seed"]
 
     init = time()
     transformer = ModelWrapper(hyperparams)
@@ -329,7 +330,9 @@ def h_test_transformer(df_train,
     htest_time = time() - init
 
     # Aggregate all results
-    dict_ = {"validation_accuracy": [m_results.A.mean()],
+    dict_ = {"dgp_seed": [dgp_seed],
+             "random_state": [random_state],
+             "validation_accuracy": [m_results.A.mean()],
              "transformed_validation_accuracy": [m_results.B.mean()],
              "observable_t_stats": [t_obs],
              "p_value": [p_value],

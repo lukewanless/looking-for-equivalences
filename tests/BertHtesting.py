@@ -65,6 +65,7 @@ class BertHTesting(unittest.TestCase):
                        "model_name_or_path": "bert",
                        "output_dir": "bert_draft",
                        "random_state": 42,
+                       "dgp_seed": 42,
                        "fp16": False,
                        "fp16_opt_level": "01",
                        "device": "cpu",
@@ -94,7 +95,7 @@ class BertHTesting(unittest.TestCase):
         dev_t = clean_df(dev_t, n_cores=8)
 
 
-        set_seed(hyperparams["random_state"], 0)
+        set_seed(hyperparams["dgp_seed"], 0)
         dgp = DGP(train, transformation, rho=0.3)
         train_ = dgp.sample()
 
