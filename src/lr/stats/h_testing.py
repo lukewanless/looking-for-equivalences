@@ -312,8 +312,7 @@ def h_test_transformer(df_train,
                        df_dev,
                        df_dev_t,
                        ModelWrapper,
-                       hyperparams,
-                       S):
+                       hyperparams):
 
     random_state = hyperparams["random_state"]
     dgp_seed = hyperparams["dgp_seed"]
@@ -321,6 +320,7 @@ def h_test_transformer(df_train,
     transformation_name = hyperparams["transformation_name"]
     rho = hyperparams["rho"]
     model_name = hyperparams["model_name_or_path"]
+    S = hyperparams["number_of_simulations"]
 
     init = time()
     transformer = ModelWrapper(hyperparams)
@@ -356,6 +356,7 @@ def h_test_transformer(df_train,
              "rho": [rho],
              "dgp_seed": [dgp_seed],
              "random_state": [random_state],
+             "number_of_simulations": [S],
              "validation_accuracy": [m_results.A.mean()],
              "transformed_validation_accuracy": [m_results.B.mean()],
              "observable_t_stats": [t_obs],

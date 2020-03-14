@@ -66,6 +66,7 @@ class BertHTesting(unittest.TestCase):
                        "transformation_name": "entailment internalization",
                        "rho": 0.3,
                        "model_name_or_path": "bert",
+                       "number_of_simulations": 1000,
                        "output_dir": "bert_draft",
                        "random_state": 42,
                        "dgp_seed": 42,
@@ -109,8 +110,7 @@ class BertHTesting(unittest.TestCase):
                                            df_dev=dev_o,
                                            df_dev_t=dev_t,
                                            ModelWrapper=BertWrapper,
-                                           hyperparams=hyperparams,
-                                           S=1000)
+                                           hyperparams=hyperparams)
 
         # ### Fit
 
