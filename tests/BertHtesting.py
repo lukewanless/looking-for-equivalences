@@ -62,6 +62,9 @@ class BertHTesting(unittest.TestCase):
                        "save_steps": 3,
                        "no_cuda": False,
                        "n_gpu": 1,
+                       "data_set_name": "toy",
+                       "transformation_name": "entailment internalization",
+                       "rho": 0.3,
                        "model_name_or_path": "bert",
                        "output_dir": "bert_draft",
                        "random_state": 42,
@@ -95,7 +98,7 @@ class BertHTesting(unittest.TestCase):
         dev_t = clean_df(dev_t, n_cores=8)
 
 
-        set_seed(hyperparams["dgp_seed"], 0)
+        set_seed(hyperparams["random_state"], 0)
         dgp = DGP(train, transformation, rho=0.3)
         train_ = dgp.sample()
 
@@ -121,4 +124,5 @@ class BertHTesting(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+
 
