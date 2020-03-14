@@ -53,6 +53,22 @@ class DGP():
         df_safe = df.iloc[safe_ids]
         return pd.concat([df_t, df_safe]).sort_index()
 
+    def sample_transform(self,
+                         random_state=None):
+        """
+        get rho*100% transformed sample from
+        data (for transformer models)
+        """
+        df = self.data.copy()
+        sample = df.sample(frac=self.rho,
+                           replace=False,
+                           random_state=random_state)
+        df_t = self.transformation(sample)
+        df_t.loc[:, "o_index"] = sample.o_index
+        safe_ids = [i for i in df.index if i not in df_t.o_index]
+        df_safe = df.iloc[safe_ids]
+        return pd.concat([df_t, df_safe]).sort_index()
+
 
 def get_results(df, model, label_translation):
     """
@@ -301,6 +317,10 @@ def h_test_transformer(df_train,
 
     random_state = hyperparams["random_state"]
     dgp_seed = hyperparams["dgp_seed"]
+    data_set_name = hyperparams["data_set_name"]
+    transformation_name = hyperparams["transformation_name"]
+    rho = hyperparams["rho"]
+    model_name = hyperparams["model_name_or_path"]
 
     init = time()
     transformer = ModelWrapper(hyperparams)
@@ -330,14 +350,18 @@ def h_test_transformer(df_train,
     htest_time = time() - init
 
     # Aggregate all results
-    dict_ = {"dgp_seed": [dgp_seed],
+    dict_ = {"data": [data_set_name],
+             "model": [model_name],
+             "transformation": [transformation_name],
+             "rho": [rho],
+             "dgp_seed": [dgp_seed],
              "random_state": [random_state],
              "validation_accuracy": [m_results.A.mean()],
              "transformed_validation_accuracy": [m_results.B.mean()],
              "observable_t_stats": [t_obs],
              "p_value": [p_value],
-             "training_time": [train_time],
-             "test_time": [htest_time]}
+             "training_time": [train_time / 3600],
+             "test_time": [htest_time / 3600]}
 
     test_results = pd.DataFrame(dict_)
 
