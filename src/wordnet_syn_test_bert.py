@@ -19,6 +19,7 @@ rho = 0.0
 dgp_seed = 12
 random_state = 52
 name = "rho_{:.1f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
+name = name.replace(".", "p")
 output_dir_name = "bert_p_h_" + name
 
 # Data
@@ -26,8 +27,6 @@ output_dir_name = "bert_p_h_" + name
 train = pd.read_csv("data/{}/train.csv".format(folder))
 dev_o = pd.read_csv("data/{}/dev.csv".format(folder))
 
-# train = train.head(100000)
-# dev_o = dev_o.head(100000)
 
 
 print("clean train")
