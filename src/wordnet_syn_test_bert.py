@@ -18,7 +18,7 @@ transformation_name = "wordnet sin tranformation p and h"
 rho = 0.25
 dgp_seed = 259
 random_state = 59
-name = "rho_{:.1f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
+name = "rho_{:.2f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
 name = name.replace(".", "p")
 output_dir_name = "bert_p_h_" + name
 
