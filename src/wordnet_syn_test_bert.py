@@ -15,18 +15,25 @@ import os
 folder = "snli"
 result_folder = "results/snli/bert/sin_p_h/"
 transformation_name = "wordnet sin tranformation p and h"
-dgp_seed = 123
-rho = 0.93
-random_state = 42
+rho = 0.0
+dgp_seed = 12
+random_state = 52
+name = "rho_{:.1f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
+output_dir_name = "bert_p_h_" + name
 
 # Data
 
 train = pd.read_csv("data/{}/train.csv".format(folder))
 dev_o = pd.read_csv("data/{}/dev.csv".format(folder))
-train = train.head(10000)
-dev_o = dev_o.head(1000)
 
+# train = train.head(100000)
+# dev_o = dev_o.head(100000)
+
+
+print("clean train")
 train = clean_df(train, n_cores=8)
+
+print("clean dev")
 dev_o = clean_df(dev_o, n_cores=8)
 
 
@@ -35,13 +42,10 @@ dev_o = clean_df(dev_o, n_cores=8)
 train_path_mod = "data/{}/train_p_h_syn_noun.csv".format(folder)
 dev_path_mod = "data/{}/dev_p_h_syn_noun.csv".format(folder)
 
-
 def train_trans(df): return path_base_transformation(df, train_path_mod)
 def dev_trans(df): return path_base_transformation(df, dev_path_mod)
 
-
-# Val df transformation
-
+print("transform dev")
 dev_t = dev_trans(dev_o)
 
 
@@ -58,9 +62,9 @@ hyperparams = {"local_rank": -1,
                "weight_decay": 0.0,
                "adam_epsilon": 1e-8,
                "max_grad_norm": 1.0,
-               "max_steps": 10,
+               "max_steps": 1500,
                "warmup_steps": 0,
-               "save_steps": 9,
+               "save_steps": 250,
                "no_cuda": False,
                "n_gpu": 1,
                "data_set_name": folder,
@@ -68,7 +72,7 @@ hyperparams = {"local_rank": -1,
                "number_of_simulations": 1000,
                "rho": rho,
                "model_name_or_path": "bert",
-               "output_dir": "bert_draft",
+               "output_dir": output_dir_name,
                "random_state": random_state,
                "dgp_seed": dgp_seed,
                "fp16": False,
@@ -79,7 +83,7 @@ hyperparams = {"local_rank": -1,
                "pad_on_left": False,
                "pad_token": 0,
                "n_cores": 8,
-               'eval_sample_size': 100,
+               'eval_sample_size': 200,
                "pad_token_segment_id": 0,
                "mask_padding_with_zero": True,
                "base_path": "data/{}/cached_".format(folder)}
@@ -93,19 +97,22 @@ rs = hyperparams["random_state"]
 
 set_seed(dgp_seed, 0)
 dgp = DGP(train, train_trans, rho=rho)
-train_ = dgp. sample_transform()
+train_ = dgp.sample_transform()
 
 
 # Testing
 
-test_results =  h_test_transformer(df_train=train_,
-                                   df_dev=dev_o,
-                                   df_dev_t=dev_t,
-                                   ModelWrapper=BertWrapper,
-                                   hyperparams=hyperparams)
+print("testing")
+
+test_results = h_test_transformer(df_train=train_,
+                                  df_dev=dev_o,
+                                  df_dev_t=dev_t,
+                                  ModelWrapper=BertWrapper,
+                                  hyperparams=hyperparams)
 
 # Saving Results
 
-result_path = result_folder + "rho_{:.1f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, rs)
+result_path = result_folder + name
 result_path = result_path.replace(".", "p") + ".csv"
 test_results.to_csv(result_path, index=False)
+
