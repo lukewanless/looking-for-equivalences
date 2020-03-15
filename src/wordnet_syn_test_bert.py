@@ -15,9 +15,9 @@ import os
 folder = "snli"
 result_folder = "results/snli/bert/sin_p_h/"
 transformation_name = "wordnet sin tranformation p and h"
-rho = 0.0
-dgp_seed = 109
-random_state = 14
+rho = 0.25
+dgp_seed = 259
+random_state = 59
 name = "rho_{:.1f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
 name = name.replace(".", "p")
 output_dir_name = "bert_p_h_" + name
@@ -30,10 +30,10 @@ dev_o = pd.read_csv("data/{}/dev.csv".format(folder))
 
 
 print("clean train")
-train = clean_df(train, n_cores=8)
+train = clean_df(train, n_cores=16)
 
 print("clean dev")
-dev_o = clean_df(dev_o, n_cores=8)
+dev_o = clean_df(dev_o, n_cores=16)
 
 
 # Transformations
@@ -81,7 +81,7 @@ hyperparams = {"local_rank": -1,
                "model_type": "bert",
                "pad_on_left": False,
                "pad_token": 0,
-               "n_cores": 8,
+               "n_cores": 16,
                'eval_sample_size': 200,
                "pad_token_segment_id": 0,
                "mask_padding_with_zero": True,
