@@ -155,6 +155,20 @@ def get_paired_t_statistic(results):
     return t
 
 
+def get_paired_t_statistic_full(results):
+    """
+    return t-statisic from paired test:
+
+    np.sqrt(n)*(np.mean(A) - np.mean(B)) / np.std(A - B)
+    """
+
+    diff = results.A - results.B
+    n = diff.shape[0]
+    S = diff.std(ddof=0)
+    t = (diff.mean() * np.sqrt(n)) / S
+    return t, diff.mean(), n, S
+
+
 def invert_A_B(df):
     """
     invert A and B results
@@ -319,6 +333,7 @@ def h_test_transformer(df_train,
     data_set_name = hyperparams["data_set_name"]
     transformation_name = hyperparams["transformation_name"]
     rho = hyperparams["rho"]
+    path_results = hyperparams["output_dir"] + "/results.csv"
     model_name = hyperparams["model_name_or_path"]
     S = hyperparams["number_of_simulations"]
 
@@ -331,7 +346,9 @@ def h_test_transformer(df_train,
     dev_t_results = transformer.get_results(df_dev_t, mode="test_t")
 
     m_results = get_matched_results_transformers(dev_results, dev_t_results)
-    t_obs = get_paired_t_statistic(m_results)
+    m_results.to_csv(path_results)
+    t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic_full(
+        m_results)
 
     if random_state is not None:
         np.random.seed(random_state)
@@ -359,6 +376,82 @@ def h_test_transformer(df_train,
              "number_of_simulations": [S],
              "validation_accuracy": [m_results.A.mean()],
              "transformed_validation_accuracy": [m_results.B.mean()],
+             "accuracy_difference": [acc_diff],
+             "test_size": [test_size],
+             "standart_error": [standart_error],
+             "observable_t_stats": [t_obs],
+             "p_value": [p_value],
+             "training_time": [train_time / 3600],
+             "test_time": [htest_time / 3600]}
+
+    test_results = pd.DataFrame(dict_)
+
+    t_columns = ["boot_t_{}".format(i + 1) for i in range(S)]
+    t_boots_df = t_boots.to_frame().transpose()
+    t_boots_df.columns = t_columns
+
+    combined_information = pd.merge(test_results,
+                                    t_boots_df,
+                                    right_index=True,
+                                    left_index=True)
+    return combined_information
+
+
+def h_test_transformer_trained_model(df_dev,
+                                     df_dev_t,
+                                     transformer,
+                                     hyperparams):
+
+    random_state = hyperparams["random_state"]
+    dgp_seed = hyperparams["dgp_seed"]
+    data_set_name = hyperparams["data_set_name"]
+    transformation_name = hyperparams["transformation_name"]
+    rho = hyperparams["rho"]
+    path_results = hyperparams["output_dir"] + "/results.csv"
+    model_name = hyperparams["model_name_or_path"]
+    S = hyperparams["number_of_simulations"]
+
+    init = time()
+
+    train_time = np.nan
+
+    dev_results = transformer.get_results(df_dev, mode="test")
+    dev_t_results = transformer.get_results(df_dev_t, mode="test_t")
+
+    m_results = get_matched_results_transformers(dev_results, dev_t_results)
+    m_results.to_csv(path_results)
+    t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic_full(
+        m_results)
+
+    if random_state is not None:
+        np.random.seed(random_state)
+
+    # Generate S bootstrap replications
+    t_boots = []
+    for _ in range(S):
+        boot_sample = get_boot_sample_under_H0(m_results)
+        t = get_paired_t_statistic(boot_sample)
+        t_boots.append(t)
+
+    # Get bootstrap p-value
+    t_boots = pd.Series(t_boots)
+    p_value = get_boot_p_value(t_boots, t_obs)
+
+    htest_time = time() - init
+
+    # Aggregate all results
+    dict_ = {"data": [data_set_name],
+             "model": [model_name],
+             "transformation": [transformation_name],
+             "rho": [rho],
+             "dgp_seed": [dgp_seed],
+             "random_state": [random_state],
+             "number_of_simulations": [S],
+             "validation_accuracy": [m_results.A.mean()],
+             "transformed_validation_accuracy": [m_results.B.mean()],
+             "accuracy_difference": [acc_diff],
+             "test_size": [test_size],
+             "standart_error": [standart_error],
              "observable_t_stats": [t_obs],
              "p_value": [p_value],
              "training_time": [train_time / 3600],
