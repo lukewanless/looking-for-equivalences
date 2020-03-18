@@ -235,6 +235,9 @@ def LIMts_test(train,
     dev_t = dev_transformation(dev)
 
     all_t_obs = []
+    all_acc_diffs = []
+    all_test_sizes = []
+    all_standart_errors = []
     majority_accs = []
     majority_accs_t = []
     all_p_values = []
@@ -277,9 +280,13 @@ def LIMts_test(train,
             dev, dev_t, m_model, m_model.label_translation)
         majority_accs.append(results.A.mean())
         majority_accs_t.append(results.B.mean())
-        t_obs = get_paired_t_statistic(results)
+        t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic_full(results)
 
         all_t_obs.append(t_obs)
+        all_acc_diffs.append(acc_diff)
+        all_test_sizes.append(test_size)
+        all_standart_errors.append(standart_error)
+
 
         # Generate S bootstrap replications
         t_boots = []
@@ -308,6 +315,9 @@ def LIMts_test(train,
              "validation_accuracy": majority_accs,
              "transformed_validation_accuracy": majority_accs_t,
              "observable_t_stats": all_t_obs,
+             "accuracy_difference": all_acc_diffs,
+             "test_size": all_test_sizes,
+             "standart_error": all_standart_errors,
              "p_value": all_p_values,
              "transformation_time": trasformation_times,
              "training_time": train_times,

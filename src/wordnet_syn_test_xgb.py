@@ -25,8 +25,7 @@ def wordsyn_test(transformation_type, max_features, cv,
         results_path = "results/snli/xgb/debug_wordnet_{}_rho_{}".format(
             transformation_type, rho)
     else:
-        results_path = "results/snli/xgb/wordnet_{}_rho_{}".format(
-            transformation_type, rho)
+        results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, random_state)
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -116,19 +115,17 @@ if __name__ == '__main__':
     debug = False
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    # random_states = [42, 43, 44, 45, 46] # random states for  p_and_h 
+    random_states = [42, 43, 44, 45, 46] # random states for  p_and_h 
     # random_states = [14, 16, 18, 20, 22 ] # random states for only p 
     
-    random_states = [54, 136, 38, 420, 722 ] # random states for only h 
-    M = 5
-    M = 5
-    M = 5
-    E = 5
+    # random_states = [54, 136, 38, 420, 722 ] # random states for only h 
+    M = 2
+    E = 1
     S = 1000
     n_jobs = 8
     n_iter = 5
     cv = 5
-    transformation_type = "only_h"
+    transformation_type = "p_h"
 
     if debug:
         pcts = [0.3]
