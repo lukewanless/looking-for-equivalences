@@ -11,6 +11,7 @@ from lr.stats.h_testing import LIMts_test
 from IPython.display import display, HTML
 from sklearn.exceptions import ConvergenceWarning
 import warnings
+import os
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
@@ -19,14 +20,10 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 def wordsyn_test(transformation_type, max_features, cv,
                  n_jobs, n_iter, rho, M, E, S,
-                 verbose, random_state_list, dgp_seed_list):
+                 verbose, random_state_list,
+                 dgp_seed_list, output_dir):
 
-    if debug:
-        results_path = "results/snli/xgb/debug_wordnet_{}_rho_{}".format(
-            transformation_type, rho)
-    else:
-        results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(
-            rho, random_state)
+    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list))
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -95,7 +92,7 @@ def wordsyn_test(transformation_type, max_features, cv,
                    "n_iter": n_iter,
                    "max_features": max_features,
                    "label_translation": get_ternary_label,
-                   "param_grid": param_grid
+                   "param_grid": param_grid,
                    "random_state_list": random_state_list,
                    "dgp_seed_list": dgp_seed_list,
                    "data_set_name": "snli",
@@ -105,6 +102,7 @@ def wordsyn_test(transformation_type, max_features, cv,
                    "number_of_samples": M,
                    "number_of_models": E,
                    "number_of_simulations": S,
+                    "output_dir": output_dir,
                    "verbose": verbose}
 
     # performing the tests
@@ -144,23 +142,20 @@ if __name__ == '__main__':
                           [55, 3737]]  # dgp states for  p_and_h
 
     M = 2
-    E = 1
+    E = 2
     S = 1000
-    n_jobs = 8
-    n_iter = 1
-    cv = 3
+    n_jobs = 16
+    n_iter = 50
+    cv = 5
     transformation_type = "p_h"
 
     for rho, random_state_list, dgp_seed_list in zip(
             pcts, random_states_list_list, dgp_seed_list_list):
 
         output_dir = "xgb_{}_{}".format(transformation_type, rho)
+
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)
-        hyperparams["output_dir"] = output_dir
-
-        if not os.path.exists("my_version"):
-            os.mkdir("my_version")
 
         print("\nPerforming tests for rho = {:.1%}\n".format(rho))
 
@@ -175,4 +170,5 @@ if __name__ == '__main__':
                      S=S,
                      verbose=True,
                      random_state_list=random_state_list,
-                     dgp_seed_list=dgp_seed_list)
+                     dgp_seed_list=dgp_seed_list,
+                     output_dir=output_dir)
