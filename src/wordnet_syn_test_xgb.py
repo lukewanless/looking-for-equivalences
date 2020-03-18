@@ -123,8 +123,8 @@ if __name__ == '__main__':
     E = 1
     S = 1000
     n_jobs = 8
-    n_iter = 5
-    cv = 5
+    n_iter = 10
+    cv = 10
     transformation_type = "p_h"
 
     if debug:
