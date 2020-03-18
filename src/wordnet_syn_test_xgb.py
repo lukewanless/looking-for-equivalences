@@ -23,7 +23,9 @@ def wordsyn_test(transformation_type, max_features, cv,
                  verbose, random_state_list,
                  dgp_seed_list, output_dir):
 
-    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list))
+
+    random_state_list_str = map(lambda x: str(x), random_state_list) 
+    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list_str))
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
