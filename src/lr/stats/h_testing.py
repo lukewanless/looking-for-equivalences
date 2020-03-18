@@ -215,17 +215,28 @@ def LIMts_test(train,
                dev,
                train_transformation,
                dev_transformation,
-               rho,
                Model,
-               hyperparams,
-               M, E, S,
-               verbose=False,
-               random_state=None):
+               hyperparams):
 
-    # setting seed
+    path_results_base = hyperparams["output_dir"] + "/results_"
+    random_state_list = hyperparams["random_state_list"]
+    dgp_seed_list = hyperparams["dgp_seed_list"]
+    data_set_name = hyperparams["data_set_name"]
+    transformation_name = hyperparams["transformation_name"]
+    rho = hyperparams["rho"]
+    model_name = hyperparams["model_name_or_path"]
+    M = hyperparams["number_of_samples"]
+    E = hyperparams["number_of_models"]
+    S = hyperparams["number_of_simulations"]
+    verbose = hyperparams["verbose"]
 
-    if random_state is not None:
-        np.random.seed(random_state)
+    # seeds for dgp
+    if dgp_seed_list is None:
+        dgp_seed_list = [None] * M
+
+    if random_state_list is None:
+        random_state_list= [None] * M
+
 
     # intial setting
     dgp = DGP(data=train,
@@ -242,26 +253,22 @@ def LIMts_test(train,
     majority_accs_t = []
     all_p_values = []
     all_t_boots = []
-    all_Ms = []
     models_train_acc_mean = []
     models_train_acc_std = []
     htest_times = []
     train_times = []
-    trasformation_times = []
+
 
     # generate modified training sample
-    for m in range(M):
-        init = time()
-        train_t = dgp.sample()
-        t_time = time() - init
-        trasformation_times.append(t_time)
-
+    for i, m in enumerate(range(M)):
+        train_t = dgp.sample(random_state=dgp_seed_list[i])
         all_models = []
-        all_Ms.append(m + 1)
         init_test = time()
         init_train = time()
+        # setting seed
+        np.random.seed(random_state_list[i])
 
-    # train E models on the same data
+        # train E models on the same data
         for e in range(E):
             model = Model(hyperparams)
             model.fit(train_t)
@@ -274,19 +281,23 @@ def LIMts_test(train,
         models_train_acc_mean.append(np.mean(all_models_train_acc))
         models_train_acc_std.append(np.std(all_models_train_acc))
 
-        # Get observed accs and t stats
         m_model = Majority(all_models)
+        # Get observed accs and t stats
         results = get_matched_results(
             dev, dev_t, m_model, m_model.label_translation)
+        
+        path_results = path_results_base + "{}.csv".format(m)
+        results.to_csv(path_results)
+
         majority_accs.append(results.A.mean())
         majority_accs_t.append(results.B.mean())
-        t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic_full(results)
+        t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic_full(
+            results)
 
         all_t_obs.append(t_obs)
         all_acc_diffs.append(acc_diff)
         all_test_sizes.append(test_size)
         all_standart_errors.append(standart_error)
-
 
         # Generate S bootstrap replications
         t_boots = []
@@ -309,17 +320,22 @@ def LIMts_test(train,
                 "m = {} | time: {:.1f} minutes".format(
                     m + 1, test_time / 60))
 
-    dict_ = {"m": all_Ms,
-             "train_accuracy_mean": models_train_acc_mean,
-             "train_accuracy_std": models_train_acc_std,
+    dict_ = {"data": [data_set_name] * M,
+             "model": [model_name] * M,
+             "transformation": [transformation_name] * M,
+             "rho": [rho] * M,
+             "dgp_seed": dgp_seed_list,
+             "random_state": random_state_list,
+             "number_of_simulations": [S] * M,
+             "models_train_acc_mean": models_train_acc_mean,
+             "models_train_acc_std":models_train_acc_std,
              "validation_accuracy": majority_accs,
              "transformed_validation_accuracy": majority_accs_t,
-             "observable_t_stats": all_t_obs,
              "accuracy_difference": all_acc_diffs,
              "test_size": all_test_sizes,
              "standart_error": all_standart_errors,
+             "observable_t_stats": all_t_obs,
              "p_value": all_p_values,
-             "transformation_time": trasformation_times,
              "training_time": train_times,
              "test_time": htest_times}
 

@@ -19,13 +19,14 @@ warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 def wordsyn_test(transformation_type, max_features, cv,
                  n_jobs, n_iter, rho, M, E, S,
-                 verbose, random_state, debug):
+                 verbose, random_state_list, dgp_seed_list):
 
     if debug:
         results_path = "results/snli/xgb/debug_wordnet_{}_rho_{}".format(
             transformation_type, rho)
     else:
-        results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, random_state)
+        results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(
+            rho, random_state)
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -53,17 +54,23 @@ def wordsyn_test(transformation_type, max_features, cv,
 
         def dev_trans(df): return path_base_transformation(df, dev_path_mod)
 
+        transformation_name = "wordnet sin tranformation p and h"
+
     elif transformation_type == "only_p":
         def train_trans(df): return path_base_transformation_p(
             df, train_path_mod)
 
         def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
 
+        transformation_name = "wordnet sin tranformation p only"
+
     elif transformation_type == "only_h":
         def train_trans(df): return path_base_transformation_h(
             df, train_path_mod)
 
         def dev_trans(df): return path_base_transformation_h(df, dev_path_mod)
+
+        transformation_name = "wordnet sin tranformation h only"
 
     else:
         exit()
@@ -88,7 +95,17 @@ def wordsyn_test(transformation_type, max_features, cv,
                    "n_iter": n_iter,
                    "max_features": max_features,
                    "label_translation": get_ternary_label,
-                   "param_grid": param_grid}
+                   "param_grid": param_grid
+                   "random_state_list": random_state_list,
+                   "dgp_seed_list": dgp_seed_list,
+                   "data_set_name": "snli",
+                   "transformation_name": transformation_name,
+                   "rho": rho,
+                   "model_name_or_path": "gradient boosting",
+                   "number_of_samples": M,
+                   "number_of_models": E,
+                   "number_of_simulations": S,
+                   "verbose": verbose}
 
     # performing the tests
 
@@ -96,14 +113,8 @@ def wordsyn_test(transformation_type, max_features, cv,
                          dev=dev,
                          train_transformation=train_trans,
                          dev_transformation=dev_trans,
-                         rho=rho,
                          Model=XGBCWrapper,
-                         hyperparams=hyperparams,
-                         M=M,
-                         E=E,
-                         S=S,
-                         verbose=verbose,
-                         random_state=random_state)
+                         hyperparams=hyperparams)
 
     # saving results
 
@@ -115,24 +126,41 @@ if __name__ == '__main__':
     debug = False
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    random_states = [42, 43, 44, 45, 46] # random states for  p_and_h 
-    # random_states = [14, 16, 18, 20, 22 ] # random states for only p 
-    
-    # random_states = [54, 136, 38, 420, 722 ] # random states for only h 
+
+    random_states_list_list = [[42, 343],
+                               [413, 13],
+                               [19, 22],
+                               [322, 5],
+                               [1, 76],
+                               [87, 90],
+                               [11, 23]]  # random states for  p_and_h
+
+    dgp_seed_list_list = [[26, 48],
+                          [27, 37],
+                          [2, 41],
+                          [19, 16],
+                          [45, 152],
+                          [345, 656],
+                          [55, 3737]]  # dgp states for  p_and_h
+
     M = 2
     E = 1
     S = 1000
     n_jobs = 8
-    n_iter = 10
-    cv = 10
+    n_iter = 1
+    cv = 3
     transformation_type = "p_h"
 
-    if debug:
-        pcts = [0.3]
-        random_states = [1234]
-        M = 1
+    for rho, random_state_list, dgp_seed_list in zip(
+            pcts, random_states_list_list, dgp_seed_list_list):
 
-    for rho, random_state in zip(pcts, random_states):
+        output_dir = "xgb_{}_{}".format(transformation_type, rho)
+        if not os.path.exists(output_dir):
+            os.mkdir(output_dir)
+        hyperparams["output_dir"] = output_dir
+
+        if not os.path.exists("my_version"):
+            os.mkdir("my_version")
 
         print("\nPerforming tests for rho = {:.1%}\n".format(rho))
 
@@ -146,5 +174,5 @@ if __name__ == '__main__':
                      E=E,
                      S=S,
                      verbose=True,
-                     random_state=random_state,
-                     debug=debug)
+                     random_state_list=random_state_list,
+                     dgp_seed_list=dgp_seed_list)
