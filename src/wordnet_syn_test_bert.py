@@ -3,6 +3,7 @@ from lr.models.transformers.train_functions import set_seed
 from lr.models.transformers.BertWrapper import BertWrapper
 from lr.text_processing.transformations.wordnet import path_base_transformation
 from lr.text_processing.transformations.wordnet import path_base_transformation_p
+from lr.text_processing.transformations.wordnet import path_base_transformation_h
 from lr.stats.h_testing import DGP, h_test_transformer
 import matplotlib.pyplot as plt
 import numpy as np
@@ -15,18 +16,22 @@ import os
 
 folder = "snli"
 # result_folder = "results/snli/bert/sin_p_h/"
-result_folder = "results/snli/bert/sin_p/"
+# result_folder = "results/snli/bert/sin_p/"
+result_folder = "results/snli/bert/sin_h/"
 
-transformation_name = "wordnet sin tranformation p"
+
+# transformation_name = "wordnet sin tranformation p"
+transformation_name = "wordnet sin tranformation h"
+
 # transformation_name = "wordnet sin tranformation p and h"
 
 n_cores = 16
-rho = 0.75
-dgp_seed = 224
-random_state = 29
+rho = 0.25
+dgp_seed = 57
+random_state = 43
 name = "rho_{:.2f}_dgp_seed_{}_random_state_{}".format(rho, dgp_seed, random_state)
 name = name.replace(".", "p")
-output_dir_name = "bert_p_" + name
+output_dir_name = "bert_h_" + name
 # output_dir_name = "bert_p_h_" + name
 
 # Data
@@ -49,8 +54,11 @@ dev_path_mod = "data/{}/dev_p_h_syn_noun.csv".format(folder)
 
 # def train_trans(df): return path_base_transformation(df, train_path_mod)
 # def dev_trans(df): return path_base_transformation(df, dev_path_mod)
-def train_trans(df): return path_base_transformation_p(df, train_path_mod)
-def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
+# def train_trans(df): return path_base_transformation_p(df, train_path_mod)
+# def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
+
+def train_trans(df): return path_base_transformation_h(df, train_path_mod)
+def dev_trans(df): return path_base_transformation_h(df, dev_path_mod)
 
 
 
