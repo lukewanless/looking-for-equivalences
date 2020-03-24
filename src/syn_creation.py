@@ -9,13 +9,13 @@ from lr.text_processing.transformations.wordnet import parallelize
 from lr.training.util import filter_df_by_label
 
 
-folder = "snli"
-n_cores = 7
+folder = "mnli"
+n_cores = 3
 
 
 # ### Loading data
-train_path = "data/{}/train.csv".format(folder)
-dev_path = "data/{}/dev.csv".format(folder)
+train_path = "data/{}/train_sample.csv".format(folder)
+dev_path = "data/{}/dev_sample.csv".format(folder)
 
 veto_path = "data/{}/syn_veto.csv".format(folder)
 syn_path = "data/{}/syn_noun.csv".format(folder)

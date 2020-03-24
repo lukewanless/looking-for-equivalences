@@ -15,6 +15,8 @@ basic_columns = ['data',
                  'standart_error',
                  'observable_t_stats',
                  'p_value',
+                 'cochran_statistic',
+                 'cochran_p_value',
                  'training_time',
                  'test_time']
 
@@ -46,17 +48,3 @@ def get_boots(df):
                                                          df.dgp_seed[0],
                                                          df.random_state[0])
     return boots
-
-# def show_test(df):
-#     t_boots = get_boots(df)
-#     t_obs = df.observable_t_stats[0]
-#     p_value = df.p_value[0]
-#     new_p = get_boot_p_value(t_boots, t_obs)
-#     assert new_p == p_value
-#     fig, ax = plt.subplots(figsize=(10,5))
-#     t_boots.hist(ax=ax, label="bootstrap replications");
-#     plt.axvline(x=t_obs, color='r', linestyle='-', label="observed (t={:.1f})".format(t_obs));
-#     ax.set_xlabel("t", fontsize=14);
-#     ax.set_ylabel("frequency", fontsize=14);
-#     ax.set_title("Bootstrap test histogram (p-value = {:.8f})".format(p_value) +"\n", fontsize=16)
-#     plt.legend(loc="best");

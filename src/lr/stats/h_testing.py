@@ -235,8 +235,7 @@ def LIMts_test(train,
         dgp_seed_list = [None] * M
 
     if random_state_list is None:
-        random_state_list= [None] * M
-
+        random_state_list = [None] * M
 
     # intial setting
     dgp = DGP(data=train,
@@ -257,7 +256,6 @@ def LIMts_test(train,
     models_train_acc_std = []
     htest_times = []
     train_times = []
-
 
     # generate modified training sample
     for i, m in enumerate(range(M)):
@@ -285,7 +283,7 @@ def LIMts_test(train,
         # Get observed accs and t stats
         results = get_matched_results(
             dev, dev_t, m_model, m_model.label_translation)
-        
+
         path_results = path_results_base + "{}.csv".format(m)
         results.to_csv(path_results)
 
@@ -328,7 +326,7 @@ def LIMts_test(train,
              "random_state": random_state_list,
              "number_of_simulations": [S] * M,
              "models_train_acc_mean": models_train_acc_mean,
-             "models_train_acc_std":models_train_acc_std,
+             "models_train_acc_std": models_train_acc_std,
              "validation_accuracy": majority_accs,
              "transformed_validation_accuracy": majority_accs_t,
              "accuracy_difference": all_acc_diffs,
@@ -494,3 +492,57 @@ def h_test_transformer_trained_model(df_dev,
                                     right_index=True,
                                     left_index=True)
     return combined_information
+
+
+def get_cochran_statistic(results):
+    """
+    return cochran statisic from paired test:
+    """
+    crosstab = pd.crosstab(results.A, results.B).values
+    error2hit = crosstab[0, 1]
+    hit2error = crosstab[1, 0]
+    total_error = error2hit + hit2error
+    c_stats = ((error2hit - hit2error)**2) / total_error
+    return c_stats
+
+
+def get_p_value_cochran(ts, t_obs):
+    def upper_tail_f(x): return (ts.sort_values() > x).astype(int).mean()
+    return upper_tail_f(t_obs)
+
+
+def get_c_stats_from_result(meta_results_description_row, results):
+
+    random_state = meta_results_description_row.random_state[0]
+    S = meta_results_description_row.number_of_simulations[0]
+    np.random.seed(random_state)
+    c_columns = ["boot_c_{}".format(i + 1) for i in range(S)]
+    # Generate S bootstrap replications
+
+    c_boots = []
+    for _ in range(S):
+        boot_sample = get_boot_sample_under_H0(results)
+        c = get_cochran_statistic(boot_sample)
+        c_boots.append(c)
+    c_boots = pd.Series(c_boots, index=c_columns)
+
+    c_obs = get_cochran_statistic(results)
+    p_value = get_p_value_cochran(c_boots, c_obs)
+    return c_obs, p_value, c_boots
+
+
+def update_results_with_cochran_test(meta_results_description_row, results):
+
+    c_obs, p_value, c_boots = get_c_stats_from_result(
+        meta_results_description_row, results)
+
+    c_boots = c_boots.to_frame().transpose()
+    new = pd.DataFrame({"cochran_statistic": c_obs,
+                        "cochran_p_value": p_value}, index=[0])
+    new = pd.merge(new, c_boots, left_index=True, right_index=True)
+    new_meta = pd.merge(
+        meta_results_description_row,
+        new,
+        left_index=True,
+        right_index=True)
+    return new_meta
