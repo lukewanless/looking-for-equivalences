@@ -25,7 +25,7 @@ def wordsyn_test(transformation_type, max_features, cv,
 
 
     random_state_list_str = map(lambda x: str(x), random_state_list) 
-    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list_str))
+    results_path = "results/snli/xgb/sin_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list_str))
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -127,21 +127,21 @@ if __name__ == '__main__':
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
 
-    random_states_list_list = [[42, 343],
-                               [413, 13],
-                               [19, 22],
-                               [322, 5],
-                               [1, 76],
-                               [87, 90],
-                               [11, 23]]  # random states for  p_and_h
+    random_states_list_list = [[7842, 3943],
+                               [4193, 813],
+                               [149, 272],
+                               [3202, 65],
+                               [715, 766],
+                               [587, 590],
+                               [311, 523]]  # random states for  h
 
-    dgp_seed_list_list = [[26, 48],
-                          [27, 37],
-                          [2, 41],
-                          [19, 16],
-                          [45, 152],
-                          [345, 656],
-                          [55, 3737]]  # dgp states for  p_and_h
+    dgp_seed_list_list = [[2456, 548],
+                          [2647, 377],
+                          [242, 431],
+                          [192, 716],
+                          [4571, 8152],
+                          [34552, 5656],
+                          [5523, 33737]]  # dgp states for h
 
     M = 2
     E = 2
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     n_jobs = 16
     n_iter = 50
     cv = 5
-    transformation_type = "p_h"
+    transformation_type = "only_h"
 
     for rho, random_state_list, dgp_seed_list in zip(
             pcts, random_states_list_list, dgp_seed_list_list):
