@@ -8,7 +8,7 @@ __pycache__/
 
 #bert save folder
 \bert
-\saved_models
+\old_training
 
 # any type of log
 *.log
