@@ -71,7 +71,8 @@ class BasicBertTraining(unittest.TestCase):
                        "mask_padding_with_zero": True,
                        "eval_sample_size": 100,
                        "n_cores": 7,
-                       "base_path": base_path + "cached_"}
+                       "base_path": base_path + "cached_",
+                       "pretrained_weights":'bert-base-uncased'}
 
         # ## loading base model
 

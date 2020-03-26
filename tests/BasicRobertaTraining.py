@@ -71,7 +71,8 @@ class BasicRobertaTraining(unittest.TestCase):
                        "mask_padding_with_zero": True,
                        "eval_sample_size": 100,
                        "n_cores": 7,
-                       "base_path": base_path + "cached_"}
+                       "base_path": base_path + "cached_",
+                       "pretrained_weights": 'roberta-base'}
 
         # ## loading base model
 
@@ -107,14 +108,10 @@ class BasicRobertaTraining(unittest.TestCase):
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
 
-        print(tr_loss)
-        print(before_acc)
-        print(after_acc)
 
-
-        # self.assertTrue(tr_loss == 1.1454728543758392)
-        # self.assertTrue(before_acc == 0.31)
-        # self.assertTrue(after_acc == 0.4)
+        self.assertTrue(tr_loss == 1.0960678458213806)
+        self.assertTrue(before_acc == 0.31)
+        self.assertTrue(after_acc == 0.31)
 
 
 if __name__ == '__main__':

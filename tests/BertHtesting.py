@@ -81,7 +81,8 @@ class BertHTesting(unittest.TestCase):
                        'eval_sample_size': 100,
                        "pad_token_segment_id": 0,
                        "mask_padding_with_zero": True,
-                       "base_path": base_path + "cached_"}
+                       "base_path": base_path + "cached_",
+                       "pretrained_weights":'bert-base-uncased'}
 
         # ## Loading DFs
 

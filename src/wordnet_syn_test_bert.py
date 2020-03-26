@@ -103,7 +103,8 @@ hyperparams = {"local_rank": -1,
                'eval_sample_size': 200,
                "pad_token_segment_id": 0,
                "mask_padding_with_zero": True,
-               "base_path": "data/{}/cached_".format(folder)}
+               "base_path": "data/{}/cached_".format(folder),
+               "pretrained_weights":'bert-base-uncased'}
 
 
 # Selecting one data by DGP

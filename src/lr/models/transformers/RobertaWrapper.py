@@ -26,8 +26,7 @@ class RobertaWrapper():
     """
 
     def __init__(self,
-                 hyperparams,
-                 pretrained_weights='roberta-base'):
+                 hyperparams):
         """
         :param hyperparams: list of paranters
         :type hyperparams: dict
@@ -40,9 +39,10 @@ class RobertaWrapper():
                                'roberta-large-openai-detector']
         """
         set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
-
-        pretrained_weights = 'roberta-base'
+        
+        pretrained_weights = hyperparams['pretrained_weights'] 
         self.tokenizer = RobertaTokenizer.from_pretrained(pretrained_weights)
+    
         hyperparams["tokenizer"] = self.tokenizer
         self.hyperparams = hyperparams
         self.model = RobertaForSequenceClassification.from_pretrained(

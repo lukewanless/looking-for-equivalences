@@ -26,13 +26,13 @@ class BertWrapper():
     """
 
     def __init__(self,
-                 hyperparams,
-                 pretrained_weights='bert-base-uncased'):
+                 hyperparams):
         """
         :param hyperparams: list of paranters
         :type hyperparams: dict
 
-        pretrained_weights type of pretrainded weights
+        hyperparams['pretrained_weights'] 
+        type of pretrainded weights
         from the list
         
         ['bert-base-uncased', 'bert-large-uncased',
@@ -52,6 +52,8 @@ class BertWrapper():
         'bert-base-finnish-cased-v1', 'bert-base-finnish-uncased-v1', 'bert-base-dutch-cased']
         """
         set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
+
+        pretrained_weights = hyperparams['pretrained_weights'] 
 
         self.tokenizer = BertTokenizer.from_pretrained(pretrained_weights)
         hyperparams["tokenizer"] = self.tokenizer
