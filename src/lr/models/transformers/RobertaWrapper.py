@@ -4,8 +4,8 @@ import shutil
 import torch
 import numpy as np
 import pandas as pd
-from transformers import BertTokenizer
-from transformers import BertForSequenceClassification
+from transformers import RobertaTokenizer
+from transformers import RobertaForSequenceClassification
 from time import time
 from sklearn.model_selection import train_test_split
 
@@ -20,43 +20,32 @@ except ModuleNotFoundError:
     from src.lr.models.transformers.train_functions import evaluate, train, set_seed  # noqa
 
 
-class BertWrapper():
+class RobertaWrapper():
     """
-    Bert wrapper
+    Roberta wrapper
     """
 
     def __init__(self,
                  hyperparams,
-                 pretrained_weights='bert-base-uncased'):
+                 pretrained_weights='roberta-base'):
         """
         :param hyperparams: list of paranters
         :type hyperparams: dict
 
-        pretrained_weights type of pretrainded weights
-        from the list
-        
-        ['bert-base-uncased', 'bert-large-uncased',
-        'bert-base-cased', 'bert-large-cased',
-        'bert-base-multilingual-uncased',
-        'bert-base-multilingual-cased', 'bert-base-chinese',
-        'bert-base-german-cased', 'bert-large-uncased-whole-word-masking',
-        'bert-large-cased-whole-word-masking', 'bert-large-uncased-whole-word-masking-finetuned-squad',
-        'bert-large-cased-whole-word-masking-finetuned-squad',
-        'bert-base-cased-finetuned-mrpc',
-        'bert-base-german-dbmdz-cased', 
-        'bert-base-german-dbmdz-uncased',
-        'bert-base-japanese',
-        'bert-base-japanese-whole-word-masking',
-        'bert-base-japanese-char',
-        'bert-base-japanese-char-whole-word-masking',
-        'bert-base-finnish-cased-v1', 'bert-base-finnish-uncased-v1', 'bert-base-dutch-cased']
+        pretrained_weights in ['roberta-base',
+                               'roberta-large',
+                               'roberta-large-mnli',
+                               'distilroberta-base',
+                               'roberta-base-openai-detector',
+                               'roberta-large-openai-detector']
         """
         set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
 
-        self.tokenizer = BertTokenizer.from_pretrained(pretrained_weights)
+        pretrained_weights = 'roberta-base'
+        self.tokenizer = RobertaTokenizer.from_pretrained(pretrained_weights)
         hyperparams["tokenizer"] = self.tokenizer
         self.hyperparams = hyperparams
-        self.model = BertForSequenceClassification.from_pretrained(
+        self.model = RobertaForSequenceClassification.from_pretrained(
             pretrained_weights, num_labels=3)
         self.processor = NLIProcessor(hyperparams)
 
@@ -121,7 +110,7 @@ class BertWrapper():
         return results.prediction
 
     def load(self, path):
-        self.model = BertForSequenceClassification.from_pretrained(path)
+        self.model = RobertaForSequenceClassification.from_pretrained(path)
 
     def transform(self, df, mode):
         n_cores = self.hyperparams["n_cores"]
