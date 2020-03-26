@@ -107,12 +107,11 @@ class BasicRobertaTraining(unittest.TestCase):
         lmap = my_roberta.processor.get_label_map()
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
-        print(tr_loss)
 
 
-        # self.assertTrue(tr_loss == 1.0960678458213806)
-        # self.assertTrue(before_acc == 0.31)
-        # self.assertTrue(after_acc == 0.31)
+        self.assertTrue(np.round(tr_loss, 3) == 1.096)
+        self.assertTrue(before_acc == 0.31)
+        self.assertTrue(after_acc == 0.31)
 
 
 if __name__ == '__main__':
