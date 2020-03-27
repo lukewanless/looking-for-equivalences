@@ -130,7 +130,7 @@ def run_test(rho, dgp_seed, random_state, n_cores):
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(description=msg)
+    parser = argparse.ArgumentParser()
 
     parser.add_argument('rho',
                         type=float,
