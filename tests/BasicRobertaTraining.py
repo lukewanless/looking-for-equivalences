@@ -14,7 +14,7 @@ currentdir = os.path.dirname(
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
-from src.lr.models.transformers.processor import filter_df_by_label, clean_df # noqa
+from src.lr.models.transformers.processor import filter_df_by_label, clean_df  # noqa
 from src.lr.models.transformers.RobertaWrapper import RobertaWrapper  # noqa
 
 
@@ -94,20 +94,18 @@ class BasicRobertaTraining(unittest.TestCase):
         lmap = my_roberta.processor.get_label_map()
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         before_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
-            
+
         # ### Fit
 
         global_step, tr_loss, train_time = my_roberta.fit(df)
 
-
         # ### Eval 2
 
-        eval_path =  base_path + "cached_test_200"
+        eval_path = base_path + "cached_test_200"
         pred = my_roberta.predict(None, transform=False, path=eval_path)
         lmap = my_roberta.processor.get_label_map()
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
-
 
         self.assertTrue(np.round(tr_loss, 3) == 1.096)
         self.assertTrue(before_acc == 0.31)
@@ -116,4 +114,3 @@ class BasicRobertaTraining(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-
