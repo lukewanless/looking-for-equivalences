@@ -18,17 +18,17 @@ def run_test(rho, dgp_seed, random_state, n_cores):
 
     # Variables
     folder = "snli"
-    result_folder = "results/snli/roberta_base/sin_p_h/"
+    result_folder = "results/snli/roberta_base/sin_p/"
 
-    transformation_name = "wordnet sin tranformation p and h"
-    # transformation_name = "wordnet sin tranformation p"
+    # transformation_name = "wordnet sin tranformation p and h"
+    transformation_name = "wordnet sin tranformation p"
     # transformation_name = "wordnet sin tranformation h"
 
     name = "rho_{:.2f}_dgp_seed_{}_random_state_{}".format(
         rho, dgp_seed, random_state)
     name = name.replace(".", "p")
-    output_dir_name = "roberta_base_p_h_" + name
-    # output_dir_name = "bert_h_" + name
+    # output_dir_name = "roberta_base_p_h_" + name
+    output_dir_name = "roberta_base_p_" + name
 
     # Data
 
@@ -46,11 +46,11 @@ def run_test(rho, dgp_seed, random_state, n_cores):
     train_path_mod = "data/{}/train_p_h_syn_noun.csv".format(folder)
     dev_path_mod = "data/{}/dev_p_h_syn_noun.csv".format(folder)
 
-    def train_trans(df): return path_base_transformation(df, train_path_mod)
-    def dev_trans(df): return path_base_transformation(df, dev_path_mod)
+    # def train_trans(df): return path_base_transformation(df, train_path_mod)
+    # def dev_trans(df): return path_base_transformation(df, dev_path_mod)
 
-    # def train_trans(df): return path_base_transformation_p(df, train_path_mod)
-    # def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
+    def train_trans(df): return path_base_transformation_p(df, train_path_mod)
+    def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
 
     # def train_trans(df): return path_base_transformation_h(df, train_path_mod)
     # def dev_trans(df): return path_base_transformation_h(df, dev_path_mod)
