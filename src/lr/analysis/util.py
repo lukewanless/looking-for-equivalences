@@ -1,5 +1,6 @@
 import pandas as pd
 from IPython.display import display, HTML
+import numpy as np
 
 basic_columns = ['data',
                  'model',
@@ -48,3 +49,30 @@ def get_boots(df):
                                                          df.dgp_seed[0],
                                                          df.random_state[0])
     return boots
+
+
+def get_mismatch(df, name):
+    indicator = df.A.map(lambda x: str(x)) + "_" + df.B.map(lambda x: str(x))
+    indicator = (indicator == "1_0").astype(np.int)
+    indicator.name = name
+    return indicator.to_frame()
+
+
+def join_df_list(df_list):
+    """
+    Performs the merge_asof in a list of dfs
+
+    :param df_list: list of data frames
+    :type df_list: [pd.DataFrame]
+    :return: merged dataframe
+    :rtype: pd.DataFrame
+    """
+    size = len(df_list)
+    df = pd.merge(df_list[0], df_list[1],
+                  left_index=True,
+                  right_index=True)
+    for i in range(2, size):
+        df = pd.merge_asof(df, df_list[i],
+                           left_index=True,
+                           right_index=True)
+    return df
