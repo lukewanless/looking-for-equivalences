@@ -1,4 +1,4 @@
-python wordnet_syn_test_roberta.py 0.75 1332 75 8
+python wordnet_syn_test_roberta.py 0.0 17 697 8
 rm data/snli/cached_*
-python wordnet_syn_test_roberta.py 0.75 19402 173 8
+python wordnet_syn_test_roberta.py 0.0 85 321 8
 rm data/snli/cached_*
