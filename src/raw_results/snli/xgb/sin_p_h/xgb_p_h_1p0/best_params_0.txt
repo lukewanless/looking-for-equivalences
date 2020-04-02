@@ -1,0 +1,11 @@
+subsample = 0.85
+reg_gamma = 0.85
+reg_alpha = 0.3
+n_estimators = 15
+max_depth = 10
+learning_rate = 0.8
+colsample_bytree = 1.0
+
+best_acc = 58.3%
+time = 147.6 s
+number of search trials = 1

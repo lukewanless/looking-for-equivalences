@@ -77,7 +77,6 @@ def wordsyn_test(transformation_type, max_features, cv,
     dev_t = dev_trans(dev)
 
     # hyperparms for the XGB models
-
     param_grid = {'n_estimators': range(10, 20, 5),
                   'max_depth': range(2, 11),
                   "reg_alpha": np.arange(0.05, 1.05, 0.05),
@@ -85,6 +84,7 @@ def wordsyn_test(transformation_type, max_features, cv,
                   "learning_rate": np.arange(0.05, 1.05, 0.05),
                   "subsample": np.arange(0.05, 1.05, 0.05),
                   "colsample_bytree": np.arange(0.05, 1.05, 0.05)}
+
 
     hyperparams = {"RepresentationFunction": Tfidf,
                    "cv": cv,
@@ -126,8 +126,7 @@ if __name__ == '__main__':
 
     pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
 
-
-     random_states_list_list = [[17842, 13943],
+    random_states_list_list = [[127842, 13943],
                                 [14193, 1813],
                                 [1149, 1272],
                                 [13202, 165],
@@ -138,8 +137,7 @@ if __name__ == '__main__':
 
 
 
-
-     dgp_seed_list_list = [[12456, 1548],
+    dgp_seed_list_list = [[12456, 1548],
                            [12647, 1377],
                            [1242, 1431],
                            [1192, 1716],
@@ -153,7 +151,7 @@ if __name__ == '__main__':
     E = 1
     S = 1000
     n_jobs = 8 
-    n_iter = 50
+    n_iter = 1
     cv = 5
     transformation_type = "p_h"
 
