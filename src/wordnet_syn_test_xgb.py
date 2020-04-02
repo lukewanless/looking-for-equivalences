@@ -25,7 +25,7 @@ def wordsyn_test(transformation_type, max_features, cv,
 
 
     random_state_list_str = map(lambda x: str(x), random_state_list) 
-    results_path = "results/snli/xgb/sin_h/rho_{:.2f}_random_state_{}".format(rho, " ".join(random_state_list_str))
+    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, "_".join(random_state_list_str))
     results_path = results_path.replace(".", "p")
     results_path = results_path + ".csv"
 
@@ -108,12 +108,6 @@ def wordsyn_test(transformation_type, max_features, cv,
                    "verbose": verbose}
 
     # performing the tests
-
-    # # fake 
-    # train = train.sample(1000)
-    # dev = train.sample(100)
-
-
     results = LIMts_test(train=train,
                          dev=dev,
                          train_transformation=train_trans,
@@ -130,41 +124,36 @@ if __name__ == '__main__':
 
     debug = False
 
-    # pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
-    pcts = [0.0]
+    pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
 
 
-    # random_states_list_list = [[7842, 3943],
-    #                            [4193, 813],
-    #                            [149, 272],
-    #                            [3202, 65],
-    #                            [715, 766],
-    #                            [587, 590],
-    #                            [311, 523]]  # random states for  h
-
-
-    random_states_list_list = [[2, 3943]]  # random states for  h
+     random_states_list_list = [[17842, 13943],
+                                [14193, 1813],
+                                [1149, 1272],
+                                [13202, 165],
+                                [1715, 1766],
+                                [1587, 1590],
+                                [1311, 1523]]  # random states for  p_h
 
 
 
-    # dgp_seed_list_list = [[2456, 548],
-    #                       [2647, 377],
-    #                       [242, 431],
-    #                       [192, 716],
-    #                       [4571, 8152],
-    #                       [34552, 5656],
-    #                       [5523, 33737]]  # dgp states for h
 
 
-    dgp_seed_list_list = [[2456, 548]]  # dgp states for h
+     dgp_seed_list_list = [[12456, 1548],
+                           [12647, 1377],
+                           [1242, 1431],
+                           [1192, 1716],
+                           [14571, 18152],
+                           [134552, 15656],
+                           [15523, 133737]]  # dgp states for p_h
+
+
 
     M = 2
     E = 1
     S = 1000
-    n_jobs = 2
-    # n_iter = 50
-    
-    n_iter = 2
+    n_jobs = 8 
+    n_iter = 50
     cv = 5
     transformation_type = "p_h"
 
@@ -172,6 +161,7 @@ if __name__ == '__main__':
             pcts, random_states_list_list, dgp_seed_list_list):
 
         output_dir = "xgb_{}_{}".format(transformation_type, rho)
+        output_dir = output_dir.replace(".", "p")
 
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)

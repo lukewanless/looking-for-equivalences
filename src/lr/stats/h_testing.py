@@ -219,7 +219,7 @@ def LIMts_test(train,
                hyperparams):
 
     path_results_base = hyperparams["output_dir"] + "/results_"
-    path_best_params = hyperparams["output_dir"] + "/best_params.txt"
+    path_best_params = hyperparams["output_dir"] + "/best_params"
     random_state_list = hyperparams["random_state_list"]
     dgp_seed_list = hyperparams["dgp_seed_list"]
     data_set_name = hyperparams["data_set_name"]
@@ -275,9 +275,16 @@ def LIMts_test(train,
 
         # Save best params Define the majority model
         best_assigment = model.model.best_params_
-        with open(path_best_params, "w") as file:
-            file.write(best_assigment)
-
+        times = model.model.cv_results_['mean_fit_time']
+        mean_time = np.mean(times)
+        n_trains = len(times)
+        with open(path_best_params + "_{}.txt".format(m), "w") as file:
+            for key in best_assigment:
+                file.write("{} = {}\n".format(key, best_assigment[key]))
+            file.write("\nbest_acc = {:.1%}".format(model.model.best_score_))
+            file.write("\ntime = {:.1f} s".format(mean_time))
+            file.write("\nnumber of search trials = {}".format(n_trains))
+        
         # Get observed accs and t stats
         results = get_matched_results(
             dev, dev_t, model, model.label_translation)
