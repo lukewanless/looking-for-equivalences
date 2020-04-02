@@ -109,6 +109,11 @@ def wordsyn_test(transformation_type, max_features, cv,
 
     # performing the tests
 
+    # # fake 
+    # train = train.sample(1000)
+    # dev = train.sample(100)
+
+
     results = LIMts_test(train=train,
                          dev=dev,
                          train_transformation=train_trans,
@@ -125,31 +130,43 @@ if __name__ == '__main__':
 
     debug = False
 
-    pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
+    # pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
+    pcts = [0.0]
 
-    random_states_list_list = [[7842, 3943],
-                               [4193, 813],
-                               [149, 272],
-                               [3202, 65],
-                               [715, 766],
-                               [587, 590],
-                               [311, 523]]  # random states for  h
 
-    dgp_seed_list_list = [[2456, 548],
-                          [2647, 377],
-                          [242, 431],
-                          [192, 716],
-                          [4571, 8152],
-                          [34552, 5656],
-                          [5523, 33737]]  # dgp states for h
+    # random_states_list_list = [[7842, 3943],
+    #                            [4193, 813],
+    #                            [149, 272],
+    #                            [3202, 65],
+    #                            [715, 766],
+    #                            [587, 590],
+    #                            [311, 523]]  # random states for  h
+
+
+    random_states_list_list = [[2, 3943]]  # random states for  h
+
+
+
+    # dgp_seed_list_list = [[2456, 548],
+    #                       [2647, 377],
+    #                       [242, 431],
+    #                       [192, 716],
+    #                       [4571, 8152],
+    #                       [34552, 5656],
+    #                       [5523, 33737]]  # dgp states for h
+
+
+    dgp_seed_list_list = [[2456, 548]]  # dgp states for h
 
     M = 2
-    E = 2
+    E = 1
     S = 1000
-    n_jobs = 16
-    n_iter = 50
+    n_jobs = 2
+    # n_iter = 50
+    
+    n_iter = 2
     cv = 5
-    transformation_type = "only_h"
+    transformation_type = "p_h"
 
     for rho, random_state_list, dgp_seed_list in zip(
             pcts, random_states_list_list, dgp_seed_list_list):

@@ -219,6 +219,7 @@ def LIMts_test(train,
                hyperparams):
 
     path_results_base = hyperparams["output_dir"] + "/results_"
+    path_best_params = hyperparams["output_dir"] + "/best_params.txt"
     random_state_list = hyperparams["random_state_list"]
     dgp_seed_list = hyperparams["dgp_seed_list"]
     data_set_name = hyperparams["data_set_name"]
@@ -266,23 +267,20 @@ def LIMts_test(train,
         # setting seed
         np.random.seed(random_state_list[i])
 
-        # train E models on the same data
-        for e in range(E):
-            model = Model(hyperparams)
-            model.fit(train_t)
-            all_models.append(model)
+        # train model
+        model = Model(hyperparams)
+        model.fit(train_t)
         train_time = time() - init_train
         train_times.append(train_time)
 
-        # Define the majority model
-        all_models_train_acc = [m.get_score() for m in all_models]
-        models_train_acc_mean.append(np.mean(all_models_train_acc))
-        models_train_acc_std.append(np.std(all_models_train_acc))
+        # Save best params Define the majority model
+        best_assigment = model.model.best_params_
+        with open(path_best_params, "w") as file:
+            file.write(best_assigment)
 
-        m_model = Majority(all_models)
         # Get observed accs and t stats
         results = get_matched_results(
-            dev, dev_t, m_model, m_model.label_translation)
+            dev, dev_t, model, model.label_translation)
 
         path_results = path_results_base + "{}.csv".format(m)
         results.to_csv(path_results)
@@ -325,9 +323,6 @@ def LIMts_test(train,
              "dgp_seed": dgp_seed_list,
              "random_state": random_state_list,
              "number_of_simulations": [S] * M,
-             "models_train_acc_mean": models_train_acc_mean,
-             "models_train_acc_std": models_train_acc_std,
-             "validation_accuracy": majority_accs,
              "transformed_validation_accuracy": majority_accs_t,
              "accuracy_difference": all_acc_diffs,
              "test_size": all_test_sizes,
