@@ -12,9 +12,12 @@ import argparse
 
 # Variables and basic params
 
-def search(folder, n_cores, cv,
-           random_state, n_iter,
-           output_dir_name, verbose):
+def search(train_path,
+           dev_path,
+           random_state,
+           n_cores, cv,
+           n_iter, output_dir_name,
+           verbose):
 
     # hyperparms for the XGB models
     param_grid = {'n_estimators': range(10, 31, 1),
@@ -38,17 +41,20 @@ def search(folder, n_cores, cv,
 
     # Set Data
 
-    train = pd.read_csv("data/{}/train_sample.csv".format(folder))
-    dev = pd.read_csv("data/{}/dev.csv".format(folder))
-
-    print("clean train")
+    train = pd.read_csv(train_path)
+    dev = pd.read_csv(dev_path)
+    
+    if verbose:
+        print("clean train")
     train = clean_df(train, n_cores=n_cores)
-
-    print("clean dev")
+    
+    if verbose:
+        print("clean dev")
     dev = clean_df(dev, n_cores=n_cores)
-
-    print("train.shape", train.shape)
-    print("dev.shape", dev.shape)
+    
+    if verbose:
+        print("train.shape", train.shape)
+        print("dev.shape", dev.shape)
 
     # Search
 
@@ -76,22 +82,21 @@ def search(folder, n_cores, cv,
         left_index=True,
         right_index=True)
 
-    path = "hyperparams/" + output_dir_name
+    path = output_dir_name + "/search_{}.csv".format(random_state)
 
-    if not os.path.exists(path):
-        os.mkdir(path)
-
-    search_results.to_csv(
-        path +
-        "/search_{}.csv".format(random_state),
-        index=False)
+    search_results.to_csv(path, index=False)
 
 
 if __name__ == '__main__':
-    search(folder="snli",
+    folder = "snli"
+    train_path = "data/{}/train_sample.csv".format(folder)
+    dev_path = "data/{}/dev.csv".format(folder)
+    output_dir_name = "hyperparams/xgb_snli"
+    search(train_path=train_path,
+           dev_path=dev_path,
            random_state=223,
            cv=5,
            n_iter=5,
            n_cores=8,
-           output_dir_name="xgb_snli",
+           output_dir_name=output_dir_name,
            verbose=True)
