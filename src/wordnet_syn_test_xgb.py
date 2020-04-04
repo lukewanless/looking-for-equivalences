@@ -180,28 +180,28 @@ if __name__ == '__main__':
                      dgp_seed_list=dgp_seed_list,
                      output_dir=output_dir)
 
-        params_keys = ['n_estimators', 'max_depth', "reg_alpha",
+params_keys = ['n_estimators', 'max_depth', "reg_alpha",
                "reg_gamma", "learning_rate", "subsample", "colsample_bytree"]
 
-# hyperparams = {"RepresentationFunction": Tfidf,
-#                "random_state": 34,
-#                "verbose": verbose,
-#                "n_jobs": n_jobs,
-#                "max_features": max_features,
-#                "label_translation": get_ternary_label,
-#                "dgp_seed": 34,
-#                "data_set_name": "snli",
-#                "transformation_name": None,
-#                "rho": 0.3,
-#                "model_name_or_path": "gradient boosting",
-#                "number_of_simulations": 10000,
-#                 "output_dir": None,
-#                "verbose": verbose}
+hyperparams = {"RepresentationFunction": Tfidf,
+               "random_state": 34,
+               "verbose": verbose,
+               "n_jobs": n_jobs,
+               "max_features": max_features,
+               "label_translation": get_ternary_label,
+               "dgp_seed": 34,
+               "data_set_name": "snli",
+               "transformation_name": None,
+               "rho": 0.3,
+               "model_name_or_path": "gradient boosting",
+               "number_of_simulations": 10000,
+                "output_dir": None,
+               "verbose": verbose}
                
-# for k in params_keys:
-#     hyperparams[k] = search_results.loc[0,k]
+for k in params_keys:
+    hyperparams[k] = search_results.loc[0,k]
     
     
-# m = XGBCWrapper(hyperparams)
-# m.fit(train)
-# model.get_acc(dev)
+m = XGBCWrapper(hyperparams)
+m.fit(train)
+model.get_acc(dev)
