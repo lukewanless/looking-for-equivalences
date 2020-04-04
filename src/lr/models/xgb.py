@@ -29,11 +29,22 @@ class XGBCWrapper():
         self.label_translation = hyperparams["label_translation"]
 
         if "param_grid" not in hyperparams:
-            self.n_estimatores = hyperparams["n_estimatores"]
+            self.n_estimators = hyperparams['n_estimators']
             self.max_depth = hyperparams["max_depth"]
+            self.reg_alpha = hyperparams["reg_alpha"]
+            self.reg_gamma = hyperparams["reg_gamma"]
+            self.learning_rate = hyperparams["learning_rate"]
+            self.subsample = hyperparams["subsample"]
+            self.colsample_bytree = hyperparams["colsample_bytree"]
+
             self.model = xgb.XGBClassifier(objective="multi:softprob",
-                                           n_estimatores=self.n_estimatores,
-                                           max_depth=self.max_depth)
+                                           n_estimators=self.n_estimators,
+                                           max_depth=self.max_depth,
+                                           reg_alpha=self.reg_alpha,
+                                           reg_gamma=self.reg_gamma,
+                                           learning_rate=self.learning_rate,
+                                           subsample=self.subsample,
+                                           colsample_bytree=self.colsample_bytree)
         else:
             param_grid = hyperparams["param_grid"]
             cv = hyperparams["cv"]
