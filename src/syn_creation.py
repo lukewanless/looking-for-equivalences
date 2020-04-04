@@ -9,70 +9,102 @@ from lr.text_processing.transformations.wordnet import parallelize
 from lr.training.util import filter_df_by_label
 
 
-folder = "mnli"
-n_cores = 3
+def transform(train_path, dev_path, test_path,
+              veto_path, syn_path,
+              output_train_path,
+              output_dev_path,
+              output_test_path, n_cores):
+
+    train = pd.read_csv(train_path)
+    dev = pd.read_csv(dev_path)
+    test = pd.read_csv(dev_path)
+
+    # cleaning
+    train = filter_df_by_label(train.dropna()).reset_index(drop=True)
+    dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
+    test = filter_df_by_label(test.dropna()).reset_index(drop=True)
+
+    pre_process_nli_df(train)
+    pre_process_nli_df(dev)
+    pre_process_nli_df(test)
+
+    print("train.shape", train.shape)
+    print("dev.shape", dev.shape)
+    print("test.shape", test.shape)
+
+    # ## Get syn dict
+
+    # corpus = train + dev
+    df_corpus = pd.concat([train, dev])
+
+    # defining words that will no be used
+    veto = pd.read_csv(veto_path).veto.values
+
+    # get syn dict
+    init = time()
+    syn_dict = get_noun_syn_dict(df=df_corpus, n_cores=n_cores, veto=veto)
+    del df_copus
+    # removing possible verbs
+    syn_dict = {k: syn_dict[k] for k in syn_dict if k[-3:] != "ing"}
+
+    # saving to a dataframe
+    key = sorted(syn_dict.keys())
+    value = [syn_dict[k] for k in key]
+    syn_df = pd.DataFrame({"key": key,
+                           "value": value})
+
+    syn_df.to_csv(syn_path, index=False)
+
+    syn_time = time() - init
+    print("get syn dict: {:.4f} minutes".format(syn_time / 60))
+
+    # ## Apply transformation on the whole dataset
+
+    def trans(df):
+        return p_h_transformation_syn_dict(df, syn_dict)
+
+    init = time()
+    train_t = parallelize(df=train, func=trans, n_cores=n_cores)
+    trans_time = time() - init
+    print("applying trans to train: {:.4f} minutes".format(trans_time / 60))
+
+    init = time()
+    dev_t = parallelize(df=dev, func=trans, n_cores=n_cores)
+    trans_time = time() - init
+    print("applying trans to dev: {:.4f} minutes".format(trans_time / 60))
+
+    init = time()
+    test_t = parallelize(df=dev, func=trans, n_cores=n_cores)
+    trans_time = time() - init
+    print("applying trans to test: {:.4f} minutes".format(trans_time / 60))
+
+    train_t.to_csv(train_path_mod, index=False)
+    dev_t.to_csv(dev_path_mod, index=False)
+    test_t.to_csv(test_path_mod, index=False)
 
 
-# ### Loading data
-train_path = "data/{}/train_sample.csv".format(folder)
-dev_path = "data/{}/dev_sample.csv".format(folder)
+if __name__ == '__main__':
+    # variables
+    folder = "snli"
+    n_cores = 8
 
-veto_path = "data/{}/syn_veto.csv".format(folder)
-syn_path = "data/{}/syn_noun.csv".format(folder)
+    train_path = "data/{}/train.csv".format(folder)
+    dev_path = "data/{}/dev.csv".format(folder)
+    test_path = "data/{}/test.csv".format(folder)
 
-train_path_mod = "data/{}/train_p_h_syn_noun.csv".format(folder)
-dev_path_mod = "data/{}/dev_p_h_syn_noun.csv".format(folder)
+    veto_path = "data/{}/syn_veto.csv".format(folder)
+    syn_path = "data/{}/syn_noun.csv".format(folder)
 
-train = pd.read_csv(train_path)
-dev = pd.read_csv(dev_path)
+    output_train_path = "data/{}/train_p_h_syn_noun.csv".format(folder)
+    output_dev_path = "data/{}/dev_p_h_syn_noun.csv".format(folder)
+    output_test_path = "data/{}/test_p_h_syn_noun.csv".format(folder)
 
-train = filter_df_by_label(train.dropna()).reset_index(drop=True)
-dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
-pre_process_nli_df(train)
-pre_process_nli_df(dev)
-
-# defining words that will no be used
-
-veto = pd.read_csv(veto_path).veto.values
-
-
-# get syn dict
-init = time()
-syn_dict = get_noun_syn_dict(df=train, n_cores=n_cores, veto=veto)
-
-
-# removing possible verbs
-syn_dict = {k: syn_dict[k] for k in syn_dict if k[-3:] != "ing"}
-
-
-# saving to a dataframe
-key = sorted(syn_dict.keys())
-value = [syn_dict[k] for k in key]
-syn_df = pd.DataFrame({"key": key,
-                       "value": value})
-
-syn_df.to_csv(syn_path, index=False)
-
-syn_time = time() - init
-print("get syn dict: {:.4f} minutes".format(syn_time / 60))
-
-
-# apply transformation on the whole dataset
-def trans(df):
-    return p_h_transformation_syn_dict(df, syn_dict)
-
-
-init = time()
-train_t = parallelize(df=train, func=trans, n_cores=n_cores)
-trans_time = time() - init
-print("applying trans to train: {:.4f} minutes".format(trans_time / 60))
-
-
-init = time()
-dev_t = parallelize(df=dev, func=trans, n_cores=n_cores)
-trans_time = time() - init
-print("applying trans to dev: {:.4f} minutes".format(trans_time / 60))
-
-
-train_t.to_csv(train_path_mod, index=False)
-dev_t.to_csv(dev_path_mod, index=False)
+    transform(train_path=train_path,
+              dev_path=dev_path,
+              test_path=test_path,
+              veto_path=veto_path,
+              syn_path=syn_path,
+              output_train_path=output_train_path,
+              output_dev_path=output_dev_path,
+              output_test_path=output_test_path,
+              n_cores=n_cores)
