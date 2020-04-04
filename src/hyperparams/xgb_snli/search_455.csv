@@ -1,0 +1,2 @@
+search_random_state,number_of_search_trails,expected_val_score,best_val_score,mean_fit_time,search_time,subsample,reg_gamma,reg_alpha,n_estimators,max_depth,learning_rate,colsample_bytree
+455,800,0.5148573836350944,0.5698028855923593,0.003922279798876908,1.983190781540341,1.0,0.15000000000000002,0.6500000000000001,26,15,0.55,0.9500000000000001
