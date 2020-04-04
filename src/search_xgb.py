@@ -43,15 +43,15 @@ def search(train_path,
 
     train = pd.read_csv(train_path)
     dev = pd.read_csv(dev_path)
-    
+
     if verbose:
         print("clean train")
     train = clean_df(train, n_cores=n_cores)
-    
+
     if verbose:
         print("clean dev")
     dev = clean_df(dev, n_cores=n_cores)
-    
+
     if verbose:
         print("train.shape", train.shape)
         print("dev.shape", dev.shape)
@@ -88,15 +88,36 @@ def search(train_path,
 
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('random_state',
+                        type=int,
+                        help='random_state')
+
+    parser.add_argument('cv',
+                        type=int,
+                        help='cross validation')
+
+    parser.add_argument('n_iter',
+                        type=int,
+                        help='number of iterations')
+
+    parser.add_argument('n_cores',
+                        type=int,
+                        help='number of cores')
+    args = parser.parse_args()
+
     folder = "snli"
     train_path = "data/{}/train_sample.csv".format(folder)
     dev_path = "data/{}/dev.csv".format(folder)
     output_dir_name = "hyperparams/xgb_snli"
+
     search(train_path=train_path,
            dev_path=dev_path,
-           random_state=223,
-           cv=5,
-           n_iter=5,
-           n_cores=8,
+           random_state=args.random_state,
+           cv=args.cv,
+           n_iter=args.n_iter,
+           n_cores=args.n_cores,
            output_dir_name=output_dir_name,
            verbose=True)
