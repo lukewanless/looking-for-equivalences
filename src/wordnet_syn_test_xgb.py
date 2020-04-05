@@ -1,207 +1,258 @@
-import pandas as pd
+import os
 import numpy as np
+import pandas as pd
+from time import time
+import argparse
+
+from lr.stats.h_testing import DGP
+from lr.stats.h_testing import get_matched_results
+from lr.stats.h_testing import get_paired_t_statistic
+from lr.stats.h_testing import get_cochran_statistic
+from lr.stats.h_testing import get_boots_series_under_H0
+from lr.stats.h_testing import get_boot_paired_t_p_value
+from lr.stats.h_testing import get_boot_cochran_p_value
+
+from lr.models.xgb import XGBCWrapper
+from lr.training.language_representation import Tfidf
 from lr.text_processing.util import pre_process_nli_df
 from lr.training.util import get_ternary_label, filter_df_by_label
 from lr.text_processing.transformations.wordnet import path_base_transformation
-from lr.text_processing.transformations.wordnet import path_base_transformation_p
-from lr.text_processing.transformations.wordnet import path_base_transformation_h
-from lr.training.language_representation import Tfidf
-from lr.models.xgb import XGBCWrapper
-from lr.stats.h_testing import LIMts_test
-from IPython.display import display, HTML
-from sklearn.exceptions import ConvergenceWarning
-import warnings
-import os
-warnings.filterwarnings("ignore", category=RuntimeWarning)
-warnings.filterwarnings("ignore", category=ConvergenceWarning)
-
-# params
 
 
-def wordsyn_test(transformation_type, max_features, cv,
-                 n_jobs, n_iter, rho, M, E, S,
-                 verbose, random_state_list,
-                 dgp_seed_list, output_dir):
+def run_test(train_path,
+             dev_path,
+             test_path,
+             transformation_name,
+             train_path_mod,
+             dev_path_mod,
+             test_path_mod,
+             search_path,
+             rho,
+             search_random_state,
+             train_random_state,
+             boot_random_state,
+             dgp_random_state,
+             number_of_simulations,
+             output_raw_result,
+             output_result,
+             n_cores,
+             verbose):
 
+    # Get data
 
-    random_state_list_str = map(lambda x: str(x), random_state_list) 
-    results_path = "results/snli/xgb/sin_p_h/rho_{:.2f}_random_state_{}".format(rho, "_".join(random_state_list_str))
-    results_path = results_path.replace(".", "p")
-    results_path = results_path + ".csv"
-
-    # Loading data
-
-    train_path = "data/snli/train.csv"
-    dev_path = "data/snli/dev.csv"
+    init_test = time()
 
     train = pd.read_csv(train_path)
     dev = pd.read_csv(dev_path)
+    test = pd.read_csv(test_path)
+
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
     dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
+    test = filter_df_by_label(test.dropna()).reset_index(drop=True)
 
     pre_process_nli_df(train)
     pre_process_nli_df(dev)
 
-    # creating transformation function
+    # Get hyperarams
 
-    train_path_mod = "data/snli/train_p_h_syn_noun.csv"
-    dev_path_mod = "data/snli/dev_p_h_syn_noun.csv"
-
-    if transformation_type == "p_h":
-        def train_trans(df): return path_base_transformation(
-            df, train_path_mod)
-
-        def dev_trans(df): return path_base_transformation(df, dev_path_mod)
-
-        transformation_name = "wordnet sin tranformation p and h"
-
-    elif transformation_type == "only_p":
-        def train_trans(df): return path_base_transformation_p(
-            df, train_path_mod)
-
-        def dev_trans(df): return path_base_transformation_p(df, dev_path_mod)
-
-        transformation_name = "wordnet sin tranformation p only"
-
-    elif transformation_type == "only_h":
-        def train_trans(df): return path_base_transformation_h(
-            df, train_path_mod)
-
-        def dev_trans(df): return path_base_transformation_h(df, dev_path_mod)
-
-        transformation_name = "wordnet sin tranformation h only"
-
-    else:
-        exit()
-
-    dev_t = dev_trans(dev)
-
-    # hyperparms for the XGB models
-    param_grid = {'n_estimators': range(10, 20, 5),
-                  'max_depth': range(2, 11),
-                  "reg_alpha": np.arange(0.05, 1.05, 0.05),
-                  "reg_gamma": np.arange(0.05, 1.05, 0.05),
-                  "learning_rate": np.arange(0.05, 1.05, 0.05),
-                  "subsample": np.arange(0.05, 1.05, 0.05),
-                  "colsample_bytree": np.arange(0.05, 1.05, 0.05)}
-
+    params_keys = ['n_estimators', 'max_depth', "reg_alpha",
+                   "reg_gamma", "learning_rate", "subsample", "colsample_bytree"]
 
     hyperparams = {"RepresentationFunction": Tfidf,
-                   "cv": cv,
-                   "random_state": None,
-                   "verbose": verbose,
-                   "n_jobs": n_jobs,
-                   "n_iter": n_iter,
-                   "max_features": max_features,
+                   "n_jobs": n_cores,
+                   "max_features": None,
                    "label_translation": get_ternary_label,
-                   "param_grid": param_grid,
-                   "random_state_list": random_state_list,
-                   "dgp_seed_list": dgp_seed_list,
                    "data_set_name": "snli",
                    "transformation_name": transformation_name,
                    "rho": rho,
                    "model_name_or_path": "gradient boosting",
-                   "number_of_samples": M,
-                   "number_of_models": E,
-                   "number_of_simulations": S,
-                    "output_dir": output_dir,
+                   "number_of_simulations": number_of_simulations,
+                   "search_random_state": search_random_state,
+                   "dgp_random_state": dgp_random_state,
+                   "train_random_state": train_random_state,
+                   "boot_random_state": boot_random_state,
+                   "output_raw_result": output_raw_result,
+                   "output_result": output_result,
                    "verbose": verbose}
 
-    # performing the tests
-    results = LIMts_test(train=train,
-                         dev=dev,
-                         train_transformation=train_trans,
-                         dev_transformation=dev_trans,
-                         Model=XGBCWrapper,
-                         hyperparams=hyperparams)
+    search_results = pd.read_csv(search_path)
 
-    # saving results
+    for k in params_keys:
+        hyperparams[k] = search_results.loc[0, k]
 
-    results.to_csv(results_path, index=False)
+    # Set transformed version of the datasets
+
+    def train_trans(df): return path_base_transformation(df, train_path_mod)
+
+    def dev_trans(df): return path_base_transformation(df, dev_path_mod)
+
+    def test_trans(df): return path_base_transformation(df, test_path_mod)
+
+    dgp_train = DGP(data=train,
+                    transformation=train_trans,
+                    rho=rho)
+
+    dgp_dev = DGP(data=dev,
+                  transformation=dev_trans,
+                  rho=rho)
+
+    dgp_random_state = hyperparams["dgp_random_state"]
+
+    train_t = dgp_train.sample(random_state=dgp_random_state)
+    dev_t = dgp_dev.sample(random_state=dgp_random_state)
+    test_t = test_trans(test)
+
+    # we will train the xgb with train and dev data
+    full_train_t = pd.concat([train_t, dev_t]).reset_index(drop=True)
+
+    # Training the model
+
+    model = XGBCWrapper(hyperparams)
+    init_train = time()
+    model.fit(full_train_t)
+    train_time = time() - init_train
+
+    # Get matched eval and relevant statistics
+
+    m_results = get_matched_results(test,
+                                    test_t,
+                                    model,
+                                    hyperparams["label_translation"])
+
+    test_acc = m_results.A.mean()
+    transformed_test_acc = m_results.B.mean()
+    t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic(
+        m_results)
+    cochran_obs = get_cochran_statistic(m_results)
+
+    # Get p-values by bootstrap replications
+
+    number_of_simulations = hyperparams["number_of_simulations"]
+    boot_random_state = hyperparams["boot_random_state"]
+
+    def get_paired_t(matched_results):
+        t_obs, _, _, _ = get_paired_t_statistic(matched_results)
+        return t_obs
+
+    paired_t_boots = get_boots_series_under_H0(m_results,
+                                               get_paired_t,
+                                               number_of_simulations,
+                                               boot_random_state)
+
+    cochran_boots = get_boots_series_under_H0(m_results,
+                                              get_cochran_statistic,
+                                              number_of_simulations,
+                                              boot_random_state)
+
+    paired_t_p_value = get_boot_paired_t_p_value(paired_t_boots, t_obs)
+
+    cochran_p_value = get_boot_cochran_p_value(cochran_boots, cochran_obs)
+
+    htest_time = time() - init_test
+
+    # Aggregate all results
+
+    dict_ = {"data": [hyperparams["data_set_name"]],
+             "model": [hyperparams["model_name_or_path"]],
+             "transformation": [hyperparams["transformation_name"]],
+             "rho": [rho],
+             "search_random_state": [hyperparams["search_random_state"]],
+             "dgp_random_state": [dgp_random_state],
+             "train_random_state": [hyperparams["train_random_state"]],
+             "boot_random_state": [boot_random_state],
+             "number_of_simulations": [number_of_simulations],
+             "test_accuracy": [test_acc],
+             "transformed_test_accuracy": [transformed_test_acc],
+             "accuracy_difference": [acc_diff],
+             "test_size": [test_size],
+             "standart_error": [standart_error],
+             "observable_paired_t_stats": [t_obs],
+             "paired_t_p_value": [paired_t_p_value],
+             "observable_cochran_stats": [cochran_obs],
+             "cochran_p_value": [cochran_p_value],
+             "training_time": [train_time / 3600],
+             "test_time": [htest_time / 3600]}
+
+    test_results = pd.DataFrame(dict_)
+    m_results.to_csv(output_raw_result, index=False)
+    test_results.to_csv(output_result, index=False)
+    if verbose:
+        print(output_raw_result)
+        print(output_result)
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
 
-    debug = False
+    parser.add_argument('rho',
+                        type=float,
+                        help='modification percentage for train')
 
-    pcts = [0.0, 0.25, 0.5, 0.75, 1.0]
+    parser.add_argument('search_random_state',
+                        type=int,
+                        help='random_state for hyperparams search')
 
-    random_states_list_list = [[127842, 13943],
-                                [14193, 1813],
-                                [1149, 1272],
-                                [13202, 165],
-                                [1715, 1766],
-                                [1587, 1590],
-                                [1311, 1523]]  # random states for  p_h
+    parser.add_argument('dgp_random_state',
+                        type=int,
+                        help='random_state for dgp sampling')
 
+    parser.add_argument('train_random_state',
+                        type=int,
+                        help='random_state for model fitting')
 
+    parser.add_argument('boot_random_state',
+                        type=int,
+                        help='random_state for bootstrap simulation')
 
+    parser.add_argument('n_cores',
+                        type=int,
+                        help='number of cores')
+    args = parser.parse_args()
 
-    dgp_seed_list_list = [[12456, 1548],
-                           [12647, 1377],
-                           [1242, 1431],
-                           [1192, 1716],
-                           [14571, 18152],
-                           [134552, 15656],
-                           [15523, 133737]]  # dgp states for p_h
+    rho = args.rho
+    search_random_state = args.search_random_state
+    dgp_random_state = args.dgp_random_state
+    train_random_state = args.train_random_state
+    boot_random_state = args.boot_random_state
+    n_cores = args.n_cores
 
+    number_of_simulations = 1000
+    verbose = True
 
+    train_path = "data/snli/train.csv"
+    dev_path = "data/snli/dev.csv"
+    test_path = "data/snli/test.csv"
 
-    M = 2
-    E = 1
-    S = 1000
-    n_jobs = 8 
-    n_iter = 1
-    cv = 5
-    transformation_type = "p_h"
+    train_path_mod = "data/snli/train_p_h_syn_noun.csv"
+    dev_path_mod = "data/snli/dev_p_h_syn_noun.csv"
+    test_path_mod = "data/snli/test_p_h_syn_noun.csv"
 
-    for rho, random_state_list, dgp_seed_list in zip(
-            pcts, random_states_list_list, dgp_seed_list_list):
+    search_path = "hyperparams/xgb_snli/search_{}.csv".format(
+        search_random_state)
+    assert os.path.exists(search_path)
 
-        output_dir = "xgb_{}_{}".format(transformation_type, rho)
-        output_dir = output_dir.replace(".", "p")
+    transformation_name = "wordnet syn tranformation p and h"
+    output_raw_result = "raw_results/snli/xgb/syn_p_h/rho_{}_results".format(
+        rho)
+    output_raw_result = output_raw_result.replace(".", "p") + ".csv"
+    output_result = "results/snli/xgb/syn_p_h/rho_{}_results".format(rho)
+    output_result = output_result.replace(".", "p") + ".csv"
 
-        if not os.path.exists(output_dir):
-            os.mkdir(output_dir)
-
-        print("\nPerforming tests for rho = {:.1%}\n".format(rho))
-
-        wordsyn_test(transformation_type=transformation_type,
-                     max_features=None,
-                     cv=cv,
-                     n_jobs=n_jobs,
-                     n_iter=n_iter,
-                     rho=rho,
-                     M=M,
-                     E=E,
-                     S=S,
-                     verbose=True,
-                     random_state_list=random_state_list,
-                     dgp_seed_list=dgp_seed_list,
-                     output_dir=output_dir)
-
-params_keys = ['n_estimators', 'max_depth', "reg_alpha",
-               "reg_gamma", "learning_rate", "subsample", "colsample_bytree"]
-
-hyperparams = {"RepresentationFunction": Tfidf,
-               "random_state": 34,
-               "verbose": verbose,
-               "n_jobs": n_jobs,
-               "max_features": max_features,
-               "label_translation": get_ternary_label,
-               "dgp_seed": 34,
-               "data_set_name": "snli",
-               "transformation_name": None,
-               "rho": 0.3,
-               "model_name_or_path": "gradient boosting",
-               "number_of_simulations": 10000,
-                "output_dir": None,
-               "verbose": verbose}
-               
-for k in params_keys:
-    hyperparams[k] = search_results.loc[0,k]
-    
-    
-m = XGBCWrapper(hyperparams)
-m.fit(train)
-model.get_acc(dev)
+    run_test(train_path=train_path,
+             dev_path=dev_path,
+             test_path=test_path,
+             transformation_name=transformation_name,
+             train_path_mod=train_path_mod,
+             dev_path_mod=dev_path_mod,
+             test_path_mod=test_path_mod,
+             search_path=search_path,
+             rho=rho,
+             search_random_state=search_random_state,
+             train_random_state=train_random_state,
+             dgp_random_state=dgp_random_state,
+             boot_random_state=boot_random_state,
+             number_of_simulations=number_of_simulations,
+             output_raw_result=output_raw_result,
+             output_result=output_result,
+             n_cores=n_cores,
+             verbose=verbose)
