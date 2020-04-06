@@ -9,6 +9,7 @@ import numpy as np
 def get_ts_from_results_folder(path, stat):
     results = os.listdir(path)
     results.sort()
+    results = [r for r in results if r[-3:] == "csv"]
     results = [path + r for r in results]
     rhos = []
     stats = []
