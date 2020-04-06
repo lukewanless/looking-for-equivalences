@@ -232,10 +232,10 @@ if __name__ == '__main__':
     assert os.path.exists(search_path)
 
     transformation_name = "wordnet syn tranformation p and h"
-    output_raw_result = "raw_results/snli/xgb/syn_p_h/rho_{}_results".format(
+    output_raw_result = "raw_results/snli/xgb/syn_p_h/rho_{:.2f}_results".format(
         rho)
     output_raw_result = output_raw_result.replace(".", "p") + ".csv"
-    output_result = "results/snli/xgb/syn_p_h/rho_{}_results".format(rho)
+    output_result = "results/snli/xgb/syn_p_h/rho_{:.2f}_results".format(rho)
     output_result = output_result.replace(".", "p") + ".csv"
 
     run_test(train_path=train_path,
