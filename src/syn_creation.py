@@ -99,7 +99,7 @@ trans_time = time() - init
 print("applying trans to dev: {:.4f} minutes".format(trans_time / 60))
 
 init = time()
-test_t = parallelize(df=dev, func=trans, n_cores=n_cores)
+test_t = parallelize(df=test, func=trans, n_cores=n_cores)
 trans_time = time() - init
 print("applying trans to test: {:.4f} minutes".format(trans_time / 60))
 
