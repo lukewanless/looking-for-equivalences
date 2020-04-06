@@ -40,7 +40,7 @@ output_test_path = "data/{}/test_p_h_syn_noun.csv".format(folder)
 
 train = pd.read_csv(train_path)
 dev = pd.read_csv(dev_path)
-test = pd.read_csv(dev_path)
+test = pd.read_csv(test_path)
 
 # cleaning
 train = filter_df_by_label(train.dropna()).reset_index(drop=True)
