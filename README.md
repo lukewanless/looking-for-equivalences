@@ -10,7 +10,7 @@ logical robustness
 
 2) transform train, dev and test datasets snli
 
-`python3 syn_creation.py snli 8`
+`python3 syn_creation.py snli 16`
 
 3) run test for xgb
 
