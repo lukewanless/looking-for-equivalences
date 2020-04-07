@@ -13,8 +13,8 @@ args = parser.parse_args()
 
 b = args.batch
 
-r_path = "results/snli/xgb/syn_p_h/batch{}\n".format(b)
-rr_path = "raw_results/snli/xgb/syn_p_h/batch{}\n".format(b)
+r_path = "results/snli/xgb/syn_p_h/batch{}".format(b)
+rr_path = "raw_results/snli/xgb/syn_p_h/batch{}".format(b)
 
 if not os.path.exists(r_path):
     os.mkdir(r_path)

@@ -13,6 +13,11 @@ __pycache__/
 # any type of log
 *.log
 
+# scripts
+src/xgb_script.sh
+src/xgb_script.sh
+src/xgb_script*
+
 # SNLI data and modifications
 src/data/snli/*
 src/data/toy/*
