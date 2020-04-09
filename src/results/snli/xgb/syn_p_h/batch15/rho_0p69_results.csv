@@ -1,0 +1,2 @@
+data,model,transformation,rho,search_random_state,dgp_random_state,train_random_state,boot_random_state,number_of_simulations,test_accuracy,transformed_test_accuracy,accuracy_difference,test_size,standart_error,observable_paired_t_stats,paired_t_p_value,observable_cochran_stats,cochran_p_value,training_time,test_time
+snli,gradient boosting,wordnet syn tranformation p and h,0.69,455,42924,42183,19787,1000,0.59375,0.6039291530944625,-0.01017915309446254,9824,0.3140607741481991,-3.212492528159497,0.004,10.309278350515465,0.002,0.02864021533065372,0.036829688615269134
