@@ -221,8 +221,8 @@ def get_ks_stats_from_p_values_compared_to_uniform_dist(p_values, size=100):
     ecdf = np.vectorize(get_ecdf(p_values))
     ecdf = np.vectorize(ecdf)
     cdf_u_0_1_v = np.vectorize(cdf_u_0_1)
-    y1 = ecdf(x)
-    y2 = cdf_u_0_1_v(x)
+    y1 = cdf_u_0_1_v(x)
+    y2 = ecdf(x)
     diff = np.max(np.abs(y1 - y2))
     return diff
 
