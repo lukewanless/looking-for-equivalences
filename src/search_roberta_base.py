@@ -62,7 +62,7 @@ def search(train_path,
                          "per_gpu_eval_batch_size": 50,
                          "gradient_accumulation_steps": 1,
                          # "max_steps": -1,
-                         "max_steps": 50,  # debug
+                         "max_steps": 100,  # debug
                          "warmup_steps": 0,
                          "save_steps": 80580,
                          "no_cuda": False,
