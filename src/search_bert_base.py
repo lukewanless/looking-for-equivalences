@@ -33,13 +33,14 @@ def search(train_path,
            n_cores,
            n_iter,
            output_dir_name,
-           verbose):
+           verbose,
+           max_range=10):
 
     # Get data
 
     train = pd.read_csv(train_path)
     dev = pd.read_csv(dev_path)
-    dev = dev.sample(1000) # debug
+    dev = dev.sample(1000)  # debug
 
     if verbose:
         print("clean train")
@@ -60,8 +61,8 @@ def search(train_path,
                          "per_gpu_train_batch_size": 32,
                          "per_gpu_eval_batch_size": 50,
                          "gradient_accumulation_steps": 1,
-                          # "max_steps": -1,
-                          "max_steps": 50, # debug
+                         # "max_steps": -1,
+                         "max_steps": 50,  # debug
                          "warmup_steps": 0,
                          "save_steps": 80580,
                          "no_cuda": False,
@@ -83,28 +84,30 @@ def search(train_path,
                          "base_path": "data/{}/cached_".format(folder),
                          "pretrained_weights": 'bert-base-uncased'}
 
-    choice_0 = {'num_train_epochs':1.0,
-                 "max_seq_length": 200,
-                 "learning_rate": 5e-5,
-                 "weight_decay": 0.0,
-                 "adam_epsilon": 1e-8,
-                 "max_grad_norm": 1.0}
+    choice_0 = {'num_train_epochs': 1.0,
+                "max_seq_length": 200,
+                "learning_rate": 5e-5,
+                "weight_decay": 0.0,
+                "adam_epsilon": 1e-8,
+                "max_grad_norm": 1.0}
 
-    param_grid = {"max_seq_length": range(50, 210, 10),
-                  "num_train_epochs": np.linspace(1, 2.5, 10),
-                  "learning_rate": np.linspace(0.00005, 0.002, 10),
-                  "weight_decay": np.linspace(0, 0.01, 10),
-                  "adam_epsilon": np.linspace(1e-8, 1e-7, 10),
-                  "max_grad_norm": np.linspace(0.00005, 0.0001, 10)}
+    param_grid = {"max_seq_length": range(50, 210, max_range),
+                  "num_train_epochs": np.linspace(1, 2.5, max_range),
+                  "learning_rate": np.linspace(0.00005, 0.0001, max_range),
+                  "weight_decay": np.linspace(0, 0.01, max_range),
+                  "adam_epsilon": np.linspace(1e-8, 1e-7, max_range),
+                  "max_grad_norm": np.linspace(0.9, 1.0, max_range)}
 
     np.random.seed(random_state)
-    choices = [choice_0]
+    choices = []
 
-    for i in range(n_iter -1):
+    for i in range(n_iter - 1):
         hyper_choice = {}
         for k in param_grid:
             hyper_choice[k] = np.random.choice(param_grid[k])
         choices.append(hyper_choice)
+
+    choices.append(choice_0)
 
     # Search
 
@@ -125,12 +128,12 @@ def search(train_path,
         all_train_times.append(train_time)
 
         # log partial Results
-        logging.info("\n\n\n***** acc = {:.1%} *****\n".format(acc))        
-        logging.info("***** train_time = {:.2f} *****\n".format(train_time  / 3600))
+        logging.info("\n\n\n***** acc = {:.1%} *****\n".format(acc))
+        logging.info(
+            "***** train_time = {:.2f} *****\n".format(train_time / 3600))
         for k in hyper_choice:
             logging.info("***** {} = {} *****\n".format(k, hyper_choice[k]))
-        logging.info("\n\n\n")        
-
+        logging.info("\n\n\n")
 
         clean_folder(folder)
 
