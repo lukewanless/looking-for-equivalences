@@ -1,0 +1,2 @@
+data,model,transformation,rho,search_random_state,dgp_random_state,train_random_state,boot_random_state,number_of_simulations,test_accuracy,transformed_test_accuracy,accuracy_difference,test_size,standart_error,observable_paired_t_stats,paired_t_p_value,training_time,test_time
+snli,bert,wordnet sin tranformation p and h,1.0,27,185,27,27,1000,0.8487096118675066,0.8383458646616542,0.010363747205852468,9842,0.2495561794636521,4.119933092386005,0.0,5.233223000000001,5.933914
