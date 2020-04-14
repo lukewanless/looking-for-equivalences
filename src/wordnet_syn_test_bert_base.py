@@ -249,10 +249,10 @@ if __name__ == '__main__':
     verbose = True
     folder = "snli"
 
-    train_path = "data/snli/train.csv"
+    train_path = "data/snli/train_sample.csv"
     test_path = "data/snli/test.csv"
 
-    train_path_mod = "data/snli/train_p_h_syn_noun.csv"
+    train_path_mod = "data/snli/train_sample_p_h_syn_noun.csv"
     test_path_mod = "data/snli/test_p_h_syn_noun.csv"
 
     search_path = "hyperparams/bert_base_snli/search_{}.csv".format(
