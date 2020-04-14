@@ -40,7 +40,7 @@ def search(train_path,
 
     train = pd.read_csv(train_path)
     dev = pd.read_csv(dev_path)
-    dev = dev.sample(1000)  # debug
+    # dev = dev.sample(1000)  # debug
 
     if verbose:
         print("clean train")
@@ -61,8 +61,8 @@ def search(train_path,
                          "per_gpu_train_batch_size": 32,
                          "per_gpu_eval_batch_size": 50,
                          "gradient_accumulation_steps": 1,
-                         # "max_steps": -1,
-                         "max_steps": 50,  # debug
+                         "max_steps": -1,
+                         # "max_steps": 50,  # debug
                          "warmup_steps": 0,
                          "save_steps": 80580,
                          "no_cuda": False,
