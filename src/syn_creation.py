@@ -48,7 +48,7 @@ output_test_path = "data/{}/test_p_h_syn_noun.csv".format(folder)
 
 train = pd.read_csv(train_path)
 train_sample = pd.read_csv(train_sample_path)
-train_not_in_sample = pd.read_csv(train_not_in_sample)
+train_not_in_sample = pd.read_csv(train_not_in_sample_path)
 
 dev = pd.read_csv(dev_path)
 test = pd.read_csv(test_path)
