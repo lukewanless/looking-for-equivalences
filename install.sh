@@ -1,7 +1,7 @@
 pip3 install torch torchvision
 pip3 install pandas
 pip3 install sklearn
-pip3 install transformers
+pip3 install transformers==2.5.1
 pip3 install spacy
 pip3 install nltk
 pip3 install xgboost
