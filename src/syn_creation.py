@@ -143,6 +143,6 @@ print("applying trans to test: {:.4f} minutes".format(trans_time / 60))
 
 train_t.to_csv(output_train_path, index=False)
 train_sample_t.to_csv(output_train_sample_path, index=False)
-train_not_in_sample.to_csv(output_train_not_in_sample_path, index=False)
+train_not_in_sample_t.to_csv(output_train_not_in_sample_path, index=False)
 dev_t.to_csv(output_dev_path, index=False)
 test_t.to_csv(output_test_path, index=False)
