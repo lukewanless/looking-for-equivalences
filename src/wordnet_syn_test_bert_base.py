@@ -31,9 +31,11 @@ def clean_folder(folder):
 
 def run_test(folder,
              train_path,
+             dev_plus_path,
              test_path,
              transformation_name,
              train_path_mod,
+             dev_plus_mod,
              test_path_mod,
              search_path,
              rho,
@@ -55,12 +57,15 @@ def run_test(folder,
     init_test = time()
 
     train = pd.read_csv(train_path)
+    dev_plus = pd.read_csv(dev_plus_path)
     test = pd.read_csv(test_path)
 
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
+    dev_plus = filter_df_by_label(dev_plus.dropna()).reset_index(drop=True)
     test = filter_df_by_label(test.dropna()).reset_index(drop=True)
 
     pre_process_nli_df(train)
+    pre_process_nli_df(dev_plus)
     pre_process_nli_df(test)
 
     # Get hyperparams
@@ -74,8 +79,8 @@ def run_test(folder,
                    "per_gpu_train_batch_size": 32,
                    "per_gpu_eval_batch_size": 50,
                    "gradient_accumulation_steps": 1,
-                   #"max_steps": 50,  # debug
-                   "max_steps": -1,
+                   "max_steps": 50,  # debug
+                   # "max_steps": -1,
                    "warmup_steps": 0,
                    "save_steps": save_steps,
                    "no_cuda": False,
@@ -116,9 +121,13 @@ def run_test(folder,
 
     def train_trans(df): return path_base_transformation(df, train_path_mod)
 
+    def dev_trans(df): return path_base_transformation(df, dev_plus_mod)
+
     def test_trans(df): return path_base_transformation(df, test_path_mod)
 
     test_t = test_trans(test)
+
+    dev_plus_t = dev_trans(dev_plus)
 
     # get_training_sample
 
@@ -133,16 +142,25 @@ def run_test(folder,
     # Train
 
     model = BertWrapper(hyperparams)
-    #_, _, train_time = model.fit(train_.sample(1000, random_state=10))  # debug
-    _, _, train_time = model.fit(train_)
+    _, _, train_time = model.fit(train_.sample(1000, random_state=10))  # debug
+    # _, _, train_time = model.fit(train_)
 
     # Test set Eval
-    #test_results = model.get_results(test.iloc[:1000], mode="test")  # debug
-    #test_t_results = model.get_results(
-    #    test_t.iloc[:1000], mode="test_t")  # debug
+    test_results = model.get_results(test.iloc[:1000], mode="test")  # debug
+    test_t_results = model.get_results(
+        test_t.iloc[:1000], mode="test_t")  # debug
 
-    test_results = model.get_results(test, mode="test")
-    test_t_results = model.get_results(test_t, mode="test_t")
+    # test_results = model.get_results(test, mode="test")
+    # test_t_results = model.get_results(test_t, mode="test_t")
+
+    # Dev set Eval
+    dev_results = model.get_results(
+        dev_plus.iloc[:1000], mode="dev_plus")  # debug
+    dev_t_results = model.get_results(
+        dev_plus_t.iloc[:1000], mode="dev_plus_t")  # debug
+
+    # dev_results = model.get_results(dev_plus, mode="dev_plus")
+    # dev_t_results = model.get_results(dev_plus_t, mode="dev_plus_t")
 
     # Getting statistics
 
@@ -153,6 +171,12 @@ def run_test(folder,
     t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic(
         m_results)
     cochran_obs = get_cochran_statistic(m_results)
+
+    dev_m_results = get_matched_results_transformers(
+        dev_results, dev_t_results)
+    dev_acc = dev_m_results.A.mean()
+    dev_t_acc = dev_m_results.B.mean()
+    dev_diff = np.abs(dev_acc - dev_t_acc)
 
     # get simulations
 
@@ -196,6 +220,9 @@ def run_test(folder,
              "paired_t_p_value": [paired_t_p_value],
              "observable_cochran_stats": [cochran_obs],
              "cochran_p_value": [cochran_p_value],
+             "dev_plus_accuracy": [dev_acc],
+             "transformed_dev_plus_accuracy": [dev_t_acc],
+             "dev_plus_accuracy_difference": [dev_diff],
              "training_time": [train_time / 3600],
              "test_time": [htest_time / 3600]}
 
@@ -250,9 +277,11 @@ if __name__ == '__main__':
     folder = "snli"
 
     train_path = "data/snli/train_sample.csv"
+    dev_plus_path = "data/snli/train_not_in_sample.csv"
     test_path = "data/snli/test.csv"
 
     train_path_mod = "data/snli/train_sample_p_h_syn_noun.csv"
+    dev_plus_mod = "data/snli/train_not_in_sample_p_h_syn_noun.csv"
     test_path_mod = "data/snli/test_p_h_syn_noun.csv"
 
     search_path = "hyperparams/bert_base_snli/search_{}.csv".format(
@@ -270,9 +299,11 @@ if __name__ == '__main__':
 
     run_test(folder=folder,
              train_path=train_path,
+             dev_plus_path=dev_plus_path,
              test_path=test_path,
              transformation_name=transformation_name,
              train_path_mod=train_path_mod,
+             dev_plus_mod=dev_plus_mod,
              test_path_mod=test_path_mod,
              search_path=search_path,
              rho=rho,
@@ -286,4 +317,3 @@ if __name__ == '__main__':
              output_dir=output_dir,
              n_cores=n_cores,
              verbose=verbose)
-
