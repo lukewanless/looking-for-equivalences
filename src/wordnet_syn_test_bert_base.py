@@ -57,7 +57,7 @@ def run_test(folder,
     init_test = time()
 
     train = pd.read_csv(train_path)
-    dev_plus = pd.read_csv(dev_plus_mod)
+    dev_plus = pd.read_csv(dev_plus_path)
     test = pd.read_csv(test_path)
 
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
