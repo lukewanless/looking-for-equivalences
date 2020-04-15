@@ -20,11 +20,11 @@ from lr.text_processing.transformations.wordnet import path_base_transformation
 
 
 def run_test(train_path,
-             dev_path,
+             dev_plus_path,
              test_path,
              transformation_name,
              train_path_mod,
-             dev_path_mod,
+             dev_plus_mod,
              test_path_mod,
              search_path,
              rho,
@@ -43,15 +43,16 @@ def run_test(train_path,
     init_test = time()
 
     train = pd.read_csv(train_path)
-    dev = pd.read_csv(dev_path)
+    dev_plus = pd.read_csv(dev_plus_path)
     test = pd.read_csv(test_path)
 
     train = filter_df_by_label(train.dropna()).reset_index(drop=True)
-    dev = filter_df_by_label(dev.dropna()).reset_index(drop=True)
+    dev_plus = filter_df_by_label(dev_plus.dropna()).reset_index(drop=True)
     test = filter_df_by_label(test.dropna()).reset_index(drop=True)
 
     pre_process_nli_df(train)
-    pre_process_nli_df(dev)
+    pre_process_nli_df(dev_plus)
+    pre_process_nli_df(test)
 
     # Get hyperarams
 
@@ -84,32 +85,26 @@ def run_test(train_path,
 
     def train_trans(df): return path_base_transformation(df, train_path_mod)
 
-    def dev_trans(df): return path_base_transformation(df, dev_path_mod)
+    def dev_trans(df): return path_base_transformation(df, dev_plus_mod)
 
     def test_trans(df): return path_base_transformation(df, test_path_mod)
+
+    test_t = test_trans(test)
+    dev_plus_t = dev_trans(dev_plus)
 
     dgp_train = DGP(data=train,
                     transformation=train_trans,
                     rho=rho)
 
-    dgp_dev = DGP(data=dev,
-                  transformation=dev_trans,
-                  rho=rho)
-
     dgp_random_state = hyperparams["dgp_random_state"]
 
     train_t = dgp_train.sample(random_state=dgp_random_state)
-    dev_t = dgp_dev.sample(random_state=dgp_random_state)
-    test_t = test_trans(test)
-
-    # we will train the xgb with train and dev data
-    full_train_t = pd.concat([train_t, dev_t]).reset_index(drop=True)
 
     # Training the model
 
     model = XGBCWrapper(hyperparams)
     init_train = time()
-    model.fit(full_train_t)
+    model.fit(train_t)
     train_time = time() - init_train
 
     # Get matched eval and relevant statistics
@@ -124,6 +119,14 @@ def run_test(train_path,
     t_obs, acc_diff, test_size, standart_error = get_paired_t_statistic(
         m_results)
     cochran_obs = get_cochran_statistic(m_results)
+
+    dev_m_results = get_matched_results(dev_plus,
+                                        dev_plus_t,
+                                        model,
+                                        hyperparams["label_translation"])
+    dev_acc = dev_m_results.A.mean()
+    dev_t_acc = dev_m_results.B.mean()
+    dev_diff = np.abs(dev_acc - dev_t_acc)
 
     # Get p-values by bootstrap replications
 
@@ -170,6 +173,9 @@ def run_test(train_path,
              "paired_t_p_value": [paired_t_p_value],
              "observable_cochran_stats": [cochran_obs],
              "cochran_p_value": [cochran_p_value],
+             "dev_plus_accuracy": [dev_acc],
+             "transformed_dev_plus_accuracy": [dev_t_acc],
+             "dev_plus_accuracy_difference": [dev_diff],
              "training_time": [train_time / 3600],
              "test_time": [htest_time / 3600]}
 
@@ -219,12 +225,12 @@ if __name__ == '__main__':
     number_of_simulations = 1000
     verbose = True
 
-    train_path = "data/snli/train.csv"
-    dev_path = "data/snli/dev.csv"
+    train_path = "data/snli/train_sample.csv"
+    dev_plus_path = "data/snli/train_not_in_sample.csv"
     test_path = "data/snli/test.csv"
 
-    train_path_mod = "data/snli/train_p_h_syn_noun.csv"
-    dev_path_mod = "data/snli/dev_p_h_syn_noun.csv"
+    train_path_mod = "data/snli/train_sample_p_h_syn_noun.csv"
+    dev_plus_mod = "data/snli/train_not_in_sample_p_h_syn_noun.csv"
     test_path_mod = "data/snli/test_p_h_syn_noun.csv"
 
     search_path = "hyperparams/xgb_snli/search_{}.csv".format(
@@ -239,11 +245,11 @@ if __name__ == '__main__':
     output_result = output_result.replace(".", "p") + ".csv"
 
     run_test(train_path=train_path,
-             dev_path=dev_path,
+             dev_plus_path=dev_plus_path,
              test_path=test_path,
              transformation_name=transformation_name,
              train_path_mod=train_path_mod,
-             dev_path_mod=dev_path_mod,
+             dev_plus_mod=dev_plus_mod,
              test_path_mod=test_path_mod,
              search_path=search_path,
              rho=rho,
