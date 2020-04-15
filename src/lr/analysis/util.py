@@ -26,8 +26,9 @@ def get_rho_stats_from_result_list(result_list):
     combined = pd.DataFrame(result_list).transpose()
     rhos = combined.index.values
     mean_stats = combined.mean(1).values
+    min_stats = combined.min(1).values
     error_stats = combined.std(1).values
-    return rhos, mean_stats, error_stats
+    return rhos, mean_stats, error_stats, min_stats
 
 basic_columns = ['data',
                  'model',
