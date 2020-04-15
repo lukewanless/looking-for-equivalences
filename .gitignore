@@ -14,9 +14,8 @@ __pycache__/
 *.log
 
 # scripts
-src/xgb_script.sh
-src/xgb_script.sh
-src/xgb_script*
+xgb_script.sh
+bert_script.sh
 
 # SNLI data and modifications
 src/data/snli/*
