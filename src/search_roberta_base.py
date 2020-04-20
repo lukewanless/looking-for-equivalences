@@ -62,7 +62,7 @@ def search(train_path,
                          "per_gpu_eval_batch_size": 50,
                          "gradient_accumulation_steps": 1,
                          "max_steps": -1,
-                         # "max_steps": 100,  # debug
+                        # "max_steps": 100,  # debug
                          "warmup_steps": 0,
                          "save_steps": 80580,
                          "no_cuda": False,
@@ -84,7 +84,7 @@ def search(train_path,
                          "base_path": "data/{}/cached_".format(folder),
                          "pretrained_weights": 'roberta-base'}
 
-    choice_0 = {'num_train_epochs': 1.0,
+    choice_0 = {'num_train_epochs': 3.0,
                 "max_seq_length": 200,
                 "learning_rate": 5e-5,
                 "weight_decay": 0.0,
@@ -92,7 +92,7 @@ def search(train_path,
                 "max_grad_norm": 1.0}
 
     param_grid = {"max_seq_length": range(50, 210, max_range),
-                  "num_train_epochs": [1,2,3],
+                  "num_train_epochs": [1.0,2.0,3.0],
                   "learning_rate": np.linspace(0.00005, 0.0001, max_range),
                   "weight_decay": np.linspace(0, 0.01, max_range),
                   "adam_epsilon": np.linspace(1e-8, 1e-7, max_range),
@@ -107,7 +107,7 @@ def search(train_path,
             hyper_choice[k] = np.random.choice(param_grid[k])
         choices.append(hyper_choice)
 
-#     choices.append(choice_0)
+   # choices.append(choice_0)
 
     # Search
 
