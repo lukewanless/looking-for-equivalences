@@ -108,7 +108,7 @@ class BasicBertTraining(unittest.TestCase):
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
 
-        self.assertTrue(tr_loss == 1.1454728543758392)
+        self.assertTrue(np.round(tr_loss, 2) == np.round(1.1454728543758392, 2))
         self.assertTrue(before_acc == 0.31)
         self.assertTrue(after_acc == 0.4)
 
