@@ -79,8 +79,8 @@ def run_test(folder,
                    "per_gpu_train_batch_size": 32,
                    "per_gpu_eval_batch_size": 50,
                    "gradient_accumulation_steps": 1,
-                   "max_steps": 550,  # debug
-                   # "max_steps": -1,
+                   # "max_steps": 550,  # debug
+                   "max_steps": -1,
                    "warmup_steps": 0,
                    "save_steps": save_steps,
                    "no_cuda": False,
