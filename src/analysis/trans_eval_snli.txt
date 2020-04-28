@@ -1,0 +1,115 @@
+SNLI
+
+format
+P | H| L
+
+
+================GOOD================
+
+**original**
+  
+a man and his son riding bikes down the sidewalk  |  the man and the boy were in town  |  neutral
+
+**trans**
+
+a adult male and his boy riding bikes down the pavement  |  the adult male and the male child were in town  |  neutral
+
+------------------
+
+**original**
+
+a male and female are asleep on a couch with a large black dog as four people sit at a table behind them
+|  the male and female that are asleep on the couch are in a relationship
+|  neutral
+
+**trans**
+
+a male and female are asleep on a sofa with a large black domestic dog as four people sit at a table behind them
+|  the male and female that are asleep on the sofa are in a human relationship
+|  neutral
+
+------------------
+
+**original**
+
+a woman in a blue winter jacket is pushing a shopping cart through snow
+|  a homeless woman is eating a hamburger
+|  contradiction
+
+**trans**
+
+a adult female in a blue wintertime jacket is pushing a shopping cart through snowfall
+|  a homeless person adult female is eating a burger
+|  contradiction
+
+------------------
+
+**original**
+
+dark image of two people inside a fish market
+|  there are fish
+|  entailment
+
+**trans**
+
+dark mental image of two people inside a fish marketplace
+|  there are fish
+|  entailment
+
+
+================BAD================
+
+**original**
+
+a woman and child are on a boat and the woman is looking out into the ocean through a scope
+
+| a lady and a child are on a boat and the lady is looking out into the ocean through a scope
+| entailment
+
+**trans**
+
+a adult female and kid are on a boat and the adult female is looking out into the ocean through a range
+| a lady and a kid are on a boat and the lady is looking out into the ocean through a range   
+| entailment
+
+------------------
+
+**original**
+
+a woman that appears to be homeless sits on a winnie the pooh table cover on the side of a street
+| the table is large
+| neutral
+
+**trans**
+a adult female that look to be homeless person sits on a winnie the pooh table cover on the side of a street
+| the table is large
+| neutral
+
+------------------
+
+**original**
+
+
+a cattle dog nips the leg of an animal
+| a dog nips a cow
+| neutral
+
+**trans**
+
+a cows domestic dog shot the leg of an creature
+| a domestic dog shot a moo-cow
+| neutral
+
+------------------
+
+**original**
+
+a band of people playing brass instruments is performing outside
+| a jazz funeral is taking place
+| neutral
+
+**trans**
+
+a band of people playing brass instruments is performing outside
+| a wind funeral is taking place
+| neutral

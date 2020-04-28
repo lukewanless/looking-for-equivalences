@@ -1,0 +1,124 @@
+MNLI
+
+format
+P | H | L
+
+
+================GOOD================
+
+**original**
+  
+another majestic view of the city is from a charming park miradouro de santa luzia just down the hill from the castle
+| the castle is on the highest hill in the city    | neutral
+
+**trans**
+
+another olympian view of the metropolis is from a charming parkland miradouro de santa luzia just down the hill from the palace
+| the palace is on the highest hill in the metropolis
+| neutral
+
+
+------------------
+
+**original**
+
+the agency cites the clean air act 42 usc
+| the agency discusses the clean air act in chapter 3 of the book
+| neutral
+
+**trans**
+
+the office cites the clean air enactment 42 usc
+| the office discusses the clean air enactment in chapter 3 of the book
+| neutral
+
+------------------
+
+**original**
+
+renovated in 2000 this fullservice resort fronts a tremendous swimming and snorkeling beach with dozens of turtles
+| the resort was renovated in 2000
+| entailment
+
+**trans**
+
+renovated in 2000 this fullservice resort hotel fronts a tremendous swimming and snorkeling beach with lots of turtles
+| the resort hotel was renovated in 2000
+| entailment
+
+
+------------------
+
+**original**
+
+bolstered by a new influx of immigrants to meet the rubber and tin booms of the 1920s non-malays now slightly outnumbered the indigenous population
+| the population of malays to non-malays was equal and all the work was shared
+| contradiction
+
+
+**trans**
+
+bolstered by a new inflow of immigrants to meet the india rubber and sn booms of the twenties nonmalays now slightly outnumbered the indigenous population
+| the population of malays to non-malays was equal and all the work was shared
+| contradiction
+
+
+
+================BAD================
+
+**original**
+
+they might as well steal it then they dont have to pay taxes on it
+| taxes are entirely irrelevant
+| contradiction
+
+
+**trans**
+
+they power as well bargain it then they dont have to salary taxes on it
+| taxes are entirely irrelevant
+| contradiction
+
+------------------
+
+**original**
+
+you know you writers are coming you know youre having a hard time here
+| the writers are having a hard time keeping the show interesting
+| neutral
+
+
+**trans**
+
+you know you author are coming you know youre having a difficult time here
+| the author are having a difficult time keeping the show interesting
+| neutral
+
+------------------
+
+**original**
+
+pigs are sociable loving and a hell of a lot brighter than dalmatians
+| pigs are very smart
+| entailment
+
+**trans**
+
+pigs are sociable loving and a inferno of a lot brighter than dalmatians
+| pigs are very smart
+| entailment
+
+
+------------------
+
+**original**
+
+
+2 billion in benefits to over 13 million recipients
+| a couple of billion in benefits for the public to do whatever they want with
+| neutral
+
+
+deuce billion in benefits to over 13 million recipients
+| a duo of billion in benefits for the public to do whatever they want with
+| neutral
