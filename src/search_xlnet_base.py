@@ -107,7 +107,7 @@ def search(train_path,
             hyper_choice[k] = np.random.choice(param_grid[k])
         choices.append(hyper_choice)
 
-    choices.append(choice_0)
+    # choices.append(choice_0)
 
     # Search
 
