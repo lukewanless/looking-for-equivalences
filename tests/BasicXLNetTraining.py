@@ -106,14 +106,10 @@ class BasicXLNetTraining(unittest.TestCase):
         lmap = my_xlnet.processor.get_label_map()
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
-        print(np.round(tr_loss, 3))
-        print(before_acc)
-        print(after_acc)
 
-
-        # self.assertTrue(np.round(tr_loss, 3) == 1.096)
-        # self.assertTrue(before_acc == 0.31)
-        # self.assertTrue(after_acc == 0.31)
+        self.assertTrue(np.round(tr_loss, 3) == 1.134)
+        self.assertTrue(before_acc == 0.25)
+        self.assertTrue(after_acc == 0.32)
 
 
 if __name__ == '__main__':
