@@ -21,15 +21,15 @@ from src.lr.models.transformers.XLNetWrapper import XLNetWrapper  # noqa
 base_path = parentdir + "/src/data/toy/"
 
 
-class BasicRobertaTraining(unittest.TestCase):
+class BasicXLNetTraining(unittest.TestCase):
 
     @classmethod
     def tearDown(cls):
         if os.path.exists("example.log"):
             os.remove("example.log")
 
-        if os.path.exists("roberta"):
-            shutil.rmtree("roberta")
+        if os.path.exists("xlnet"):
+            shutil.rmtree("xlnet")
 
         paths = ["cached_dev_to_eval_200", "cached_test_200", "cached_train_200",
                  "cached_train_to_eval_200"]
@@ -39,7 +39,7 @@ class BasicRobertaTraining(unittest.TestCase):
             if os.path.exists(path):
                 os.remove(path)
 
-    def test_roberta_training(self):
+    def test_xlnet_training(self):
 
         hyperparams = {"local_rank": -1,
                        "max_seq_length": 200,

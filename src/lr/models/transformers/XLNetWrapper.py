@@ -38,7 +38,7 @@ class XLNetWrapper():
         set_seed(hyperparams["random_state"], hyperparams["n_gpu"])
         
         pretrained_weights = hyperparams['pretrained_weights'] 
-        self.tokenizer = RobertaTokenizer.from_pretrained(pretrained_weights)
+        self.tokenizer = XLNetTokenizer.from_pretrained(pretrained_weights)
     
         hyperparams["tokenizer"] = self.tokenizer
         self.hyperparams = hyperparams
