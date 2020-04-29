@@ -219,7 +219,7 @@ if __name__ == '__main__':
                         help='number of cores')
     args = parser.parse_args()
 
-    folder = parser.folder
+    folder = args.folder
     rho = args.rho
     search_random_state = args.search_random_state
     dgp_random_state = args.dgp_random_state
