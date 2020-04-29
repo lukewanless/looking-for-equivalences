@@ -190,6 +190,10 @@ def run_test(train_path,
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('folder',
+                        type=str,
+                        help='data folder')
+
     parser.add_argument('rho',
                         type=float,
                         help='modification percentage for train')
@@ -215,6 +219,7 @@ if __name__ == '__main__':
                         help='number of cores')
     args = parser.parse_args()
 
+    folder = parser.folder
     rho = args.rho
     search_random_state = args.search_random_state
     dgp_random_state = args.dgp_random_state
@@ -225,23 +230,23 @@ if __name__ == '__main__':
     number_of_simulations = 1000
     verbose = True
 
-    train_path = "data/snli/train_sample.csv"
-    dev_plus_path = "data/snli/train_not_in_sample.csv"
-    test_path = "data/snli/test.csv"
+    train_path = "data/{}/train_sample.csv".format(folder)
+    dev_plus_path = "data/{}/train_not_in_sample.csv".format(folder)
+    test_path = "data/{}/test.csv".format(folder)
 
-    train_path_mod = "data/snli/train_sample_p_h_syn_noun.csv"
-    dev_plus_mod = "data/snli/train_not_in_sample_p_h_syn_noun.csv"
-    test_path_mod = "data/snli/test_p_h_syn_noun.csv"
+    train_path_mod = "data/{}/train_sample_p_h_syn_noun.csv".format(folder)
+    dev_plus_mod = "data/{}/train_not_in_sample_p_h_syn_noun.csv".format(folder)
+    test_path_mod = "data/{}/test_p_h_syn_noun.csv".format(folder)
 
-    search_path = "hyperparams/xgb_snli/search_{}.csv".format(
+    search_path = "hyperparams/xgb_{}/search_{}.csv".format(folder,
         search_random_state)
     assert os.path.exists(search_path)
 
     transformation_name = "wordnet syn tranformation p and h"
-    output_raw_result = "raw_results/snli/xgb/syn_p_h/rho_{:.2f}_results".format(
+    output_raw_result = "raw_results/{}/xgb/syn_p_h/rho_{:.2f}_results".format(folder,
         rho)
     output_raw_result = output_raw_result.replace(".", "p") + ".csv"
-    output_result = "results/snli/xgb/syn_p_h/rho_{:.2f}_results".format(rho)
+    output_result = "results/{}/xgb/syn_p_h/rho_{:.2f}_results".format(folder,rho)
     output_result = output_result.replace(".", "p") + ".csv"
 
     run_test(train_path=train_path,
