@@ -63,14 +63,14 @@ with open("xgb_script.sh", "w") as file:
         boot = np.random.choice(boot_seeds)
 
         command = "python3 wordnet_syn_test_xgb.py {} {:.2f} {} {} {} {} {}\n".format(folder,
-                                                                                     rho,
-                                                                                     search_random_state
-                                                                                     dgp,
-                                                                                     train,
-                                                                                     boot,
-                                                                                     n_cores)
+                                                                                      rho,
+                                                                                      search_random_state,
+                                                                                      dgp,
+                                                                                      train,
+                                                                                      boot,
+                                                                                      n_cores)
         file.write(command)
     file.write(
-        "mv results/{}/xgb/syn_p_h/rho_* results/{}/xgb/syn_p_h/batch{}\n".format(folder, b))
+        "mv results/{0}/xgb/syn_p_h/rho_* results/{0}/xgb/syn_p_h/batch{1}\n".format(folder, b))
     file.write(
-        "mv raw_results/{}/xgb/syn_p_h/rho_* raw_results/{}/xgb/syn_p_h/batch{}".format(folder,b))
+        "mv raw_results/{0}/xgb/syn_p_h/rho_* raw_results/{0}/xgb/syn_p_h/batch{1}".format(folder, b))
