@@ -91,6 +91,10 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('folder',
+                        type=str,
+                        help='data folder')
+
     parser.add_argument('random_state',
                         type=int,
                         help='random_state')
@@ -108,10 +112,10 @@ if __name__ == '__main__':
                         help='number of cores')
     args = parser.parse_args()
 
-    folder = "snli"
+    folder = args.folder
     train_path = "data/{}/train_sample.csv".format(folder)
     dev_path = "data/{}/dev.csv".format(folder)
-    output_dir_name = "hyperparams/xgb_snli"
+    output_dir_name = "hyperparams/xgb_{}".format(folder)
 
     search(train_path=train_path,
            dev_path=dev_path,
