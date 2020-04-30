@@ -92,7 +92,7 @@ def search(train_path,
                 "max_grad_norm": 1.0}
 
     param_grid = {"max_seq_length": range(50, 210, max_range),
-                  "num_train_epochs": np.linspace(1, 2.5, max_range),
+                  "num_train_epochs": [1.0,2.0,3.0],
                   "learning_rate": np.linspace(0.00005, 0.0001, max_range),
                   "weight_decay": np.linspace(0, 0.01, max_range),
                   "adam_epsilon": np.linspace(1e-8, 1e-7, max_range),
@@ -101,13 +101,13 @@ def search(train_path,
     np.random.seed(random_state)
     choices = []
 
-    for i in range(n_iter - 1):
+    for i in range(n_iter):
         hyper_choice = {}
         for k in param_grid:
             hyper_choice[k] = np.random.choice(param_grid[k])
         choices.append(hyper_choice)
 
-    choices.append(choice_0)
+    # choices.append(choice_0)
 
     # Search
 
@@ -167,6 +167,10 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('folder',
+                        type=str,
+                        help='data folder')
+
     parser.add_argument('random_state',
                         type=int,
                         help='random_state')
@@ -180,10 +184,10 @@ if __name__ == '__main__':
                         help='number of cores')
     args = parser.parse_args()
 
-    folder = "snli"
+    folder = args.folder
     train_path = "data/{}/train_sample.csv".format(folder)
     dev_path = "data/{}/dev.csv".format(folder)
-    output_dir_name = "hyperparams/bert_base_snli"
+    output_dir_name = "hyperparams/bert_base_{}".format(folder)
 
     search(train_path=train_path,
            dev_path=dev_path,
