@@ -14,6 +14,7 @@ __pycache__/
 *.log
 
 # scripts
+xlnet_script.sh
 xgb_script.sh
 bert_script.sh
 roberta_script.sh
