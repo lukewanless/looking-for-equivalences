@@ -74,18 +74,6 @@ a adult female and kid are on a boat and the adult female is looking out into th
 
 ------------------
 
-**original**
-
-a woman that appears to be homeless sits on a winnie the pooh table cover on the side of a street
-| the table is large
-| neutral
-
-**trans**
-a adult female that look to be homeless person sits on a winnie the pooh table cover on the side of a street
-| the table is large
-| neutral
-
-------------------
 
 **original**
 
@@ -113,3 +101,17 @@ a band of people playing brass instruments is performing outside
 a band of people playing brass instruments is performing outside
 | a wind funeral is taking place
 | neutral
+
+
+------------------
+
+
+**original**
+
+a man in a white shirt holds a microphone
+a band is playing on a stage
+
+**trans**
+
+a adult male in a white shirt holds a mike 
+a band is playing on a phase
