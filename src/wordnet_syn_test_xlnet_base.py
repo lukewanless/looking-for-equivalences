@@ -79,7 +79,7 @@ def run_test(folder,
                    "per_gpu_train_batch_size": 32,
                    "per_gpu_eval_batch_size": 50,
                    "gradient_accumulation_steps": 1,
-                   "max_steps": 100,  # debug
+                   "max_steps": 50,  # debug
                    # "max_steps": -1,
                    "warmup_steps": 0,
                    "save_steps": save_steps,
@@ -142,22 +142,22 @@ def run_test(folder,
     # Train
 
     model = XLNetWrapper(hyperparams)
-    _, _, train_time = model.fit(train_.sample(1000, random_state=10))  # debug
-    # _, _, train_time = model.fit(train_)
+    # _, _, train_time = model.fit(train_.sample(1000, random_state=10))  # debug
+    _, _, train_time = model.fit(train_)
 
     # # Test set Eval
-    test_results = model.get_results(test.iloc[:1000], mode="test")  # debug
+    test_results = model.get_results(test.iloc[:100], mode="test")  # debug
     test_t_results = model.get_results(
-        test_t.iloc[:1000], mode="test_t")  # debug
+        test_t.iloc[:100], mode="test_t")  # debug
 
     test_results = model.get_results(test, mode="test")
     test_t_results = model.get_results(test_t, mode="test_t")
 
     # # Dev set Eval
     dev_results = model.get_results(
-        dev_plus.iloc[:1000], mode="dev_plus")  # debug
+        dev_plus.iloc[:100], mode="dev_plus")  # debug
     dev_t_results = model.get_results(
-        dev_plus_t.iloc[:1000], mode="dev_plus_t")  # debug
+        dev_plus_t.iloc[:100], mode="dev_plus_t")  # debug
 
     # dev_results = model.get_results(dev_plus, mode="dev_plus")
     # dev_t_results = model.get_results(dev_plus_t, mode="dev_plus_t")
