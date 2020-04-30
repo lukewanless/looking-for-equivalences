@@ -150,8 +150,8 @@ def run_test(folder,
     test_t_results = model.get_results(
         test_t.iloc[:100], mode="test_t")  # debug
 
-    test_results = model.get_results(test, mode="test")
-    test_t_results = model.get_results(test_t, mode="test_t")
+    # test_results = model.get_results(test, mode="test")
+    # test_t_results = model.get_results(test_t, mode="test_t")
 
     # # Dev set Eval
     dev_results = model.get_results(
