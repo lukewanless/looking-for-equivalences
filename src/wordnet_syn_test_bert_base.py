@@ -142,7 +142,8 @@ def run_test(folder,
     # Train
 
     model = BertWrapper(hyperparams)
-    # _, _, train_time = model.fit(train_.sample(1000, random_state=10))  # debug
+    # _, _, train_time = model.fit(train_.sample(1000, random_state=10))  #
+    # debug
     _, _, train_time = model.fit(train_)
 
     # # Test set Eval
@@ -240,6 +241,10 @@ def run_test(folder,
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('folder',
+                        type=str,
+                        help='data folder')
+
     parser.add_argument('rho',
                         type=float,
                         help='modification percentage for train')
@@ -265,6 +270,7 @@ if __name__ == '__main__':
                         help='number of cores')
     args = parser.parse_args()
 
+    folder = args.folder
     rho = args.rho
     search_random_state = args.search_random_state
     dgp_random_state = args.dgp_random_state
@@ -274,28 +280,28 @@ if __name__ == '__main__':
 
     number_of_simulations = 1000
     verbose = True
-    folder = "snli"
 
-    train_path = "data/snli/train_sample.csv"
-    dev_plus_path = "data/snli/train_not_in_sample.csv"
-    test_path = "data/snli/test.csv"
+    train_path = "data/{}/train_sample.csv".format(folder)
+    dev_plus_path = "data/{}/train_not_in_sample.csv".format(folder)
+    test_path = "data/{}/test.csv".format(folder)
 
-    train_path_mod = "data/snli/train_sample_p_h_syn_noun.csv"
-    dev_plus_mod = "data/snli/train_not_in_sample_p_h_syn_noun.csv"
-    test_path_mod = "data/snli/test_p_h_syn_noun.csv"
+    train_path_mod = "data/{}/train_sample_p_h_syn_noun.csv".format(folder)
+    dev_plus_mod = "data/{}/train_not_in_sample_p_h_syn_noun.csv".format(
+        folder)
+    test_path_mod = "data/{}/test_p_h_syn_noun.csv".format(folder)
 
-    search_path = "hyperparams/bert_base_snli/search_{}.csv".format(
-        search_random_state)
+    search_path = "hyperparams/bert_base_{}/search_{}.csv".format(folder,
+                                                                  search_random_state)
     assert os.path.exists(search_path)
 
     transformation_name = "wordnet syn tranformation p and h"
-    output_raw_result = "raw_results/snli/bert_base/syn_p_h/rho_{:.2f}_results".format(
-        rho)
+    output_raw_result = "raw_results/{}/bert_base/syn_p_h/rho_{:.2f}_results".format(folder,
+                                                                                     rho)
     output_raw_result = output_raw_result.replace(".", "p") + ".csv"
-    output_result = "results/snli/bert_base/syn_p_h/rho_{:.2f}_results".format(
-        rho)
+    output_result = "results/{}/bert_base/syn_p_h/rho_{:.2f}_results".format(folder,
+                                                                             rho)
     output_result = output_result.replace(".", "p") + ".csv"
-    output_dir = "results/snli/bert_base/syn_p_h/"
+    output_dir = "results/{}/bert_base/syn_p_h/".format(folder)
 
     run_test(folder=folder,
              train_path=train_path,
