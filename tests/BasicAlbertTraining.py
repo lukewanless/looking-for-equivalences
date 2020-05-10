@@ -72,7 +72,7 @@ class BasicAlbertTraining(unittest.TestCase):
                        "eval_sample_size": 100,
                        "n_cores": 7,
                        "base_path": base_path + "cached_",
-                       "pretrained_weights": 'albert-base-v1'}
+                       "pretrained_weights": 'albert-base-v2'}
 
         # ## loading base model
 
@@ -107,11 +107,9 @@ class BasicAlbertTraining(unittest.TestCase):
         filtered = filter_df_by_label(test.dropna()).reset_index(drop=True)
         after_acc = np.mean(filtered.label.map(lambda x: lmap[x]) == pred)
 
-        print(np.round(tr_loss, 3), before_acc, after_acc)
-
-        # self.assertTrue(np.round(tr_loss, 3) == 1.134)
-        # self.assertTrue(before_acc == 0.25)
-        # self.assertTrue(after_acc == 0.32)
+        self.assertTrue(np.round(tr_loss, 3) == 1.153)
+        self.assertTrue(before_acc == 0.32)
+        self.assertTrue(after_acc == 0.37)
 
 
 if __name__ == '__main__':
