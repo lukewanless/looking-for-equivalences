@@ -1,0 +1,2 @@
+search_random_state,number_of_search_trails,expected_val_score,best_val_score,mean_fit_time,search_time,max_seq_length,num_train_epochs,learning_rate,weight_decay,adam_epsilon,max_grad_norm
+2135,5,0.5376346271083113,0.8587685429790693,4.934703223493364,25.637611336575613,90,2.0,6.666666666666667e-05,0.0011111111111111111,3.0000000000000004e-08,0.9111111111111111
