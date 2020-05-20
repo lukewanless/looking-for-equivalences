@@ -18,7 +18,7 @@ xlnet_script.sh
 xgb_script.sh
 bert_script.sh
 roberta_script.sh
-
+albert_script.sh
 
 # SNLI data and modifications
 src/data/snli/*
