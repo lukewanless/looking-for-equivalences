@@ -1,0 +1,4041 @@
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_150
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/snli/cached_train_150
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4662
+INFO:root:Saving features in file: data/snli/cached_dev_150
+INFO:root:Loading features from cached file data/snli/cached_dev_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9842
+INFO:root:  Batch size = 50
+INFO:root:
+
+
+***** acc = 33.3% *****
+
+INFO:root:***** train_time = 27.27 *****
+
+INFO:root:***** max_seq_length = 150 *****
+
+INFO:root:***** num_train_epochs = 3.0 *****
+
+INFO:root:***** learning_rate = 9.444444444444444e-05 *****
+
+INFO:root:***** weight_decay = 0.003333333333333333 *****
+
+INFO:root:***** adam_epsilon = 3.0000000000000004e-08 *****
+
+INFO:root:***** max_grad_norm = 0.9444444444444444 *****
+
+INFO:root:
+
+
+
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_dev_90
+INFO:root:Loading features from cached file data/snli/cached_dev_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9842
+INFO:root:  Batch size = 50
+INFO:root:
+
+
+***** acc = 85.5% *****
+
+INFO:root:***** train_time = 6.25 *****
+
+INFO:root:***** max_seq_length = 90 *****
+
+INFO:root:***** num_train_epochs = 2.0 *****
+
+INFO:root:***** learning_rate = 5.555555555555556e-05 *****
+
+INFO:root:***** weight_decay = 0.0022222222222222222 *****
+
+INFO:root:***** adam_epsilon = 2e-08 *****
+
+INFO:root:***** max_grad_norm = 0.9111111111111111 *****
+
+INFO:root:
+
+
+
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_110
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_110
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_110
+INFO:root:Loading features from cached file data/snli/cached_train_110
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_110
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_110
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1554
+INFO:root:Saving features in file: data/snli/cached_dev_110
+INFO:root:Loading features from cached file data/snli/cached_dev_110
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9842
+INFO:root:  Batch size = 50
+INFO:root:
+
+
+***** acc = 81.5% *****
+
+INFO:root:***** train_time = 3.85 *****
+
+INFO:root:***** max_seq_length = 110 *****
+
+INFO:root:***** num_train_epochs = 1.0 *****
+
+INFO:root:***** learning_rate = 6.666666666666667e-05 *****
+
+INFO:root:***** weight_decay = 0.008888888888888889 *****
+
+INFO:root:***** adam_epsilon = 5e-08 *****
+
+INFO:root:***** max_grad_norm = 0.9777777777777777 *****
+
+INFO:root:
+
+
+
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_140
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_140
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_140
+INFO:root:Loading features from cached file data/snli/cached_train_140
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_140
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_140
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_dev_140
+INFO:root:Loading features from cached file data/snli/cached_dev_140
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9842
+INFO:root:  Batch size = 50
+INFO:root:
+
+
+***** acc = 33.8% *****
+
+INFO:root:***** train_time = 9.85 *****
+
+INFO:root:***** max_seq_length = 140 *****
+
+INFO:root:***** num_train_epochs = 2.0 *****
+
+INFO:root:***** learning_rate = 7.222222222222222e-05 *****
+
+INFO:root:***** weight_decay = 0.003333333333333333 *****
+
+INFO:root:***** adam_epsilon = 2e-08 *****
+
+INFO:root:***** max_grad_norm = 0.9 *****
+
+INFO:root:
+
+
+
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_60
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_60
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_60
+INFO:root:Loading features from cached file data/snli/cached_train_60
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_60
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_60
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4662
+INFO:root:Saving features in file: data/snli/cached_dev_60
+INFO:root:Loading features from cached file data/snli/cached_dev_60
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9842
+INFO:root:  Batch size = 50
+INFO:root:
+
+
+***** acc = 85.8% *****
+
+INFO:root:***** train_time = 5.73 *****
+
+INFO:root:***** max_seq_length = 60 *****
+
+INFO:root:***** num_train_epochs = 3.0 *****
+
+INFO:root:***** learning_rate = 5e-05 *****
+
+INFO:root:***** weight_decay = 0.005555555555555556 *****
+
+INFO:root:***** adam_epsilon = 1e-08 *****
+
+INFO:root:***** max_grad_norm = 1.0 *****
+
+INFO:root:
+
+
+
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4671
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4671
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4671
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 3
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 4671
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-vocab.json from cache at /home/felsal/.cache/torch/transformers/d0c5776499adc1ded22493fae699da0971c1ee4c2587111707a4d177d20257a2.ef00af9e673c7160b4d41cfda1f48c5f4cba57d5142754525572a846a1ab1b9b
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-merges.txt from cache at /home/felsal/.cache/torch/transformers/b35e7cd126cd4229a746b5d5c29a749e8e84438b14bcdb575950584fe33207e8.70bec105b4158ed9a1747fea67a43f5dee97855c64d62b6ec3742f4cfdb5feda
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-config.json from cache at /home/felsal/.cache/torch/transformers/e1a2a406b5a05063c31f4dfdee7608986ba7c6393f7f79db5e69dcd197208534.117c81977c5979de8c088352e74ec6e70f5c66096c28b61d3c50101609b39690
+INFO:transformers.configuration_utils:Model config RobertaConfig {
+  "architectures": [
+    "RobertaForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bos_token_id": 0,
+  "do_sample": false,
+  "eos_token_id": 2,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "model_type": "roberta",
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/roberta-base-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/228756ed15b6d200d7cb45aaef08c087e2706f54cb912863d2efe07c89584eb7.49b88ba7ec2c26a7558dda98ca3884c3b80fa31cf43a1b1f23aef3ff81ba344e
+INFO:transformers.modeling_utils:Weights of RobertaForSequenceClassification not initialized from pretrained model: ['classifier.dense.weight', 'classifier.dense.bias', 'classifier.out_proj.weight', 'classifier.out_proj.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.dense.bias', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+INFO:root:Saving features in file: data/mnli/cached_train_150
+INFO:root:Saving features in file: data/mnli/cached_train_to_eval_150
+INFO:root:Saving features in file: data/mnli/cached_dev_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_train_150
+INFO:root:Loading features from cached file data/mnli/cached_train_to_eval_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_to_eval_150
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49798
+INFO:root:  Num Epochs = 1
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 1557
+INFO:root:Saving features in file: data/mnli/cached_test_150
+INFO:root:Loading features from cached file data/mnli/cached_test_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_test_t_150
+INFO:root:Loading features from cached file data/mnli/cached_test_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 19647
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/mnli/cached_dev_plus_t_150
+INFO:root:Loading features from cached file data/mnli/cached_dev_plus_t_150
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9998
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:transformers.tokenization_utils:loading file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-spiece.model from cache at /home/felsal/.cache/torch/transformers/dd1588b85b6fdce1320e224d29ad062e97588e17326b9d05a0b29ee84b8f5f93.c81d4deb77aec08ce575b7a39a989a79dd54f321bfb82c2b54dd35f52f8182cf
+INFO:transformers.configuration_utils:loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-config.json from cache at /home/felsal/.cache/torch/transformers/0bbb1531ce82f042a813219ffeed7a1fa1f44cd8f78a652c47fc5311e0d40231.978ff53dd976bbf4bc66f09bf4205da0542be753d025263787842df74d15bbca
+INFO:transformers.configuration_utils:Model config AlbertConfig {
+  "architectures": [
+    "AlbertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0,
+  "bos_token_id": 2,
+  "classifier_dropout_prob": 0.1,
+  "do_sample": false,
+  "down_scale_factor": 1,
+  "embedding_size": 128,
+  "eos_token_id": 3,
+  "eos_token_ids": null,
+  "finetuning_task": null,
+  "gap_size": 0,
+  "hidden_act": "gelu_new",
+  "hidden_dropout_prob": 0,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "inner_group_num": 1,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-12,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 512,
+  "model_type": "albert",
+  "net_structure_type": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_groups": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 3,
+  "num_memory_blocks": 0,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 0,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 2,
+  "use_bfloat16": false,
+  "vocab_size": 30000
+}
+
+INFO:transformers.modeling_utils:loading weights file https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v2-pytorch_model.bin from cache at /home/felsal/.cache/torch/transformers/a175de1d3c60bba6e74bd034c02a34d909d9f36a0cf472b02301c8790ba44834.ab806923413c2af99835e13fdbb6014b24af86b0de8edc2d71ef5c646fc54f24
+INFO:transformers.modeling_utils:Weights of AlbertForSequenceClassification not initialized from pretrained model: ['classifier.weight', 'classifier.bias']
+INFO:transformers.modeling_utils:Weights from pretrained model not used in AlbertForSequenceClassification: ['predictions.bias', 'predictions.LayerNorm.weight', 'predictions.LayerNorm.bias', 'predictions.dense.weight', 'predictions.dense.bias', 'predictions.decoder.weight', 'predictions.decoder.bias']
+INFO:root:Saving features in file: data/snli/cached_train_90
+INFO:root:Saving features in file: data/snli/cached_train_to_eval_90
+INFO:root:Saving features in file: data/snli/cached_dev_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_train_90
+INFO:root:Loading features from cached file data/snli/cached_train_to_eval_90
+INFO:root:Loading features from cached file data/snli/cached_dev_to_eval_90
+INFO:root:***** Running training *****
+INFO:root:  Num examples = 49714
+INFO:root:  Num Epochs = 2
+INFO:root:  Instantaneous batch size per GPU = 32
+INFO:root:  Total train batch size (w. parallel, distributed & accumulation) = 32
+INFO:root:  Gradient Accumulation steps = 1
+INFO:root:  Total optimization steps = 3108
+INFO:root:Saving features in file: data/snli/cached_test_90
+INFO:root:Loading features from cached file data/snli/cached_test_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_test_t_90
+INFO:root:Loading features from cached file data/snli/cached_test_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9824
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
+INFO:root:Saving features in file: data/snli/cached_dev_plus_t_90
+INFO:root:Loading features from cached file data/snli/cached_dev_plus_t_90
+INFO:root:***** Running evaluation *****
+INFO:root:  Num examples = 9987
+INFO:root:  Batch size = 50
