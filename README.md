@@ -1,6 +1,4 @@
-# logical-robustness
-logical robustness
-
+# Looking for Equivalences
 
 ## Procedure
 
