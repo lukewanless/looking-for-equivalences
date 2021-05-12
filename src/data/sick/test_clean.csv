@@ -1,0 +1,501 @@
+premise,hypothesis,label
+a girl is skateboarding on a half pipe,a skateboarder is doing tricks on a half pipe,neutral
+a man is playing guitar,a woman is playing the drums,neutral
+the log is lying on the panda bear,the panda bear is lying on the logs,contradiction
+a large dog and a small dog are standing next to the kitchen counter and are investigating,a smiling boy in winter clothes is waving his mittened hands outside a building in the snow,neutral
+some people are walking,a group of scouts are camping in the grass,neutral
+a man is jumping rope outside,a woman is not slicing a cucumber,neutral
+a child who is young is riding a bike on a rough dirt path,a young child is riding a bike on a rough dirt path,entailment
+a man is firing a shotgun,there is no man shooting a shotgun,contradiction
+a boy is mowing the lawn,a guy is mowing the lawn,entailment
+the boy is riding a tricycle,a woman is riding a scooter towards the water,neutral
+a man is praying fervently,a man is praying,entailment
+a man is slicing a potato into pieces,a man is cutting a potato into pieces,entailment
+the man is doing a handstand on the wet shore at the edge of the water at the beach,a man is performing a handstand on the beach,entailment
+a boy is standing in the water,the kid is swimming through the blue ocean,neutral
+a woman in an orange shirt and clown makeup is standing in a park and others are looking on,a girl in an orange shirt and clown makeup is standing in a park and others are looking on,entailment
+a man is standing beside a birdcage which is large and colorful,the man is standing next to a bird cage,entailment
+the turtle is following the red fish,the turtle is following the fish,entailment
+a man is rinsing a large steak,a man is rinsing a large piece of meat,entailment
+people are on a beach full of sand by the ocean and are enjoying a sunny day,people are on a beach full of sand by the ocean and are enjoying a day full of sun,entailment
+the black and white dog is running outdoors,a black and white dog is running outdoors,entailment
+a young boy in a helmet is riding a bike on the road,the little girl is riding a bicycle in a race,neutral
+a surfer is falling off the wave,a surfer is riding the wave,contradiction
+nobody is pouring ingredients into a pot,a man is putting vegetables into a pot,contradiction
+the boy is checking a calendar,a boy is checking a calendar,entailment
+a tan dog is running through the snow,a dog which is tan is running through the snow,entailment
+a dog is fetching a stick out of very clear water,a small black and white dog is biting a stick and is swimming,neutral
+a dog which is small is playing on the green grass,a small kid is playing with a green toy dog on the grass,neutral
+a woman is slicing a tomato,a woman is dancing near a fire,neutral
+a woman is putting away the garlic,a woman is chopping up garlic,neutral
+there is no young man with brown hair and sunglasses sitting in front of some cans of soda,the man with brown hair is wearing sunglasses and is sitting at a table with cans of soda and other drinks,contradiction
+a group of racing dogs is wearing striped uniforms and is running down a track,a group of dogs bred for racing is wearing striped uniforms and is running down a track,entailment
+the man is playing a harp,a man is playing a violin,neutral
+a man is idling,a man is playing the keyboard with his nose,neutral
+a woman is using a sewing machine,a woman is sewing with a machine,entailment
+a black dog is approaching a golden dog on pebbly beach,two dogs are playing on a sandy beach,neutral
+the man is thinking,a man is thinking,entailment
+the white rally car is throwing mud into the air and is approaching a bend in the track,a white rally car is throwing mud into the air and is approaching a bend in the track,entailment
+a young oriental girl is standing above the crowd and is playing with a pinwheel,a girl in blue sweater is holding a multicolor toy and is sitting on the shoulders of a woman with grey hair,neutral
+a cat is eating some corn,the cat is eating some corn,entailment
+the woman is cooking eggs,a woman is cooking eggs,entailment
+a man who is playing is running with the ball in his hands,a player is running with the ball,entailment
+a man in a hat is walking through a store,the man in a cowboy hat is walking through a market and is putting a hand in his pocket,neutral
+a trick is being performed by a rollerblader on a ramp,a rollerblader is performing a trick on a ramp,entailment
+the crowd is watching a football game,a football game is being watched by the crowd,entailment
+a bicyclist is performing a trick over a heavily graphitized wall,a cyclist is performing a jump on a bicycle,neutral
+a lady who looks young is lying on the beach,a girl in a black hat is wearing a bikini at the beach,neutral
+a man is singing and playing a guitar,there is no boy playing a piano,neutral
+a man in a red uniform is swiftly making a jump in a dirt bike race,a man in a red uniform is making a jump in a dirt bike race,entailment
+the monkey is brushing a bull dog,a bull dog is brushing the monkey,neutral
+a nude lady is walking in front of a crowd in body paint,there is no lady walking in body paint in front of a crowd ,contradiction
+a few men in a competition are running outside,a few men are running competitions outside,neutral
+a man is drawing,there is no man drawing,contradiction
+two men are getting off of an orange raft on the shore,the orange rescue boat is rushing across the water,neutral
+a black dog is hanging out in the grass and running with its tongue out,a black dog is running in the grass,entailment
+a man is stopping in the middle of a road,a man is walking down a road,neutral
+people are sitting around a bonfire at night,several people are sitting around a fire at night,entailment
+a person is playing a trumpet,there is no man playing the guitar,neutral
+a young topless woman is covered in paint,a topless girl is covered in paint,entailment
+a small dog is chasing a large brown cow,a dog is walking away from the tail of an animal in the grass,neutral
+the military officer is barking at the recruits,an officer is listening to the recruits,neutral
+an interview is being granted by the man,the man is granting an interview,entailment
+a woman is cutting meat,a woman is slicing some meat,entailment
+a group of boys are quiet in front of a large door made of wood,a group of boys are playing with a ball in front of a large door made of wood,neutral
+a little boy is sticking his tongue out for the camera and another boy is looking on,two kids are looking up at the camera and one is sticking out his tongue,entailment
+a child in a red outfit is jumping on a trampoline,a little boy in red clothes is jumping into the air,entailment
+a woman is cutting onions,a woman is not cutting tofu,neutral
+a girl who is little is playing a grand piano on stage,a little girl is playing a grand piano on stage,entailment
+a man in a big city is holding a sign and begging for money,a homeless man is putting down a sign and refusing some charity,neutral
+a woman is placing skewers onto a rack,skewers are being placed onto a rack by a woman,entailment
+the man is talking about the telephone,the man is talking on the telephone,neutral
+people are on a beach full of sand by the ocean and are enjoying a sunny day,a bunch of people is on the shore,entailment
+there is no little kid playing football and falling into the grass,the little kid is playing football and falling into the grass,contradiction
+the soccer player is kicking the ball between somebodys legs,a person is kicking a ball for a soccer game between somebodys feet,entailment
+a little girl is playing a grand piano on stage,a girl is practicing the piano,neutral
+a child is splashing in a pool for children and other kids are playing in the background,a child is splashing in a pool for children and other children are playing in the background,entailment
+a woman is showing a small dog to an infant,a woman is crouching down next to a dog and is smiling at a young girl sitting on the sidewalk,neutral
+a golden dog is running through a field of tall grass,a golden dog is sitting in a field of tall grass,neutral
+there is no man slicing potatoes,a man is fitting a silencer to a pistol,neutral
+a small boy in a striped shirt is sliding out of a green tube,a small shirtless boy is sliding into a green tube,neutral
+two dogs are cheerfully playing together on the grass,a big dog and a small white dog are playing together,neutral
+there is no monkey teasing a dog at the zoo,a monkey is pulling a dogs tail,contradiction
+a woman is not talking on a telephone,a woman is talking on a telephone,contradiction
+a father is pushing his daughter on a gokart and another girl is watching,a white dog is standing on fallen leaves,neutral
+the woman is frying a breaded pork chop,a woman is cooking a breaded pork chop,entailment
+a woman is riding a horse,a woman is riding an animal,entailment
+no people is sitting around a fire at night,people are clustered around a bonfire at night,contradiction
+a man on a bicycle is riding on the beach,a man on a bike is riding on the shore,entailment
+a skateboarder is doing acrobatics on a half pipe,a man is skateboarding on a half pipe,entailment
+the kids are chasing each other in the sand,a little boy is running on the ground and playing with a little girl,neutral
+two children and an adult are standing next to a tree limb,two children and an adult are not standing next to a tree limb,contradiction
+people are crossing a rope bridge over a rocky stream,people are walking across a rope bridge over a rocky stream,entailment
+the woman is wearing a red jacket and holding a glass in front of the man in a white tshirt,the woman is holding a white jacket and a red glass in front of the man wearing a tshirt,neutral
+a woman is playing the keyboard and a man is dancing,a woman is dancing and a man is playing the keyboard,neutral
+a person is throwing a cat at the ceiling,a person is taking a cat down from the ceiling,neutral
+two boys are wearing brown shirts and are tugging at a rope on a wooden platform,two twin preteen kids are dueling with sticks,neutral
+there is no woman cooking a breaded pork chop,a woman is cooking a breaded pork chop,contradiction
+the group of people is sitting on a rocky ledge and a scenic view is behind them,four people are sitting on a low cement ledge,neutral
+there is no man breaking wooden boards with his hand,a man is breaking wooden boards with his hand,contradiction
+nobody is stirring a pot of chili with a spoon,someone is stirring a pot of chili with a spoon,contradiction
+an ice skating rink placed outdoors is full of people,an ice skater is outdoors performing on a rink full of people,neutral
+four young men are standing still and a car is exploding behind them,a man is standing on a dirt hill next to a black car,neutral
+a man by a brick wall is wearing a mask around his mouth and a hair net,a man is wearing a clear plastic cap and a face mask,neutral
+a man is sharpening a knife,there is no man carrying a woman,neutral
+the woman with a knife is slicing a pepper,there is no woman slicing a green pepper,neutral
+someone is peeling a banana,someone is removing the peel of a banana,entailment
+a man is fitting a silencer to a pistol,a man is applying a silencer to a gun,entailment
+a brown and black dog is looking upwards,a brown and black dog is pointing the nose upwards,entailment
+the kittens on the trays are being eaten as food for an advertisement,the food on the trays is being eaten by the kittens,neutral
+a dog is opening a can of food,a dog is opening a jar of food,neutral
+there is no man playing a bamboo flute,a man is playing a bamboo flute,contradiction
+a man is playing a bamboo flute,a flute is being played by the man,entailment
+the horse is being ridden by a man,a man is parking a motorbike,neutral
+the helmeted girl is perching on a bike,a woman is performing a trick on a ramp with a car,neutral
+some people who play soccer are kicking a soccer ball into the goal,a soccer player is scoring a goal,neutral
+a monkey is practicing martial arts,a chimp is practicing martial arts,entailment
+some oil is being poured on the tomatoes by the man,the man is pouring some oil on the tomatoes,entailment
+a man is slowly dancing on the road,a man is dancing on the road,entailment
+a dog is running with a ball,the black dog is carrying a blue and white ball in its mouth,neutral
+the man is kick boxing with a trainer,a karate practitioner is kicking at another man who is wearing protective boxing gloves,neutral
+eggs are being cracked into a bowl by a woman,a woman is cracking eggs into a bowl,entailment
+a black and orange bird is standing on the lawn,a black and orange bird is standing in the grass,entailment
+a woman is frying something in a pan,the guitar is being played by a man,neutral
+the man is not riding a mechanical bull,the man is riding a mechanical bull,contradiction
+the man is lifting barbells,a man is lifting barbells,entailment
+the man is tossing a kid into the swimming pool that is near the ocean,one man is tossing a kid into the swimming pool that is near the ocean,entailment
+a cat is playing keyboards,there is no cat playing keyboards,contradiction
+a man is standing at dusk on an almost pristine road covered by snow that is lit only by headlights,a person is standing in the snow at the edge of a mountain,neutral
+several people are sitting at small tables in a light room,several people are sitting at small tables in a darkened room,neutral
+the man is singing and playing the guitar,the guitar is being played by a man,entailment
+a biker is wearing gear which is black,there is no man wearing a black helmet and pushing a bicycle,neutral
+three boys are resting on rocks along a river,three boys are walking on rocks along a river,neutral
+a man is drinking orange juice and walking on a sunny day,a person is drinking orange juice and walking,entailment
+a black and white dog is carrying a huge stick on the green grass,a black and white dog with a large branch is running in the field,entailment
+two people are kickboxing and spectators are not watching,two people are kickboxing and spectators are watching,contradiction
+a man is walking in a yard,a man is walking outside,entailment
+some cats are playing with each other,the cats are playing with each other,entailment
+a white dog is lying on fallen leaves,a white dog is standing on the leaves on the ground,neutral
+a man is using a knife to open a box,a man is playing a guitar,neutral
+the players is maneuvering for the soccer ball,a man in green is kicking a soccer ball and a man in purple and white is rising up,neutral
+a man is playing two keyboards,there is no man playing two keyboards,contradiction
+cereal is being eaten by the man,the boy and the girl are playing and wearing arm floats,neutral
+adults and children standing and playing in front of steps near a wooded area,adults and children standing and playing in front of a stair near a wooded area,entailment
+the bride and the groom are arriving after the wedding,a married couple is walking down the aisle,neutral
+a soccer player is scoring a goal,a player of soccer is scoring a goal,entailment
+the woman is waterskiing fearlessly,the woman is waterskiing,entailment
+five children are standing in front of a wooden hut,five children are standing in a wooden hut,neutral
+the shirtless man in striped shorts and sunglasses is standing near a man in a white shirt and sunglasses,the shirtless man in striped shorts and sunglasses is standing near a person in a white shirt and sunglasses,entailment
+the man is walking along a path through the wilderness,the man is walking along a track through the wilderness,entailment
+a man is playing a guitar,a man is not playing a guitar,contradiction
+a man is chopping down a tree with an axe,a person is chopping down a tree with an axe,entailment
+a pair of kids are sticking out blue and green colored tongues,two kids are sticking out blue and green colored tongues,entailment
+a surfer is riding a big wave,the surfer is riding a big wave,entailment
+a young man on a bmx bicycle is jumping off a masonry pyramid,a man on a bike is jumping on a pyramidshaped ramp,neutral
+a man is walking down a road,the man is walking along a path through the wilderness,neutral
+some food is being prepared by a chef,a chef is preparing some food,entailment
+the woman is playing a guitar which is acoustic and singing,the singer is hiring a person to fire the guitar player,neutral
+the man is being knocked off of a horse,someone is falling off the horse,entailment
+a tiger cub is playing with a ball,a baby is playing with a doll,neutral
+two people are carrying colorful baskets and blankets and walking near a building,two people are carrying gray baskets and blankets and walking near a building,neutral
+the man is carefully feeding a mouse to the snake,the man is cautiously feeding a mouse to the snake,entailment
+a sad man is crying,a man is screaming,neutral
+two men are taking a break from construction,two men are taking a break from work,entailment
+the motorcycle racer is riding a red and black bike,a woman is leaning on a racing motorcycle,neutral
+a squirrel is crazily spinning around in circles,a squirrel is running around in circles,entailment
+the panda bear is lying on the logs,the panda bear is not lying on the logs,contradiction
+a man is having lunch,a man is eating,entailment
+the small dog is walking outside and is carrying a colorful toy in its mouth,a dog is running on concrete and is holding a blue ball,neutral
+a motorcycle rider is standing up on the seat of a white motorcycle,no motorcycle rider is standing up on the seat of a motorcycle,contradiction
+a man on a motorcycle is turning around a corner,a man on a motorcycle is going around a corner,entailment
+the white bird is landing swiftly in the water,a large white crane is flying near the water,neutral
+the young boys are playing outdoors and the man is smiling nearby,a group of kids is playing in a yard and an old man is standing in the background,neutral
+seasoning is being added to the water by the man,the man is seasoning the sausages,neutral
+a lot of people are in an ice skating park,not a lot of people are in an ice skating park,contradiction
+a man is eating a pizza,a pizza is being eaten by a man,entailment
+a man is ignoring a girl via an internet camera,one man is talking to a girl with an internet camera,neutral
+a large group of cheerleaders is walking in a parade,the cheerleaders are not parading and are not wearing black pink and white uniforms,neutral
+a dog with a muzzle and a blue jacket is running around the yard,there is no dog with a blue blanket running through the grass,neutral
+a man is cutting a tree with an axe,a man is chopping down a tree with an axe,entailment
+a man is playing the drums,guitar is being played by a man,neutral
+a baby rhino is walking around a pen with its mother,a baby and an adult are being followed by a rhino,neutral
+a man is riding a water toy in the water,two sumo ringers are not fighting,neutral
+a black person is running along a white stand and a dog barks behind him,a little dog is sprinting and its owner is trying to catch it,neutral
+a woman is playing the flute,the flute is being played by a woman,entailment
+a woman is wearing a blue helmet and is riding a bicycle in a parking lot,a woman is parking a blue bicycle and is wearing lots of riding helmets,neutral
+the bicyclist is riding on a city street,the bicyclist is not riding on a city street,contradiction
+there is no man running down the road,a man is running down the road,contradiction
+a cat is playing with a device,mud is being thrown to the playing boy,neutral
+the man is not talking on the phone,the man is talking on the telephone,contradiction
+a dog is standing with its two front paws on a rock in a field,the dog is standing with its two front paws on a rock in the field,entailment
+a man is mixing the content of a bowl,a woman is mixing the content of a bowl,neutral
+a woman is cracking eggs into a bowl,a woman is placing skewers onto a rack,neutral
+a dog with a ball is being chased in the grass,a dog is chasing a ball on the grass,neutral
+a dog is emerging from a lake,an animal is emerging from a lake,entailment
+the man and the boy are standing at the bottom of the stairs which are outdoors,a man and a boy are standing at the bottom of some stairs which are outdoors,entailment
+there is no woman standing near three children,a woman is playing with two young boys at a park,neutral
+a boy is climbing up a wall artificially built for climbing and is attached to a rope,a climbing boy rescues the fearful cat from over the wall,neutral
+a young child is wearing a white coat and playing a game,the child is playing with toys indoors,neutral
+a man is massaging a woman,a man is screwing a piece of wood to a wall,neutral
+someone is slicing a tomato,the person is slicing a vegetable,entailment
+a group of scouts are hiking through the grass,a group of explorers are walking through the grass,neutral
+a person is slicing an onion,a person is cutting an onion,entailment
+there is no boy playing guitar,a boy is playing guitar,contradiction
+there is no man playing a keyboard,a man is playing a keyboard,contradiction
+a brown and black dog is pointing the nose upwards,a black and brown cat is eyeing a fly,neutral
+a fearful little boy is on a climbing wall,a boy is effortlessly climbing up a wall artificially built for climbing and is attached to a rope,neutral
+a group of boys is not playing soccer on the beach,a group of boys is playing soccer on the beach,contradiction
+the man is cooking slices of potato,the man is slicing a potato,neutral
+a woman is wearing a colorful shirt and a lot of jewelry,a man with indian clothing and henna on his hand is going through paperwork,neutral
+a woman is not frying some food,a woman is frying some food,contradiction
+a man is standing on the top of the rocks with clouds behind them,one man is standing on the top of the rocks with clouds behind them,entailment
+there is no woman cutting an onion,a woman is cutting an onion,contradiction
+the food on the trays isnt being eaten by the kittens,some kittens are eating,contradiction
+a man is thinking,a man is dancing,neutral
+a baby is not crawling happily,a cat is walking on a hardwood floor,neutral
+the potato is being peeled by a woman,one woman is peeling a potato,entailment
+two brown dogs are fighting over a red ball and are playing in the grass,two dogs are playing with a small red ball,neutral
+a person is standing near a motorcycle,a person is chopping an onion,neutral
+a baby is not playing with a doll,a baby is playing with a doll,contradiction
+a small child is showing boredom on a swing set at the park,the little girl is swinging and the woman is standing behind her,neutral
+a schoolgirl with a black bag is on a crowded train,a girl with a black bag is on a crowded train,entailment
+a cat is playing with a small bottle,a bottle is being licked by the cat,neutral
+the woman is pouring oil into a skillet,the skillet is being oiled by a woman who is pouring some water,neutral
+a group of women is playing with a ball on the beach,a group of men is playing soccer on the beach,neutral
+a girl is running through the water at the beach,a boy in a white tshirt is splashing in shallow water,neutral
+a girl has black and orange patches on the cheeks,a girl is standing alone and wears a black shirt and pink beads,neutral
+the women are not singing and dancing,the women are singing and dancing,contradiction
+the man is not chopping a tree trunk with an axe,the man is chopping a tree trunk with an axe,contradiction
+there is no white car being driven by the man,a white car is being driven by the man,contradiction
+a dog is playing on the green grass,a brown and white cat is playing on the grass,neutral
+a dog with a blanket dyed in blue is running through the grass,a dog with a muzzle and a blue jacket is running around the yard,neutral
+some instruments are being played by a band,a man is playing an electronic keyboard,neutral
+the black and white dog is running in a field,the black and white dog is running outdoors,entailment
+the man is carefully feeding a mouse to the snake,a snake is being fed a mouse by a man,entailment
+a girl in a brown dress is being surrounded by children and is closing her eyes,the sun is not shining on the face of the girl who is in a yellow dress,neutral
+a woman is slicing a carrot,there is no man slicing a tomato,neutral
+the man is rising from a swamp,a man is coming out of the water,entailment
+a young boy in the blue shirt is jumping into the water,the young boy in the blue shirt is jumping into the water,entailment
+one man is climbing a cliff with a rope,a person is standing in front of a rock with a rope which is pink,neutral
+children are being dressed in costumes and playing a game,kids are being dressed in costumes and playing a game,entailment
+people are singing and a clown is dancing,a clown is singing,neutral
+some football players in red and white are jumping and hugging,football players in red and white are jumping and hugging each other,entailment
+a woman in jeans is sitting on the saddle of a horse,a person wearing jeans is sitting on top of a horse saddle,entailment
+two pandas are lying together,two baby pandas are playing,neutral
+the tan dog is watching a brown dog that is swimming in a pond,the tan dog is not watching a brown dog that is swimming in a pond,contradiction
+a man on a yellow sport bike is doing a wheelie and a friend on a black bike is catching up,the rider dressed in orange is driving a motorcycle on one wheel,neutral
+there is no man wearing clothes that are covered with paint or is sitting outside in a busy area writing something,a man is wearing clothes that are covered with paint and is sitting outside in a busy area writing something,contradiction
+the wave is being ridden by a surfer,a woman in a yellow shirt is surfing on a pink surfboard,neutral
+a little girl is frowning and taking off a fake nose and glasses,a little girl is smiling and wearing a fake nose and glasses,neutral
+there is no man driving a car,a man is driving a car,contradiction
+two brown and white dogs are fighting on a grassy area in front of a plant,two dogs are playing outside,neutral
+a man is untying a shoe,a man is tying a shoe,neutral
+a man and a woman are walking together through the woods,a man and a woman are walking through a wooded area,entailment
+the woman surrounded by photographers is wearing a gray suit and glasses,a man in a suit is being surrounded by photographers,neutral
+a boy is playing on a toy phone,the man is handling a gun,neutral
+a little girl and a woman wearing a yellow shirt are getting splashed by a city fountain,a woman is playing the trumpet,neutral
+a man is wiping the edge of a bowl,there is no man wiping the edge of a bowl,contradiction
+the motocross rider is wearing blue and black pants,a biker with a blue jacket black pants and a white helmet is driving recklessly on dirt and people watch,neutral
+there is no man fixing a silencer to a gun,a man is fixing a silencer to a gun,contradiction
+a child in light colored clothing is standing with his arms extended outward,a child in light colored clothing is lying with his arms crossed,neutral
+nobody is beating an egg,the woman is stirring eggs in a bowl,contradiction
+an onion is being sliced by the woman,a man is slicing a carrot with a knife,neutral
+the men are not putting suitcases into the trunk of a car,the men are putting suitcases into the trunk of a car,contradiction
+adults and children standing and playing in front of steps near a wooded area,the adults and children are being grouped near an outdoor seating arrangement,neutral
+there is no person riding a motorbike in the event related to motocross,the person is riding a motorbike on a sandy track,neutral
+the baby is being put into a trash can by a woman,a woman is putting the baby into a trash can,entailment
+somebody is cutting a tomato,someone is cutting a tomato,entailment
+the dog is snapping at some droplets of water,the dog isnt snapping at some droplets of water,contradiction
+a man is breaking tiles with his hands,there is no man breaking wooden boards with his hand,neutral
+a group of children is not playing tambourines,a group of children in a church basement is playing maracas and tambourines,contradiction
+a boy is looking at a calendar,there is no boy checking a calendar,contradiction
+a woman is boiling shrimps,a woman is arranging her hair,neutral
+a boy is looking at a calendar,a boy is shredding a calendar,neutral
+a blond child is holding a yellow bottle,there is no blond child holding a yellow bottle,contradiction
+a man is standing beside a large and colorful birdcage,the man is sitting next to a birdcage,neutral
+a woman is beating two eggs in a bowl and using a whisk made of wire,a strong person is leaving the whisk in the bowl near the eggs,neutral
+a person on a yellow clean bike is taking a jump,a cyclist on a yellow bike is airborne,entailment
+a tennis player in mid game is holding a racquet,a racquet is being held by a tennis player in mid game,entailment
+two race cars are on a road in front of a grassy parking area,a white car and a yellow car are racing down the track,neutral
+there is no man playing the guitar loudly,a flute is being played by a man,neutral
+the girl is recklessly jumping onto a car,one young lady is jumping on the car,entailment
+the cop is sitting on a police bike,the cop is sitting on a police bicycle,entailment
+two people are sitting in lawn chairs and are reading books,some people are sitting in lawn chairs and are reading books,entailment
+a woman is not slicing carrots,a woman is cutting potatoes,neutral
+a man is dancing,a person is dancing,entailment
+there is no cat eating corn on the cob,a cat is eating some corn,neutral
+a man is falling off a horse on a track and is laid in the wild,a horse is tossing the cowboy wearing pants of blue and red color,neutral
+the dog is catching a ball,a dog is catching a ball,entailment
+a boy is walking across a bridge,a person is stirring vegetables in a bowl,neutral
+a shirtless man is escorting a horse that is pulling a carriage along a paved road,a shirtless woman is leading a horse that is pulling a carriage,neutral
+a person who rides bikes in a black and red uniform is standing on a dirt bike,a bike rider in a black and red uniform is standing on a dirt bike,entailment
+the men are not talking,the men are talking,contradiction
+some men are running a race,racers are running down a track,neutral
+a woman is removing the peel of a potato,a woman is slicing a tomato,neutral
+a man with a shirt is posing with the arms spread next to a woman,a man without a shirt is posing with the arms spread next to a woman,neutral
+the dog is chasing the ball,a dog is chasing a ball,entailment
+an old woman is carrying a lot of colorful scarves on the beach,a girl in gold and purple is holding a rainbow afghan,neutral
+the man is eating a banana by a tree,a banana is being eaten by a man,entailment
+two dogs are fighting,two dogs are wrestling and hugging,neutral
+a woman is slicing a pepper which is green,a woman is slicing a green pepper,entailment
+two children are playing,a kid is splashing in the ocean,neutral
+the cat is hungrily drinking milk,a lick of milk sauce is being given to the cat,neutral
+a horse and its rider are leaping over a barrier,the horse is leaping over the rider at the barrier,neutral
+the woman is picking up a baby kangaroo,the kangaroo is picking up the woman,neutral
+a man is dancing,a man is speaking,neutral
+a white dog is standing on fallen leaves,a white dog is lying on fallen leaves,neutral
+people are walking outside the building that has several murals on it,several people are in front of a colorful building,entailment
+a dog next to a tree which is probably a pine is biting a bucket,there is no dog which is furry and black in a back yard carrying a basket in its mouth,neutral
+a woman and three men are denying a photo,three men and a woman are posing for a picture,neutral
+different things from a war are being shown to some people by a veteran,three friends are making faces for the camera,neutral
+the skateboarder is jumping in the air,a man in a red shirt is doing a trick with the skateboard,neutral
+a woman is standing and isnt looking at the waterfall,a woman is sitting and looking at the waterfall,neutral
+a woman is wearing an egyptian headdress,a woman is wearing an indian headdress,neutral
+two people are driving a jeep and a lady is sitting on the top of it,two people are driving a jeep and a girl is sitting on the top of it,entailment
+the player in purple white and black is playing near the end of the field,the player in purple white and black is not playing near the end of the field,contradiction
+two young girls are wearing hats and sticking their colored tongues out,two kids are sticking out blue and green colored tongues,neutral
+the men in brown shorts are walking on the rocks beside a river,three boys are walking on rocks along a river,neutral
+a girl in white is dancing,the blond girl is dancing behind the sound equipment,neutral
+a dog is opening a drawer and climbing inside,a cat is opening a drawer and climbing inside,neutral
+a biker is riding away from a fence,the boy is riding a bike on the top of a metal fence,neutral
+a surfer is surfing a big wave,a surfer is surfing a huge wave,entailment
+there is no monkey kicking a person,a monkey is kicking a person,contradiction
+a man is singing and playing a guitar,a man is playing a guitar,entailment
+a tan dog is splashing in the water on the bank of a pond,a light brown dog is sprinting in the water,neutral
+the man in a tshirt dyed grey is sitting on a rock in front of a waterfall,a woman is sitting and looking at the waterfall,neutral
+a little boy is wearing a green soccer strip and is running on the grass,a child in a green and white sports uniform is resting on the grass,neutral
+the oriental lady is cutting a carrot into thin pieces,the oriental lady is not cutting a carrot into thin pieces,contradiction
+video games of two playing boys are on a couch,two boys on a couch are playing video games,neutral
+two men are fighting in a cow pasture,nobody is fighting in a cow pasture,contradiction
+a woman is slicing a tomato,a man is cutting a potato,neutral
+a man with tattoos is holding a couch with a pencil,a man with tattoos is lounging on a couch and holding a pencil,neutral
+two men are dancing and singing in front of a crowd,the women are singing and dancing,neutral
+the man in a hat suited for cowboys is walking through a market and is putting a hand in his pocket,a man in a hat is walking through a store,entailment
+the woman is putting makeup on the man,a woman is painting a mans face,entailment
+the men are putting suitcases into the trunk of a car,the men are placing suitcases in the trunk of a car,entailment
+a woman is looking down and is wearing a wedding dress,a woman is looking down and is wearing a wedding veil,entailment
+three people are driving four wheel atvs in a street,three people are driving four wheel atvs in a field,neutral
+a boy wearing red shorts is jumping into a paddling pool,a young boy wearing a red swimsuit is jumping out of a blue kiddies pool,neutral
+a man is rock climbing stopping and calculating the route,a man is rock climbing and a city and a bay are in the background,neutral
+two boy are playing on a trampoline,nobody is playing on a trampoline,contradiction
+a large man is sitting in a military accessories store,a small man is sitting in a military accessories store,neutral
+eggs are being cracked into a bowl by a woman,a woman is placing skewers onto a rack,neutral
+one man is doing a bicycle trick in midair,the air is tricking a performing cyclist,neutral
+there is no man playing the guitar,a woman is slicing an octopus,neutral
+a man is dancing,a man is silent,neutral
+a woman is dipping a shrimp in batter,a man is driving a car,neutral
+a man is playing a flute,there is no man playing a flute,contradiction
+a topless woman is being covered in mud,a topless woman is being smeared with a brown substance and a blurry crowd is in the background,neutral
+the man in a hat suited for cowboys is walking through a market and is putting a hand in his pocket,the man in a cowboy hat is walking through a market and is putting a hand in his pocket,entailment
+the man is skillfully playing the guitar,a man is playing a flute,neutral
+the land near a white bird is being watered swiftly,a large white crane is flying near the water,neutral
+a person is slicing some ginger,a person is cutting some ginger,entailment
+four people are performing music outdoors,four people are silently standing outdoors,neutral
+a lion is slowly moving around,a person is slicing a carrot into pieces,neutral
+there is no girl playing a flute,a girl is playing a flute,contradiction
+an old woman is shaking hands with a man,a man and a woman are not shaking hands,contradiction
+the woman in a red costume is leaning against a wall made of bricks and playing an instrument,the woman in a red costume is leaning against a brick wall and playing an instrument,entailment
+a man is standing on a dirt hill next to a black jeep,a man in a hat is standing outside of a green vehicle,neutral
+a cold cyclist is celebrating,there is no cold cyclist celebrating,contradiction
+several children are sitting down and have their knees raised,several children are lying down and are raising their knees,neutral
+a black and orange bird is standing in the grass,a black and orange bird is not standing in the grass,contradiction
+a famous singer is dancing on the ceiling,a person is dancing on the ceiling,entailment
+the men are fighting with their fists in a ring,two men are fist fighting in a ring,entailment
+a man is playing a flute,a man is playing a guitar,neutral
+a man with tattoos is lounging on a couch and holding a pencil,there is no man sitting on a chair and rubbing his eyes,neutral
+the black and white dog is running indoors,the black and white dog is running in a green yard,contradiction
+little boys are playing in a water fountain in front of lots of people,children are playing in a fountain that is spraying water from the ground,neutral
+a woman is boiling shrimps,there is no woman combing her hair,neutral
+a young child is splashing in the water,there is no young child splashing in the water,contradiction
+there is no man peeling an onion,a man is peeling an onion,contradiction
+the baby is being put into a trash can by a woman,a person is putting meat into a skillet,neutral
+one man is turning on the microwave,there is no man is pushing the buttons of a microwave,contradiction
+the small child is wading through the water and is being guided by another person,a young child is watering a plant with splashes,neutral
+the girl is using an eye pencil on her eyelid,the girl is using a pencil for the eyes on her eyelid,entailment
+a black climber is rocking a dog,the black dog is climbing on a rock,neutral
+a girl dressed in purple and blue is walking beside her bike at night,a woman in a top which is purple is walking a bicycle between two stone columns,neutral
+a man is wearing a hard hat and dancing,a man with a hard hat is dancing,entailment
+a group of people is near the ocean,a crowd of people is near the water,entailment
+a man in a shirt dyed purple is looking at a man in a black shirt who is doing a funny face,there is no man in a pose being watched by another man,neutral
+a woman and a dog are peacefully sitting on a tree stump,a woman and a dog are sitting on a tree stump,entailment
+a guy is mowing the lawn,there is no guy mowing the lawn,contradiction
+a big green ball is missing a potato,a big green ball is knocking a potato,neutral
+four people are walking along a city sidewalk and the one in the green hat is talking on a cell phone,a group of people is not walking down the street and a person in a green hat is on the phone,neutral
+a girl in blue sweater is holding a multicolor toy and is sitting on the shoulders of a man with grey hair,a young oriental girl is standing above people and is playing with a pinwheel,neutral
+a man with a white hat and brown shirt is behind a woman in red and is looking to the right,a man with a white hat and brown shirt is behind a woman in red and is looking to the left,neutral
+the boy is sitting near the blue ocean,the boy is wading through the blue ocean,contradiction
+an old topless woman is covered in paint,a young topless woman is covered in paint,neutral
+a man is punching a soccer ball,a man is mixing the content of a bowl,neutral
+a furry brown dog is running through the grassy area,the furry brown dog is running through the grassy area,entailment
+a woman is cutting a potato,an onion is being sliced by a woman,neutral
+four middle eastern children three girls and one boy are climbing on the grotto with a pink interior,a group of kids is playing on a colorful structure,entailment
+there is no man exercising,a man is exercising,contradiction
+a small girl is riding in a toy car,a small girl is getting out of a toy car,contradiction
+a man is standing in the water at the base of a waterfall,the man is swimming in a body of water near a waterfall,neutral
+the lady is penciling on eyeshadow,the woman is penciling on eyeshadow,entailment
+a woman is slicing an onion,a woman is cutting a potato,neutral
+a man with no hat is sitting on the ground,a man with a backwards hat is sitting on the ground,neutral
+a man is slicing a carrot with a knife,a man is putting away a carrot,neutral
+a dirty tan dog is rolling in the water and looking right at the camera,a dog is rolling on the ground,neutral
+the brown dogs are playfully fighting on the sandy beach,the brown dogs are not playfully fighting on the sandy beach,contradiction
+a dog is catching a black frisbee,a dog is biting a black frisbee,neutral
+a man with no hat is standing outside of a green jeep,a man is standing on a dirt hill next to a black jeep,neutral
+a man is doing a skateboard trick on a park porch,a man is doing a trick on a skateboard,entailment
+the man is singing heartily and playing the guitar,the man is singing and playing the guitar,entailment
+there is no bicyclist jumping on a pyramidshaped ramp,a bicyclist is jumping on a pyramidshaped ramp,contradiction
+a person in a pink jacket is running onto the field,four athletes are with a man in a crowded stadium,neutral
+one boy in orange shorts is standing on a rock cliff over the water and the other boy in black shorts is jumping of it into the water,two males are standing on a cliff edge and one is jumping into the water,neutral
+a biker with a blue jacket black pants and a white helmet is driving on dirt and people are watching,the motocross rider is wearing blue and black pants,neutral
+the boys are standing in front of the burning car,some young men are standing still and a car is exploding behind them,neutral
+there is no dog rolling from side to side,a dog is rolling from side to side,contradiction
+the kids are chasing each other in the sand,the kids are not chasing each other in the sand,contradiction
+a group of children is playing in the house and there is no man standing in the background,a group of kids is playing in a yard and an old man is standing in the background,neutral
+two teammates are lifting a football player in a red and white uniform,football players in red and white are jumping and hugging each other,neutral
+three boys are walking on rocks along a river,the men in brown shorts are not walking on the rocks beside a river,neutral
+a man is climbing a rope,a man is coming down a rope,neutral
+a snowboarder is grinding down a long concrete rail,a person is doing acrobatics on a snowboard,neutral
+there is no woman cutting broccoli,a woman is cutting broccoli,contradiction
+one woman is slowly peeling a potato,one woman is peeling a potato,entailment
+a deer is jumping over a fence,a deer isnt jumping over the fence,contradiction
+there is no panda bear eating some bamboo,a panda bear is eating some bamboo,contradiction
+a man is parking a motorbike,a man is riding a motorbike,neutral
+the man is eating,the person is eating,entailment
+a woman is cutting a tomato,a woman is dancing near a fire,neutral
+a man in a jersey which is black is standing in a gym,a man in a black jersey is standing in a gym,entailment
+a child is experiencing a new world,a child is falling asleep,neutral
+the black dog is walking along a tree trunk bridge over water,there is no dog crossing a river on a bridge made from a fallen tree,contradiction
+there is no woman slicing an onion,a woman is slicing an onion,contradiction
+a young man with brown hair and shades is sitting in front of some cans of soda,a young man with brown hair and sunglasses is sitting in front of some cans of soda,entailment
+a man in a hat is walking through a store,the man in a cowboy hat is not walking through a market and is not putting a hand in his pocket,neutral
+there is no cyclist performing a jump on a bicycle,a bicyclist is performing a trick over a heavily graphitized wall,neutral
+a woman is walking in a city street,a man is wearing a long black jacket and a brown hat and is walking past a park with a lot of blooming trees,neutral
+a person is unfolding a tortilla,a man is folding a tortilla,neutral
+skewers are being placed onto a rack by a woman,a dog is jumping high into the air in the country,neutral
+two dogs are playing by a tree,a dog is catching a stick in the air and another is watching,neutral
+a panda bear is eating some bamboo,the panda is not eating bamboo,contradiction
+the woman is waterskiing,a woman is watching the lake,neutral
+the horse is being ridden by a man,a man is driving a motorbike,neutral
+a boy is playing on a toy phone,the man is aiming a gun,neutral
+the boy is not riding a bike on the top of a metal fence,a biker is riding along the top of a fence,neutral
+someone is beating an egg,the lady is stirring eggs in a bowl,neutral
+a brown dog is running across the yard with a toy in its mouth,there is no brown dog running across the yard with a toy in its mouth,contradiction
+four people are floating on a raft,nobody is floating on a raft,contradiction
+a man is playing a flute,a flute is being played by a man,entailment
+a woman is pouring eggs into a pan,a man is petting two dogs,neutral
+a tiger is walking around aimlessly,a tiger is pacing around a cage,neutral
+a dog is biting a can,a dog is opening a jar of food,neutral
+a lot of people are in an ice skating park,an ice skater is outdoors performing on a rink full of people,neutral
+a man is playing the guitar,a person is listening to a trumpet playing,neutral
+a group of people is holding drinks and pointing at the camera,drinks are being held by people pointing at the camera,entailment
+a snowboarder is jumping through the air,a person wearing grey pants is airborne on a snowboard,neutral
+a black dog with a red collar is amusedly putting its face in the water,a black dog is standing in shallow water,neutral
+the boy is riding a bike on the top of a metal fence,the riders are fencing in a boys metal bike,neutral
+a man is standing on the top of the rocks with clouds behind them,a person is sitting on a mountain top,neutral
+a distant person with a blue backpack is hiking in rocky area,the person is hiking,entailment
+a man is shooting with a gun,a man is rowing a canoe,neutral
+the mans jumper is in the empty pool,a lone biker is jumping in the air,neutral
+a man with a hard hat is dancing,the man with a hard hat is dancing,entailment
+the girl has red hair and eyebrows several piercings in a ear and a drawing on the back,the girl has red hair and eyebrows several piercings in a ear and a tattoo on the back,entailment
+someone is boiling okra in a pot,okra is being cooked in a pan,neutral
+a woman is speaking loudly on her cell phone and is keeping a purse and a yellow bag on the near ledge,a woman is speaking on her cell phone and is keeping a purse and a yellow bag on the near ledge,entailment
+the loud man is not allowed to play the guitar,a flute is being played by a man,neutral
+a man is chopping an onion,a woman is slicing an onion,neutral
+the patient is helping the doctor,two teams are playing soccer,neutral
+there is no person setting fire to the cameras,a person is burning some cameras with a blow torch,contradiction
+a woman is skillfully playing a flute,a woman is playing a flute,entailment
+a man is cutting a tomato,a woman is cutting a tomato,neutral
+a man is doing a skateboard trick on an outdoor park porch,a person is doing a trick on a skateboard,entailment
+a dog is sitting on the ground,a girl is tapping her fingernails,neutral
+an onion is being sliced by a woman,a woman is slicing an onion,entailment
+a guitar is being played by a man,a girl is playing a guitar,neutral
+a brown dog is running after a black dog on a rocky shore,a brown dog is running after a dark dog on a rocky shore,entailment
+a man is standing in the middle of a gym and is wearing a jersey,a man in a jersey which is black is standing in a gym,neutral
+a baby elephant is eating a small tree,there is no little girl peddling a scooter,neutral
+a man is in a parking lot and is playing tennis against a large wall,a man is in a parking lot and is playing tennis against a friend,neutral
+there is no girl with black and orange patches on the cheeks,a girl is standing in a group and is wearing a black shirt and pink beads,neutral
+a lion is pacing tiredly in a pen,the lion is pacing tiredly in the pen,entailment
+a dog in a colored coat is running across the yard,a dog and a black man are running through brown leaves,neutral
+a woman is performing a trick on a ramp with a bicycle,a woman is jumping with a bicycle,neutral
+a man is rowing a canoe,a man is rowing a boat,entailment
+a cheetah is chasing its prey across a field,the cheetah is running quickly behind its prey,neutral
+a small dog is chasing a large brown cow,the tail of an animal is being chasing by a dog in the grass,neutral
+the man in brown colored shorts is walking on the rocks beside a river,three boys are walking on rocks along a river,neutral
+the woman in a red costume is leaning against a wall made of bricks and playing an instrument,a woman in a red dress is playing an instrument,entailment
+a man is chopping butter into a small container,a man is chopping butter into a container,entailment
+three men are practicing karate in a field,three men are practicing karate outdoors,entailment
+somebody is playing the guitar,someone is playing a piano,neutral
+a puppy is repeatedly rolling from side to side on its back,an animal is rolling from side to side in a garden,neutral
+some kittens are hungry,some kittens are eating,neutral
+there is no man dancing,a man is dancing,contradiction
+a dad is launching his daughter into a swimming pool,a father is launching the daughter in a swimming pool,entailment
+there is no man standing near the water and holding fishing poles,two men are holding fishing poles,neutral
+a football player in a purple jersey is running with the ball for a touchdown,a football player is running into an official carrying a football,neutral
+a young girl in blue is jumping in the air,a young girl in a blue leotard is jumping on the ground,neutral
+a man is playing the guitar,there is no man playing the guitar,contradiction
+a man is going into the water,a man is rising from a swamp,neutral
+a man is playing flute,there is no man playing flute,contradiction
+a man is speaking on a podium,a podium is where a man is speaking,entailment
+a woman is picking a can,there is no woman slicing a tomato,neutral
+the white dog wearing reindeer ears is close to a brown dog,the white dog wearing reindeer ears is near a brown dog,entailment
+a dog is being teased by a monkey at the zoo,a monkey is pulling a dogs tail,neutral
+two people are talking,two men are playing guitar,neutral
