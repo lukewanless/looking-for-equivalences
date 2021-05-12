@@ -194,14 +194,17 @@ def h_transformation_syn_dict(df, syn_dict):
     return df_new
 
 
-def parallelize(df, func, n_cores):
+def parallelize(df, func, n_cores, syn_dictp):
     """
     general fucntion to parallelize a function applied to
     a df
     """
     df_split = np.array_split(df, n_cores)
+    param = []
+    for a in df_split:
+        param.append((a,syn_dictp))
     pool = Pool(n_cores)
-    df = pd.concat(pool.map(func, df_split))
+    df = pd.concat(pool.starmap(func, param))
     pool.close()
     pool.join()
     return df
