@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
 
     print("train.shape", train.shape)
-    print("train.shape", test.shape)
+    print("test.shape", test.shape)
 
     # ## Get syn dict
 

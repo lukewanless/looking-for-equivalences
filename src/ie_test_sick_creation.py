@@ -59,6 +59,8 @@ def run_test(train_path,
 
     train_ = dgp_train.sample_transform(random_state=dgp_random_state)
 
+    train_ = train_.astype({'id': int})
+
     train_.to_csv(output_path, index=False)
 
     htest_time = time() - init_test
